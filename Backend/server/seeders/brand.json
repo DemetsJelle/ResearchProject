@@ -1,0 +1,32 @@
+[
+    {
+        "BrandId":"3cd1ac54-171e-4eea-a2e0-2183557582e5",
+        "Name":"Adidas",
+        "Picture":"",
+        "Product":[]
+    },
+    {
+        "BrandId":"6dad4644-3233-42b1-a0e1-3e0e4f1c841a",
+        "Name":"Nike",
+        "Picture":"",
+        "Product":[]
+    },
+    {
+        "BrandId":"66a93dd8-3910-403c-83ee-409011615325",
+        "Name":"Asics",
+        "Picture":"",
+        "Product":[]
+    },
+    {
+        "BrandId":"de4d70f2-a427-467e-9d82-602ea03e4fa0",
+        "Name":"Fila",
+        "Picture":"",
+        "Product":[]
+    },
+    {
+        "BrandId":"6c9f4e09-57b3-4bd0-8c05-db433c630e2c",
+        "Name":"The North Face",
+        "Picture":"",
+        "Product":[]
+    }
+]

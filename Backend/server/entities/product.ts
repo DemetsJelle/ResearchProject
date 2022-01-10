@@ -30,7 +30,10 @@ export class Product{
     @Column('simple-array')
     Sizes?: string[]
 
-    @ManyToOne(() => Wishlist)
+    @Column('text',{nullable: true})
+    Gender?:string
+
+    @ManyToOne(() => Wishlist , {nullable: true})
     @JoinColumn( {name: "WishlistId"})
     Wishlist: Wishlist
 
@@ -42,6 +45,6 @@ export class Product{
     @JoinColumn( {name: "CategoryId"})
     Category: Category
 
-    @OneToMany(() => Review, review => review.Product)
+    @OneToMany(() => Review, review => review.Product, {nullable: true})
     Review?: Review[]
 }

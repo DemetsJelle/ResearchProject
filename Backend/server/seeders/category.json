@@ -1,0 +1,27 @@
+[
+    {
+        "CategoryId":"428f525b-075c-4e82-af58-2d221e6fa21d",
+        "Name":"Jassen",
+        "Product":[]
+    },
+    {
+        "CategoryId":"edbde4e3-6314-427e-af51-fcc57d81b300",
+        "Name":"Ski's",
+        "Product":[]
+    },
+    {
+        "CategoryId":"8b0be329-666d-4f82-8d4e-ddfe9b4cc719",
+        "Name":"Skihelmen",
+        "Product":[]
+    },
+    {
+        "CategoryId":"5536fec3-f9a4-4061-b825-62cde551a633",
+        "Name":"Skibrillen",
+        "Product":[]
+    },
+    {
+        "CategoryId":"ee6b2f1e-c358-466b-a584-d5bfd98865b9",
+        "Name":"Skischoenen",
+        "Product":[]
+    }
+]
