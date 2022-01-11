@@ -6,17 +6,17 @@ import { User } from "./user"
 @Entity('wishlist') // The table name
 export class Wishlist {
     @PrimaryColumn('uuid')
-    WhislistId?: string
+    WishlistId?: string
 
     @Column({unique: true})
     UserId?: string
 
-    @Column({unique: true})
+    @Column({unique: true, nullable: true})
     ProductId?: string
 
     @OneToOne(() => User, user => user.wishlist)
-    user: User;
+    User: User;
 
-    @OneToMany(() => Product, product => product.Wishlist)
+    @OneToMany(() => Product, product => product.Wishlist, {nullable: true})
     Product?: Product[]
 }

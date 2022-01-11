@@ -16,6 +16,6 @@ export class User {
     @Column({length: 100})
     Email?: string;
     
-    @OneToOne(() => Wishlist, wishlist => wishlist.user, {nullable: true})
+    @OneToOne(() => Wishlist, wishlist => wishlist.User, {nullable: true})
     wishlist: Wishlist;
 }
