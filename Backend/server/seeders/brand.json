@@ -1,31 +1,43 @@
 [
     {
         "BrandId":"3cd1ac54-171e-4eea-a2e0-2183557582e5",
-        "Name":"Adidas",
+        "Name":"Protest",
         "Picture":"",
         "Product":[]
     },
     {
         "BrandId":"6dad4644-3233-42b1-a0e1-3e0e4f1c841a",
-        "Name":"Nike",
+        "Name":"Salomon",
         "Picture":"",
         "Product":[]
     },
     {
         "BrandId":"66a93dd8-3910-403c-83ee-409011615325",
-        "Name":"Asics",
+        "Name":"Head",
         "Picture":"",
         "Product":[]
     },
     {
         "BrandId":"de4d70f2-a427-467e-9d82-602ea03e4fa0",
-        "Name":"Fila",
+        "Name":"Rossignol",
         "Picture":"",
         "Product":[]
     },
     {
         "BrandId":"6c9f4e09-57b3-4bd0-8c05-db433c630e2c",
         "Name":"The North Face",
+        "Picture":"",
+        "Product":[]
+    },
+    {
+        "BrandId":"9d5ca7cb-ef7a-4233-9afb-09e8ec2bb724",
+        "Name":"Wedze",
+        "Picture":"",
+        "Product":[]
+    },
+    {
+        "BrandId":"a1708052-be29-47c8-a907-a7139eb6badd",
+        "Name":"Julbo",
         "Picture":"",
         "Product":[]
     }
