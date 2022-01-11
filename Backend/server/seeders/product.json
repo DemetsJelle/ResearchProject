@@ -1,0 +1,520 @@
+[
+    {
+        "ProductId":"976740a9-f9a7-4001-8488-df51439084b5",
+        "Name":"PROTEST MOUNT 20 SKI JAS ZWART",
+        "Price": 199.99,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Met de Protest Mount 20 ski jas ga je goed voorbereid richting de piste. Deze zwarte herenjas zit vol met extra’s om jouw wintersportervaring extra zorgeloos te maken. Wat dacht je bijvoorbeeld van een brillendoekje voor je skibril, of een liftpashouder? Maar deze jas is niet alleen handig, hij is ook nog eens van hoogwaardige kwaliteit. Zo is de jas waterdicht en zeer ademend. Vocht komt er niet in, maar het kan er wel uit. Kortom, met deze jas kun je elk avontuur op de piste aan!",
+        "ExtraInfo":[
+            {
+                "Materiaal":"94% Polyester / 6% Elastaan",
+                "Kraagvorm":"Opstaand met kinbeschermer",
+                "Capuchon":"Geschikt voor over de helm",
+                "Ritszak":"Op borst"
+            }
+        ],
+        "Sizes":["S","M","L","XL","XXL"],
+        "Gender":"Mannen",
+        "Brand":"3cd1ac54-171e-4eea-a2e0-2183557582e5",
+        "Category":"428f525b-075c-4e82-af58-2d221e6fa21d",
+        "Review": null
+    },
+    {
+        "ProductId":"58d889fb-28b8-4148-8537-6cc0fca082fd",
+        "Name":"PROTEST DORY SKI JAS WIT/BRUIN",
+        "Price": 99.99,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Maak kennis met de fantastische Dory JR ski- en snowboardjas van Protest. Geïnspireerd door klassieke ruitpatronen hebben we de Dory JR jas bedrukt met een prachtige glen plaid. Dit design bestaat uit gebrande sienna, mosterdgeel en oudroze op een crèmekleurige achtergrond. De softshell capuchon is gevoerd met fleece en bedrukt met een gemêleerd design. Als je lekker lang op de piste wilt blijven, is het belangrijk dat je warm en droog blijft. Deze jas heeft 10.000 mm waterdichtheid en 10 g ademend vermogen. Dit betekent dat water van buitenaf wordt tegengehouden en transpiratievocht van binnenuit door de stof naar buiten kan. De manchetten zijn elastisch en verstelbaar met behulp van klittenband. De zijzakken zijn voorzien van een ritssluiting en de liftpashouder op de mouw heeft een klittenbandsluiting. De onderboord is elastisch. De Dory JR ski- en snowboardjas van Protest is de jas die je zocht.",
+        "ExtraInfo":[
+            {
+                "Materiaal":"100% Polyester",
+                "Kraagvorm":"Opstaand met kinbeschermer",
+                "Pasvorm":"Slim Fit, sluit dicht aan op de huid, maar zit niet te strak",
+                "Ritszak":"Op borst",
+                "Waterdicht":""
+            }
+        ],
+        "Sizes":["XS","S","M","L","XL","XXL"],
+        "Gender":"Mannen",
+        "Brand":"3cd1ac54-171e-4eea-a2e0-2183557582e5",
+        "Category":"428f525b-075c-4e82-af58-2d221e6fa21d",
+        "Review": null
+    },
+    {
+        "ProductId":"4a8eedf6-1761-4b53-b80c-d9ff56f84465",
+        "Name":"PROTEST BOXY SKI JAS ZWART",
+        "Price": 159.99,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Ontdek de fantastische Boxy van Protest. Deze regular fit jas valt kort. Als je lekker lang op de piste wilt blijven, is het belangrijk dat je warm en droog blijft. Deze geweldige ski- en snowboardjas heeft 10.000 mm waterdichtheid en 10 g ademend vermogen. Dit betekent dat water van buitenaf wordt tegengehouden en transpiratievocht van binnenuit door de stof naar buiten kan. De PFC-vrije stof is gewatteerd om je lekker warm te houden. Onder de armen zitten ventilatieritsen zodat je je eigen lichaamstemperatuur kunt regelen. De liftpashouder heeft een klittenbandsluiting en de zijzakken een ritssluiting. Zowel de capuchon als de mooie rand van imitatiebont zijn afneembaar. De Boxy van Protest is een prachtige jas voor op en buiten de piste. Dit model is 1,75 m en draagt maat M.",
+        "ExtraInfo":[
+            {
+                "Materiaal":"100% Polyester",
+                "Kraagvorm":"Opstaand met kinbeschermer",
+                "Capuchon":"Afneembaar",
+                "Ritszak":"Deze winterjas heeft een speciaal ontworpen zak voor de skipas",
+                "Waterdicht":""
+            }
+        ],
+        "Sizes":["XS","L","XL"],
+        "Gender":"Kinderen",
+        "Brand":"6dad4644-3233-42b1-a0e1-3e0e4f1c841a",
+        "Category":"428f525b-075c-4e82-af58-2d221e6fa21d",
+        "Review": null
+    },
+    {
+        "ProductId":"a9061965-6fc7-4b89-9052-614f29891893",
+        "Name":"SALOMON STORMSLIDE SKI JAS BLAUW",
+        "Price": 299.99,
+        "InStock": false,
+        "Picture":"",
+        "Description":"STORMSLIDE JKT M",
+        "ExtraInfo":[
+            {
+            }
+        ],
+        "Sizes":["M"],
+        "Gender":"Dames",
+        "Brand":"6dad4644-3233-42b1-a0e1-3e0e4f1c841a",
+        "Category":"428f525b-075c-4e82-af58-2d221e6fa21d",
+        "Review": null
+    },
+    {
+        "ProductId":"6960fbc5-9f87-44d4-8452-82637e300410",
+        "Name":"SALOMON STORMBRAVER SKI JAS GROEN",
+        "Price": 179.99,
+        "InStock": false,
+        "Picture":"",
+        "Description":"De Stormbraver ski jas is een van de meest veelzijdige jassen van Salomon. Zo is dit groene herenjack uitgerust met verschillende ritszakken om je spullen in te bewaren tijdens jouw ski avontuur. Geef sneeuw geen kans dankzij de sneeuwstopper en verstelbare manchetten. Niets kan jou meer stoppen op die piste!",
+        "ExtraInfo":[
+            {
+                "Pasvorm": "Normaal",
+                "Kraagvorm": "Opstaand",
+                "Capuchon":"",
+                "Borstzak": "Met rits",
+                "Twee steekzakken": "Met rits"
+            }
+        ],
+        "Sizes":["XL"],
+        "Gender":"Mannen",
+        "Brand":"6dad4644-3233-42b1-a0e1-3e0e4f1c841a",
+        "Category":"428f525b-075c-4e82-af58-2d221e6fa21d",
+        "Review": null
+    },
+    {
+        "ProductId":"8337350e-428c-405e-b04c-a661709c0b91",
+        "Name":"THE NORTH FACE LENADO SKI JAS ZWART",
+        "Price": 349.99,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Til je prestaties tijdens de wintersport naar een nieuw niveau dankzij de zwarte Lenado ski jas van The North Face. Deze winterjas voor dames is volledig ontworpen voor het skiën of snowboarden. Alles wat je tijdens het wintersporten nodig hebt, vind je in deze damesjas. De jas is waterdicht, winddicht, heeft een ademend vermogen en geeft je de mogelijkheid om waardevolle spullen te allen tijde bij je te houden. Wanneer je de afdalingen maakt, ben je ervan verzekerd dat je geen last hebt van zowel de kou als een warm en plakkerig gevoel. Zo kun je alles op alles zetten om je wintersportskills verder te ontwikkelen.",
+        "ExtraInfo":[
+            {
+                "Materiaal": "94% Polyester / 6% Elastaan",
+                "Pasvorm": "Slim Fit, sluit dicht aan op de huid, maar zit niet te strak",
+                "Kraagvorm": "Opstaand",
+                "Capuchon":"Afneembaar en verstelbaar",
+                "Binnenzak": "Voor bril",
+                "Polszak": "Met rits"
+            }
+        ],
+        "Sizes":["XS","S"],
+        "Gender":"Dames",
+        "Brand":"6c9f4e09-57b3-4bd0-8c05-db433c630e2c",
+        "Category":"428f525b-075c-4e82-af58-2d221e6fa21d",
+        "Review": null
+    },
+
+    {
+        "ProductId":"5d3e0e82-a2f4-4d72-9fd6-f8990ccc696a",
+        "Name":"HEAD V-SHAPE V2 SKI'S ZWART/WIT",
+        "Price": 200,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Als beginnende skiër ga je op de V-Shape V2 ski's van HEAD vol vertrouwen de piste op en af. Dankzij het gebruik van verschillende materialen en technologieën biedt de ski gemakkelijke besturing, perfecte flotatie en directe grip. Er is gebruik gemaakt van Allride Rocker, dat je makkelijker laat draaien en gerichte stabiliteit biedt. De bredere skipunt helpt je in het maken van scherpe bochten, terwijl de langere kant je meer controle biedt. De V-Shape V2 is de ideale ski voor de beginner, of wanneer je er even tussenuit bent geweest!",
+        "ExtraInfo":[
+            {
+                "Wendbaarheid":"Vinnig, snelle afwisseling van kant.",
+                "Afzet":"Sportieve ski's, die inspanning vragen!",
+                "Slipvastheid": "Verticale zijkanten en klassieke camber (rebel camber) voor een goede grip.",
+                "Precisie":"Ideaal voor glij- en carvebochten bij hoge snelheid.",
+                "Stabiliteit": "Doortastende ski's, stabiel bij hoge snelheid."
+            }
+        ],
+        "Sizes":["163 cm","170 cm"],
+        "Gender":null,
+        "Brand":"66a93dd8-3910-403c-83ee-409011615325",
+        "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
+        "Review": null
+    },
+    {
+        "ProductId":"55419c16-5f16-431b-89a1-974e1c2bd351",
+        "Name":"HEAD EASY JOY SKI'S ZWART/ROZE",
+        "Price": 349.99,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Je bent vast nog nooit zo soepel van de berg afgegleden als met deze Easy Joy ski's van Head. In de grafenen LYT Tech constructie voel jij direct wat wij bedoelen. Deze constructie is lichtgewicht en geeft jou dus alle ruimte om de piste eens goed te verkennen terwijl je jouw bewegingen blijft oefenen. Ook ervaar jij minder schokken door de Allride Rocker. Maak dus maar snel werk van je gecontroleerde afdaling.",
+        "ExtraInfo":[
+            {
+                "Drijfvermogen":"Midden van 105 mm en uitgebalanceerde shape, om soepel te skiën op alle sneeuw.",
+                "Wendbaarheid":"Vinnig, snelle afwisseling van kant.",
+                "Afzet":"Sportieve ski's, die inspanning vragen!",
+                "Slipvastheid": "Verticale zijkanten en klassieke camber (rebel camber) voor een goede grip.",
+                "Precisie":"Ideaal voor glij- en carvebochten bij hoge snelheid.",
+                "Stabiliteit": "Stabiel, zelfs wanneer er al sporen zijn getrokken in de poedersneeuw!"
+            }
+        ],
+        "Sizes":["153 cm"],
+        "Gender":null,
+        "Brand":"66a93dd8-3910-403c-83ee-409011615325",
+        "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
+        "Review": null
+    },
+    {
+        "ProductId":"a3e3824e-7734-42e3-9ebb-2995c323236d",
+        "Name":"HEAD PURE JOY SKI'S BLAUW",
+        "Price": 250.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Als de witte sneeuw iets voor jou is, dan is deze blauwgekleurde set dat zeker. Met deze Pure Joy ski's van Head heb jij de piste binnen een mum van tijd onder de knie. De ski's zijn erg geschikt om langdurig mee te oefenen en met een DIN-waarde van 2,5 - 9 is deze set geschikt voor beginnende skiërs tot 90 kilogram. Laat de brede punt en de smalle staart het zware werk maar doen.",
+        "ExtraInfo":[
+            {
+                "Drijfvermogen":"Midden van 105 mm en uitgebalanceerde shape, om soepel te skiën op alle sneeuw.",
+                "Wendbaarheid":"Intelligence-technologie, die kleine foutjes vergeeft bij rustige afdalingen",
+                "Afzet":"Sportieve ski's, die inspanning vragen!",
+                "Slipvastheid": "Intelligence-technologie, voor een betere torsieweerstand."
+            }
+        ],
+        "Sizes":["153 cm"],
+        "Gender":null,
+        "Brand":"66a93dd8-3910-403c-83ee-409011615325",
+        "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
+        "Review": null
+    },
+    {
+        "ProductId":"8d9c7333-6837-45bb-8037-465dee48425c",
+        "Name":"Pisteski's met binding React 6",
+        "Price": 380.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Voor gevorderde tot ervaren skiërs, ski's waarmee je moeiteloos kan carven. Een uitgepuurde ski voor gevorderde skiërs die beter willen worden. Een ski die heel toegankelijk is en zich thuis voelt in alle omstandigheden",
+        "ExtraInfo":[
+            {
+                "Veelzijdigheid": "Om spontaan te carven, op je eigen tempo.",
+                "Afzet": "Dankzij de Flex Tip kan je beter afzetten",
+                "Precisie": "Grote taillering om perfecte bochten te maken.",
+                "Slipvastheid": "De rechthoekige sidewall biedt aangepaste grip en precisie.",
+                "Stabiliteit": "Tolerante constructie die tegenflex tegengaat voor meer controle"
+            }
+        ],
+        "Sizes":["163 cm","173 cm"],
+        "Gender":"Mannen",
+        "Brand":"de4d70f2-a427-467e-9d82-602ea03e4fa0",
+        "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
+        "Review": null
+    },
+    {
+        "ProductId":"602c6966-652f-43af-ae6a-4e797544d470",
+        "Name":"Pisteski's met bindingen Attraxion zwart/roze",
+        "Price": 170.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"De ideale ski's voor dames die willen proeven van puur skiplezier. De ski's zijn intuïtief en daardoor is het makkelijker om veilig vorderingen te maken. Deze pisteski's werden ontwikkeld om je te laten kennismaken met skiën en ervan te leren houden. Ze zijn makkelijk, licht en wendbaar: ideaal om je meteen op je gemak te voelen op de pistes.",
+        "ExtraInfo":[
+            {
+                "Wendbaarheid":"Klassieke structuur om in elke situatie de controle te behouden.",
+                "Afzet":"Soepele bouw, om op je eigen tempo te leren skiën.",
+                "Slipvastheid": "Klassieke camber voor een goede grip op harde sneeuw. CAP-structuur.",
+                "Precisie":"Radius van 15 m om vlot bochten te nemen, gemiddelde precisie.",
+                "Stabiliteit": "Soepele vervorming voor zachte overgangen."
+            }
+        ],
+        "Sizes":["142 cm","152 cm","162 cm"],
+        "Gender":"Dames",
+        "Brand":"de4d70f2-a427-467e-9d82-602ea03e4fa0",
+        "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
+        "Review": null
+    },
+    {
+        "ProductId":"ba9f42f2-c508-4e04-b948-1b88d545048b",
+        "Name":"PISTESKI'S MET BINDING EXPERIENCE 82 H",
+        "Price": 460.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Deze ski zal zowel gemiddelde als gevorderde skiërs bekoren die op zoek zijn naar een modern model dat goede prestaties levert op alle soorten sneeuw. Lichte, energieke en handelbare ski's die alles hebben om in de smaak te vallen.",
+        "ExtraInfo":[
+            {
+                "Wendbaarheid":"Deze ski voelt zich thuis op alle soorten sneeuw, dankzij de rocker vooraan.",
+                "Afzet":"Vinnig en een indrukwekkende verhouding tussen gewicht en power.",
+                "Slipvastheid": "Licht onder de voet, om zich vast te bijten in alle sneeuw.",
+                "Stabiliteit": "Wat breder aan het midden, handig op wisselende sneeuw"
+            }
+        ],
+        "Sizes":["168 cm","176 cm"],
+        "Gender":"Mannen",
+        "Brand":"de4d70f2-a427-467e-9d82-602ea03e4fa0",
+        "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
+        "Review": null
+    },
+
+    {
+        "ProductId":"196c4e50-61a4-4afa-9e11-3a03f75aeb43",
+        "Name":"Skihelm voor volwassenen H100 grijs",
+        "Price": 20.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Ontwikkeld voor occasionele skiërs op zoek naar een eenvoudige helm om in alle veiligheid hun eerste bochten te maken. Deze helm is uitgerust met een draaiknop om de hoofdomtrek te regelen, en hij heeft een ABS-buitenschaal voor een goede bescherming.",
+        "ExtraInfo":[
+            {
+                "Stabiliteit":"Spanwieltje voor de achterste helft, om goed aan te passen aan je hoofd.",
+                "Gewicht":"475 g in maat M.",   
+                "Warmte":"Dunne oorpads. Comfortschuim aan de binnenkant.",
+                "Onderhoudsgemak":"Comfortschuim uitneembaar en machinewasbaar op 30°C.",            
+                "Ventilatie":"6 gaten om te ventileren en vocht af te voeren.",
+                "Bescherming tegen schokken":"Conform de norm EN 1077-B. ABS-structuur, om langer mee te gaan.",
+                "Gebruiksgemak":"2 haakjes voor je skibril."
+            }
+        ],
+        "Sizes":["56-59 cm","59-62 cm"],
+        "Gender":"Unisex",
+        "Brand":"9d5ca7cb-ef7a-4233-9afb-09e8ec2bb724",
+        "Category":"8b0be329-666d-4f82-8d4e-ddfe9b4cc719",
+        "Review": null
+    },
+    {
+        "ProductId":"ec2a38cf-c521-4d87-b87f-24fb5462ad9d",
+        "Name":"SKIHELM MET VIZIER VOOR VOLWASSENEN H350 GRIJS",
+        "Price": 80.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Ontwikkeld voor wie regelmatig gaat skiën en op zoek is naar een vizierhelm om het gelaat en de ogen te beschermen. Ideaal voor wie een bril op sterkte draagt. De lichtste 2-in-1 vizierhelm! De soepele oorpads zorgen voor extra comfort.",
+        "ExtraInfo":[
+            {
+                "Stabiliteit":"Draaiknop achteraan.",
+                "Gewicht":"510 g in maat M. Onze lichtste helm met vizier.",   
+                "Warmte":"Dikke oorpads en binnencap in geruwde stof.",
+                "Pascomfort":"Deels opengewerkte oorpads, om niet te knellen.",            
+                "Ventilatie":"Ventilatiekanalen en 10 luchtgaten binnenin om het vocht af te voeren.",
+                "Bescherming tegen schokken":"Conform de norm EN 1077- B. In-mold constructie voor een licht resultaat",
+                "Waterdichtheid":"Afdichtingen in schuim, zodat er minder water en sneeuw binnendringt.",
+                "Zonnebescherming":"Enkele, uv- en condenswerende lens voor alle weersomstandigheden (categorie S3)."
+            }
+        ],
+        "Sizes":["53-56 cm","56-59 cm","59-61 cm"],
+        "Gender":"Unisex",
+        "Brand":"9d5ca7cb-ef7a-4233-9afb-09e8ec2bb724",
+        "Category":"8b0be329-666d-4f82-8d4e-ddfe9b4cc719",
+        "Review": null
+    },
+    {
+        "ProductId":"e0577ac4-4e4f-4176-8217-939044192ace",
+        "Name":"Skihelm voor pisteskiën volwassenen HRC 500 zwart",
+        "Price": 50.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Ontwikkeld voor regelmatige skiërs op zoek naar een helm met harde oorpads, voor extra bescherming. Dankzij de stijve oorpads en het systeem om de hoofdomtrek te verstellen, blijft deze helm heel goed op je hoofd zitten, biedt hij meer bescherming en is hij ook nog lekker warm.",
+        "ExtraInfo":[
+            {
+                "Stabiliteit":"Draaiknop in het midden van het achterhoofd, harde oorpads.",
+                "Gewicht":"625 g in maat M.",   
+                "Warmte":"Dikke oorpads en binnencap in geruwde stof.",
+                "Pascomfort":"Openingen aan de oren, om beter te horen.",            
+                "Ventilatie":"6 gaten om te ventileren en vocht af te voeren.",
+                "Bescherming tegen schokken":"Conform de norm 1077-A. ABS-constructie en stijve oorpads",
+                "Gebruiksgemak":"Drukknoopsysteem om je skibril te bevestigen. Omslag tegen de koude (voorhoofd).",
+                "Onderhoudsgemak":"Comfortschuim uitneembaar en machinewasbaar op 30 °C."
+            }
+        ],
+        "Sizes":["S/53-56 cm","M/56-59 cm","L/59-62 cm"],
+        "Gender":"Unisex",
+        "Brand":"9d5ca7cb-ef7a-4233-9afb-09e8ec2bb724",
+        "Category":"8b0be329-666d-4f82-8d4e-ddfe9b4cc719",
+        "Review": null
+    },
+    {
+        "ProductId":"5d49ca84-b75a-410f-bf8a-a57432edcb30",
+        "Name":"TOERSKIHELM THE PEAK LT",
+        "Price": 120.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Deze toerskihelm beschermt je hoofd wanneer je naar boven of beneden gaat. Zoek je een lichte helm met goede ventilatie die je beschermt tijdens het toerskiën? Deze helm biedt bescherming en ventilatie bij elk weer",
+        "ExtraInfo":[
+            {
+                "Stabiliteit":"Draaiwieltje om de hoofdomtrek aan te passen",
+                "Veelzijdig":"Je kunt de binnenkant van de helm eenvoudig uitnemen",   
+                "Ventilatie":"De verschillende luchtopeningen zorgen voor een optimale ventilatie",
+                "Bescherming tegen schokken":"Deze helm voldoet aan twee normen: skiën + alpinisme - klimmen"
+            }
+        ],
+        "Sizes":["52-56 cm","56-59 cm","58-60 cm"],
+        "Gender":"Unisex",
+        "Brand":"a1708052-be29-47c8-a907-a7139eb6badd",
+        "Category":"8b0be329-666d-4f82-8d4e-ddfe9b4cc719",
+        "Review": null
+    },
+
+    {
+        "ProductId":"4fc0c94b-2794-4930-88d8-175996f529e8",
+        "Name":"Ski- en snowboardbril voor volwassenen en kinderen G 100 I alle weertypes wit",
+        "Price": 25.00,
+        "InStock": false,
+        "Picture":"",
+        "Description":"Vanaf onze instapmodellen bieden we je skibrillen voor alle weer, met verwisselbare lenzen. Dit masker is ook geschikt voor brildragers. De skibril G 100 I is geschikt voor alle weer, omdat je de lens kunt verwisselen. Dankzij de slimme vorm is hij ook geschikt voor wie een bril draagt",
+        "ExtraInfo":[
+            {
+                "Zonnebescherming":"100 % uv-bescherming, verwisselbare bruine en gele lens voor elk weertype",
+                "Gezichtsveld":"Cilindrische lens met een essentieel gezichtsveld",
+                "Stabiliteit":"Elastiek van 40 mm breed",
+                "Compatibiliteit":"Maat L is geschikt voor een bril op sterkte van max. 145 mm breed",
+                "Dampwerend":"Basis antifog, dubbele lens met dampwerende behandeling",
+                "Pascomfort":"Ergonomisch schuim",
+                "Instelbaar":"1 gesp om de lengte van de elastiek aan te passen"
+            }
+        ],
+        "Sizes":["S","L"],
+        "Gender":"Unisex",
+        "Brand":"9d5ca7cb-ef7a-4233-9afb-09e8ec2bb724",
+        "Category":"5536fec3-f9a4-4061-b825-62cde551a633",
+        "Review": null
+    },    
+    {
+        "ProductId":"605cf0b2-1cb5-44c7-8182-c0a1a98afd5e",
+        "Name":"Ski- en snowboardbril voor volwassenen en kinderen G 140 zonnig weer wit",
+        "Price": 15.00,
+        "InStock": false,
+        "Picture":"https://contents.mediadecathlon.com/p1178752/k$9272ddbb1fd7e131967b6b68e51d9c6f/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-140-zonnig-weer-wit.jpg?format=auto&f=240x240 240w, https://contents.mediadecathlon.com/p1178752/k$9272ddbb1fd7e131967b6b68e51d9c6f/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-140-zonnig-weer-wit.jpg?format=auto&f=480x480 480w, https://contents.mediadecathlon.com/p1178752/k$9272ddbb1fd7e131967b6b68e51d9c6f/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-140-zonnig-weer-wit.jpg?format=auto&f=720x720 720w, https://contents.mediadecathlon.com/p1178752/k$9272ddbb1fd7e131967b6b68e51d9c6f/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-140-zonnig-weer-wit.jpg?format=auto&f=323x323 323w, https://contents.mediadecathlon.com/p1178752/k$9272ddbb1fd7e131967b6b68e51d9c6f/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-140-zonnig-weer-wit.jpg?format=auto&f=646x646 646w, https://contents.mediadecathlon.com/p1178752/k$9272ddbb1fd7e131967b6b68e51d9c6f/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-140-zonnig-weer-wit.jpg?format=auto&f=969x969 969w",
+        "Description":"Deze comfortabele skibril heeft een dubbele lens, hierdoor wordt aandampen beperkt en behoud je een goed zicht bij zonnig weer. De skibril G 140 S3 biedt een goed zicht bij zonnig en bewolkt weer en heeft een dubbele lens met het anticondenssysteem Essential. Comfortabel dankzij het comforttextiel, 100% uv-bescherming",
+        "ExtraInfo":[
+            {
+                "Zonnebescherming":"100% uv-werend. Bruine lens om reliëf te zien bij zonnig en bewolkt weer.",
+                "Gezichtsveld":"Cilindrische lens met een essentieel gezichtsveld",
+                "Stabiliteit":"Elastiek van 40 mm breed",
+                "Compatibiliteit":"Vorm perfect aangepast aan de helmen van Wed'ze",
+                "Dampwerend":"Dampwering 'Essential', dubbele lens met condenswerende coating",
+                "Pascomfort":"Ergonomisch schuim en comfortabel textiel",
+                "Instelbaar":"Twee gespen om de lengte van de band snel aan te passen"
+            }
+        ],
+        "Sizes":["S/M","L/XL"],
+        "Gender":"Vrouwen",
+        "Brand":"9d5ca7cb-ef7a-4233-9afb-09e8ec2bb724",
+        "Category":"5536fec3-f9a4-4061-b825-62cde551a633",
+        "Review": null
+    },    
+    {
+        "ProductId":"1cd220bf-359a-4a6c-ae75-a1db3d41f0d3",
+        "Name":"Ski- en snowboardbril voor volwassenen en kinderen G 500 I alle weertypes zwart",
+        "Price": 45.00,
+        "InStock": false,
+        "Picture":"https://contents.mediadecathlon.com/p1960456/k$d225396fa5e549b896f1ee82301b9c4d/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-100-i-alle-weertypes-wit.jpg?format=auto&f=240x240%20240w,%20https://contents.mediadecathlon.com/p1960456/k$d225396fa5e549b896f1ee82301b9c4d/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-100-i-alle-weertypes-wit.jpg?format=auto&f=480x480%20480w,%20https://contents.mediadecathlon.com/p1960456/k$d225396fa5e549b896f1ee82301b9c4d/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-100-i-alle-weertypes-wit.jpg?format=auto&f=720x720%20720w,%20https://contents.mediadecathlon.com/p1960456/k$d225396fa5e549b896f1ee82301b9c4d/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-100-i-alle-weertypes-wit.jpg?format=auto&f=323x323%20323w,%20https://contents.mediadecathlon.com/p1960456/k$d225396fa5e549b896f1ee82301b9c4d/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-100-i-alle-weertypes-wit.jpg?format=auto&f=646x646%20646w,%20https://contents.mediadecathlon.com/p1960456/k$d225396fa5e549b896f1ee82301b9c4d/sq/ski-en-snowboardbril-voor-volwassenen-en-kinderen-g-100-i-alle-weertypes-wit.jpg?format=auto&f=969x969%20969w",
+        "Description":"Met deze skibril met verwisselbare lenzen hoef je je niet langer af te vragen welk weer het wordt als je gaat skiën. Geschikt voor brildragers. Je kunt de lens van de G 500 l gewoon afnemen om ze aan het weer aan te passen. Een lens voor mooi weer of slecht weer, jij kiest! Compatibiliteit met bril op sterkte",
+        "ExtraInfo":[
+            {
+                "Zonnebescherming":"100 % uv-bescherming, verwisselbare bruine en gele lens voor elk weertype.",
+                "Gezichtsveld":"Cilindrische lens met 'Performant' gezichtsveld.",
+                "Stabiliteit":"Band van 40 mm breed met een dubbele siliconen antislipstrook.",
+                "Compatibiliteit":"Maat L is geschikt voor een bril op sterkte van max. 145 mm breed.",
+                "Dampwerend":"Condenswering 'Performant', dubbele behandelde lens en geventileerd montuur.",
+                "Pascomfort":"Dubbele schuimdichtheid en erg comfortabel textiel.",
+                "Instelbaar":"Twee gespen om de lengte van de band snel aan te passen"
+            }
+        ],
+        "Sizes":["S","L"],
+        "Gender":"Mannen",
+        "Brand":"9d5ca7cb-ef7a-4233-9afb-09e8ec2bb724",
+        "Category":"5536fec3-f9a4-4061-b825-62cde551a633",
+        "Review": null
+    },
+
+    {
+        "ProductId":"8d53a0b1-c7bc-43d7-bc28-1617424f2526",
+        "Name":"Skischoenen voor pisteskiën heren Select HV 100",
+        "Price": 260.00,
+        "InStock": false,
+        "Picture":"https://contents.mediadecathlon.com/p2041118/k$e3afd0970d472014e799eb533e2fb615/sq/skischoenen-voor-pisteskien-heren-select-hv-100.jpg?format=auto&f=240x240 240w, https://contents.mediadecathlon.com/p2041118/k$e3afd0970d472014e799eb533e2fb615/sq/skischoenen-voor-pisteskien-heren-select-hv-100.jpg?format=auto&f=480x480 480w, https://contents.mediadecathlon.com/p2041118/k$e3afd0970d472014e799eb533e2fb615/sq/skischoenen-voor-pisteskien-heren-select-hv-100.jpg?format=auto&f=720x720 720w, https://contents.mediadecathlon.com/p2041118/k$e3afd0970d472014e799eb533e2fb615/sq/skischoenen-voor-pisteskien-heren-select-hv-100.jpg?format=auto&f=323x323 323w, https://contents.mediadecathlon.com/p2041118/k$e3afd0970d472014e799eb533e2fb615/sq/skischoenen-voor-pisteskien-heren-select-hv-100.jpg?format=auto&f=646x646 646w, https://contents.mediadecathlon.com/p2041118/k$e3afd0970d472014e799eb533e2fb615/sq/skischoenen-voor-pisteskien-heren-select-hv-100.jpg?format=auto&f=969x969 969w",
+        "Description":"Voor gevorderde skiërs op zoek naar schoenen die precisie koppelen aan comfort. Uiterst comfortabel dankzij de ruimte aan de tenen en boven de wreef. Het aansluitende hielstuk en de algemene omhulling leveren de nodige precisie. Nieuw voor de winter 2021/22 van Salomon.",
+        "ExtraInfo":[
+            {
+                "Stijfheid":"Stijf: Flex 100. gedraagt zich heel precies en reactief.",
+                "Aanpasbaarheid":"Warmtevormbare binnenschoen + verstelbare kuitbreedte.",
+                "Gebruiksgemak":"Soepel materiaal op de wreef, om het aantrekken te vergemakkelijken.",
+                "Stabiliteit":"102 mm: standaard voet. Sluiten goed aan de voet aan.",
+                "Instelbaar":"4 micrometrische gespen: 2 verstelbare rails. Riempje van 40 mm.",
+                "Warmte":"Isolerende binnenschoen en zool, om de warmte vast te houden."
+            }
+        ],
+        "Sizes":["26-26.5 cm","27-27.5 cm","28-28.5 cm"],
+        "Gender":"Mannen",
+        "Brand":"6dad4644-3233-42b1-a0e1-3e0e4f1c841a",
+        "Category":"ee6b2f1e-c358-466b-a584-d5bfd98865b9",
+        "Review": null
+    },
+    {
+        "ProductId":"bcbb7c4b-7cfd-49c2-8c79-e627f32a3e27",
+        "Name":"Skischoenen voor pisteskiën heren QUEST ACCESS 70",
+        "Price": 140.00,
+        "InStock": false,
+        "Picture":"https://contents.mediadecathlon.com/p1861065/k$5375710b336d3d715236bf2e5ffc7e58/sq/skischoenen-voor-pisteskien-heren-quest-access-70.jpg?format=auto&f=240x240 240w, https://contents.mediadecathlon.com/p1861065/k$5375710b336d3d715236bf2e5ffc7e58/sq/skischoenen-voor-pisteskien-heren-quest-access-70.jpg?format=auto&f=480x480 480w, https://contents.mediadecathlon.com/p1861065/k$5375710b336d3d715236bf2e5ffc7e58/sq/skischoenen-voor-pisteskien-heren-quest-access-70.jpg?format=auto&f=720x720 720w, https://contents.mediadecathlon.com/p1861065/k$5375710b336d3d715236bf2e5ffc7e58/sq/skischoenen-voor-pisteskien-heren-quest-access-70.jpg?format=auto&f=323x323 323w, https://contents.mediadecathlon.com/p1861065/k$5375710b336d3d715236bf2e5ffc7e58/sq/skischoenen-voor-pisteskien-heren-quest-access-70.jpg?format=auto&f=646x646 646w, https://contents.mediadecathlon.com/p1861065/k$5375710b336d3d715236bf2e5ffc7e58/sq/skischoenen-voor-pisteskien-heren-quest-access-70.jpg?format=auto&f=969x969 969w",
+        "Description":"Ontwikkeld voor beginnende skiërs die op zoek zijn naar een maximaal comfort en veel tolerantie om te leren skiën op de piste. Deze schoenen zit ongezien comfortabel zodat je in de beste omstandigheden kunt leren skiën, met name dankzij het ruime volume en het dikke schuim",
+        "ExtraInfo":[
+            {
+                "Stijfheid":"Heel soepel: Flex van 70. De meest tolerante en minst fysiek veeleisende.",
+                "Aanpasbaarheid":"Voorgevormde binnenschoen. Thermovervormbaar aan de enkels en tenen.",
+                "Gebruiksgemak":"Zeer gemakkelijk en snel aan te trekken dankzij de grote opening en 3 buckles.",
+                "Stabiliteit":"104 mm: brede voet. Binnenschoen in dik schuim voor meer tolerantie.",
+                "Instelbaar":"3 microverstelbare buckles: 1 verstelbare ratchet buckle. Strap van 30 mm.",
+                "Warmte":"Isolerende binnenschoen en zool, om de warmte vast te houden.",
+                "Slipvastheid":"Gegroefde buitenzool met dubbele densiteit voor meer grip."
+            }
+        ],
+        "Sizes":["25-25.5 cm","26-26.5 cm","27-27.5 cm","28-28.5 cm","30-30.5 cm"],
+        "Gender":"Mannen",
+        "Brand":"6dad4644-3233-42b1-a0e1-3e0e4f1c841a",
+        "Category":"ee6b2f1e-c358-466b-a584-d5bfd98865b9",
+        "Review": null
+    },
+    {
+        "ProductId":"7b7b3e3a-580a-4b3d-83ef-232c05f49c88",
+        "Name":"Skischoenen voor kinderen HEAD RAPTOR 60 wit",
+        "Price": 110.00,
+        "InStock": false,
+        "Picture":"https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=240x240 240w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=480x480 480w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=720x720 720w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=323x323 323w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=646x646 646w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=969x969 969w",
+        "Description":"Voor jonge ervaren skiërs op zoek naar skischoenen die precies kunnen worden afgesteld voor een goede energieoverdracht. Skischoenen voor skiërtjes met een zeer goed niveau. Deze schoenen kan je uiterst nauwkeurig afstellen: volume dichter bij de voet, hoge schaal, 4 buckles + velcrostrap.",
+        "ExtraInfo":[
+            {
+                "Stijfheid":"Flex 60 junior. Verhoogde hiel om beter af te zetten vooraan.",
+                "Gebruiksgemak":"Dankzij de strap op de tong kan je er gemakkelijker je voet in steken.",
+                "Instelbaar":"4 microverstelbare buckles, verplaatsbare ratchet + klittenband"
+            }
+        ],
+        "Sizes":["22 cm","23 cm","24 cm","25 cm"],
+        "Gender":"Unisex",
+        "Brand":"66a93dd8-3910-403c-83ee-409011615325",
+        "Category":"ee6b2f1e-c358-466b-a584-d5bfd98865b9",
+        "Review": null
+    },
+    {
+        "ProductId":"89516d3b-3d9b-436e-9556-ecaaa90744fd",
+        "Name":"Skischoenen Rossignol Alltrack Pro 120 GW",
+        "Price": 340.00,
+        "InStock": false,
+        "Picture":"https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=240x240 240w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=480x480 480w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=720x720 720w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=323x323 323w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=646x646 646w, https://contents.mediadecathlon.com/p1926481/k$a435204ba99aed7ce99edda313d06ea4/sq/skischoenen-voor-kinderen-head-raptor-60-wit.jpg?format=auto&f=969x969 969w",
+        "Description":"Voor ervaren skiërs op zoek naar veelzijdigheid (pistes en net ernaast), prestatievermogen en precisie. Ski-walksysteem, GripWalk-zool, flex van 120, breedte van 100 mm ... de Alltrack Pro 120 GW is perfect voor gevorderde, fysieke skiërs met de nodige technische bagage.",
+        "ExtraInfo":[
+            {
+                "Stijfheid":"Heel stijf: Flex 120. Voor fysieke, technisch onderlegde skiërs",
+                "Aanpasbaarheid":"Voorgevormde binnenschoen, 100% thermovervormbaar.",
+                "Stabiliteit":"100 mm: voor smalle voeten, of voor skiërs die nauw aanpassend model willen",
+                "Instelbaar":"4 microverstelbare buckles + strap. Ski-walksysteem met 50° bereik.",
+                "Warmte":"Thinsulate® Stretch-isolatie voorvoet."
+            }
+        ],
+        "Sizes":["26 cm","27 cm","28 cm","29 cm"],
+        "Gender":"Unisex",
+        "Brand":"de4d70f2-a427-467e-9d82-602ea03e4fa0",
+        "Category":"ee6b2f1e-c358-466b-a584-d5bfd98865b9",
+        "Review": null
+    }
+]

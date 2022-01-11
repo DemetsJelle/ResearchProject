@@ -14,5 +14,5 @@ export class Brand {
     Picture?: string;
     
     @OneToMany(() => Product, product => product.Category)
-    Prodict?: Product[];
+    Product?: Product[];
 }
