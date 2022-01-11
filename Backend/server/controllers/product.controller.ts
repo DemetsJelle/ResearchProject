@@ -18,7 +18,9 @@ import { CrudController, IController, ICrudController } from './crud.controller'
       super(Product) // Initialize the parent constructor
       this.router.get('/all', this.all)
       this.router.get('/:id', this.one)
-      this.router.get('/productsFromCategory/:brandId/:categoryId', this.getProductsFromCategoryAndBrand)
+      this.router.get('/productsFromCategoryAndBrand/:brandId/:categoryId', this.getProductsFromCategoryAndBrand)
+      this.router.get('/productsFromCategory/:categoryId', this.getProductsFromCategory)
+      this.router.get('/productsFromBrand/:brandId', this.getProductsFromBrand)
     }
 
     getProductsFromCategoryAndBrand = async (request: Request, response: Response, next: NextFunction) => {
@@ -37,6 +39,44 @@ import { CrudController, IController, ICrudController } from './crud.controller'
         .innerJoin('p.Category','c')
         .where('b.BrandId = :id', { id: brandId })
         //.andWhere('c.CategoryId = :id', { id: categoryId})
+        .getMany()
+        response.send(data)
+      } catch(error){
+        response.status(500).json({error : { error }})
+      }
+    }
+
+    getProductsFromCategory = async (request: Request, response: Response, next: NextFunction) => {
+      try{
+        const categoryId = request.params.categoryId
+        
+        if(categoryId === undefined) 
+          return response.status(500).json({error :  "Missing parameter" })
+        
+        const data = await this.repository
+        .createQueryBuilder('p')
+        .select(['p.Name','p.Picture','p.Price','c.CategoryId','c.Name'])
+        .innerJoin('p.Category','c')
+        .where('c.CategoryId = :id', { id: categoryId})
+        .getMany()
+        response.send(data)
+      } catch(error){
+        response.status(500).json({error : { error }})
+      }
+    }
+
+    getProductsFromBrand = async (request: Request, response: Response, next: NextFunction) => {
+      try{
+        const brandId = request.params.brandId
+        
+        if(brandId === undefined) 
+          return response.status(500).json({error :  "Missing parameter" })
+
+        const data = await this.repository
+        .createQueryBuilder('p')
+        .select(['p.Name','p.Picture','p.Price','b.Name','b.BrandId','b.Name'])
+        .innerJoin('p.Brand','b')
+        .where('b.BrandId = :id', { id: brandId })
         .getMany()
         response.send(data)
       } catch(error){
