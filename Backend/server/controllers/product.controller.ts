@@ -55,8 +55,9 @@ import { CrudController, IController, ICrudController } from './crud.controller'
         
         const data = await this.repository
         .createQueryBuilder('p')
-        .select(['p.Name','p.Picture','p.Price','c.CategoryId','c.Name'])
+        .select(['p.Name','p.Picture','p.Price','c.CategoryId','c.Name','b.BrandId','b.Name'])
         .innerJoin('p.Category','c')
+        .innerJoin('p.Brand','b')
         .where('c.CategoryId = :id', { id: categoryId})
         .getMany()
         response.send(data)
@@ -74,8 +75,9 @@ import { CrudController, IController, ICrudController } from './crud.controller'
 
         const data = await this.repository
         .createQueryBuilder('p')
-        .select(['p.Name','p.Picture','p.Price','b.Name','b.BrandId','b.Name'])
+        .select(['p.Name','p.Picture','p.Price','b.Name','b.BrandId','b.Name','c.CategoryId','c.Name'])
         .innerJoin('p.Brand','b')
+        .innerJoin('p.Category','c')
         .where('b.BrandId = :id', { id: brandId })
         .getMany()
         response.send(data)

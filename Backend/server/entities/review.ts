@@ -4,7 +4,7 @@ import { Product } from "./product";
 
 @Entity('review') // The table name
 export class Review {
-    @PrimaryColumn({unique: true})
+    @PrimaryColumn('uuid')
     ReviewId?: string
 
     @Column({ nullable: true })
@@ -15,5 +15,5 @@ export class Review {
     
     @ManyToOne(() => Product)
     @JoinColumn( {name: "ProductId"})
-    Product: Product
+    Product?: Product
 }

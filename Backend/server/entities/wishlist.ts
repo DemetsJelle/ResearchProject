@@ -5,7 +5,7 @@ import { User } from "./user"
 
 @Entity('wishlist') // The table name
 export class Wishlist {
-    @PrimaryColumn({unique: true})
+    @PrimaryColumn('uuid')
     WhislistId?: string
 
     @Column({unique: true})

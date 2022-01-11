@@ -4,7 +4,7 @@ import { Product } from "./product";
 
 @Entity('category') // The table name
 export class Category {
-    @PrimaryColumn({unique: true})
+    @PrimaryColumn('uuid')
     CategoryId?: string
 
     @Column({length: 30})
