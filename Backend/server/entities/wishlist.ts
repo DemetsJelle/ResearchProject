@@ -1,22 +1,22 @@
 import { Guid } from "guid-typescript";
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm"
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Product } from "./product";
 import { User } from "./user"
 
 @Entity('wishlist') // The table name
 export class Wishlist {
-    @PrimaryColumn({unique: true})
-    WhislistId?: string
+    @PrimaryGeneratedColumn('uuid')
+    WishlistId?: string
 
     @Column({unique: true})
     UserId?: string
 
-    @Column({unique: true})
+    @Column({unique: true, nullable: true})
     ProductId?: string
 
     @OneToOne(() => User, user => user.wishlist)
-    user: User;
+    User: User;
 
-    @OneToMany(() => Product, product => product.Wishlist)
+    @OneToMany(() => Product, product => product.Wishlist, {nullable: true})
     Product?: Product[]
 }
