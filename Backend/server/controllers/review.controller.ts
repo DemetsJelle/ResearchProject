@@ -16,7 +16,7 @@ import { CrudController, IController, ICrudController } from './crud.controller'
   
     constructor() {
       super(Review) // Initialize the parent constructor
-      this.router.get('/all', this.all)
+      this.router.get('/all', this.getAll)
       this.router.get('/:id', this.one)
       this.router.post('/',this.createReview)
     }
@@ -46,6 +46,21 @@ import { CrudController, IController, ICrudController } from './crud.controller'
         
       } catch (error) {
         response.status(500).json({error:{error}})
+      }
+    }
+
+    getAll = async (request: Request, response: Response, next: NextFunction) => {
+      try{
+
+        const data = await this.repository
+        .createQueryBuilder('r')
+        .select(['r.ReviewId','r.Rating','r.Review','p.Name','p.ProductId'])
+        .innerJoin('r.Product','p')
+        .getMany()
+
+        response.send(data)
+      } catch(error){
+        response.status(500).json({error : { error }})
       }
     }
 }

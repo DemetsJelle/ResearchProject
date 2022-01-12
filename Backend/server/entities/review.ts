@@ -1,10 +1,10 @@
 import { Guid } from "guid-typescript";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Product } from "./product";
 
 @Entity('review') // The table name
 export class Review {
-    @PrimaryColumn('uuid')
+    @PrimaryGeneratedColumn('uuid')
     ReviewId?: string
 
     @Column({ nullable: true })
