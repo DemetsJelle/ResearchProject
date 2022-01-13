@@ -16,12 +16,26 @@ import { CrudController, IController, ICrudController } from './crud.controller'
   
     constructor() {
       super(Product) // Initialize the parent constructor
-      this.router.get('/all', this.all)
+      this.router.get('/all', this.getAll)
       this.router.get('/:id', this.one)
       this.router.get('/productsFromCategoryAndBrand/:brandId/:categoryId', this.getProductsFromCategoryAndBrand)
       this.router.get('/productsFromCategory/:categoryId', this.getProductsFromCategory)
       this.router.get('/productsFromBrand/:brandId', this.getProductsFromBrand)
       this.router.get('/reviews/:id', this.getReviews)
+    }
+
+    getAll = async (request: Request, response: Response, next: NextFunction) => {
+      try{
+        const data = await this.repository
+        .createQueryBuilder('p')
+        .select(['p.Name','p.Picture','p.Price','p.Gender','b.Name','c.Name'])
+        .innerJoin('p.Brand','b')
+        .innerJoin('p.Category','c')
+        .getMany()
+        response.send(data)
+      } catch(error){
+        response.status(500).json({error : { error }})
+      }
     }
 
     getProductsFromCategoryAndBrand = async (request: Request, response: Response, next: NextFunction) => {
