@@ -111,6 +111,14 @@
               sign in with google
             </button>
           </div>
+          <div class="mt-4 flex">
+            <p>Maak een account</p>
+            <button
+              on:click={showRegisterForm}
+              class="ml-1 font-bold text-forest-green"
+              >Registreer</button
+            >
+          </div>
       </form>
     </div>
   </div>

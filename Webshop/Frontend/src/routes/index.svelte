@@ -1,10 +1,15 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { get } from '../utils/useApi'
-    import ProductComponent from '../components/productComponent.svelte'
+    
     import { goto } from '$app/navigation';
+
+    import ProductComponent from '../components/productComponent.svelte'
     import LoginComponent from '../components/loginComponent.svelte';
+    import RegisterComponent from '../components/registerComponent.svelte'
+
     import loginCompStore from '../stores/loginCompStore'
+
 
     let allBrands:any[] = []
     let allCategories:any[] = []
@@ -114,6 +119,8 @@
 
     {#if $loginCompStore.showLogin} 
         <LoginComponent/>
+    {:else if $loginCompStore.showRegister}
+        <RegisterComponent/>
     {/if}
     
 </section>
