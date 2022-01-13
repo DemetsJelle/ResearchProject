@@ -2,17 +2,19 @@
     import { onMount } from 'svelte';
     import { get } from '../utils/useApi'
 
+    let allBrands:any[] = []
+    let allCategories:any[] = []
+    let allProducts:any[] = []
+
     onMount(async () =>{
-        const allBrands = await get('/brand/all')
+        allBrands = await get('/brand/all')
         console.log(allBrands)
 
-        const allCategories = await get('/category/all')
+        allCategories = await get('/category/all')
         console.log(allCategories)
 
-        const allProducts = await get('products/all')
+        allProducts = await get('/product/all')
         console.log(allProducts)
-
-        
     })
 
 </script>
@@ -23,10 +25,38 @@
 
 <!-- Zoekbalk -->
 <section>
+    <div class='m-4 flex justify-between'>
+        <div>
+            <h1>LOGO</h1>
+        </div>
 
+        <div>
+            <select name="brands" id="brands">
+                {#each allBrands as brands}
+                    <option value = {brands.BrandId}>
+                        {brands.Name}
+                    </option>
+                {/each}
+            </select>
+        </div>
+
+        <div>
+            <select name="categories" id="categories">
+                {#each allCategories as category}
+                    <option value = {category.CategoryId}>
+                        {category.Name}
+                    </option>
+                {/each}
+            </select>
+        </div>
+    </div>
 </section>
 
 <!-- Main content -->
 <secion>
-
+    {#each allProducts as product}
+        <div class="m-4">
+            <h1>{product.Name}</h1>
+        </div>
+    {/each}
 </secion>
