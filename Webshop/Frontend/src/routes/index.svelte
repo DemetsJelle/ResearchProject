@@ -2,9 +2,15 @@
     import { onMount } from 'svelte';
     import { get } from '../utils/useApi'
     import ProductComponent from '../components/productComponent.svelte'
+    import { goto } from '$app/navigation';
+    import LoginComponent from '../components/loginComponent.svelte';
+    import loginCompStore from '../stores/loginCompStore'
+
     let allBrands:any[] = []
     let allCategories:any[] = []
     let allProducts:any[] = []
+
+    let showLogin:boolean = false
 
     let brandValue:any= ''
     let catValue:any = ''
@@ -42,9 +48,17 @@
             filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
             filteredData = filteredData.filter(p => p.Brand.BrandId === brandValue)
         
-        console.log(filteredData)
+        console.log(filteredData)  
+    }
 
-        
+    const showLoginForm = () => {
+        let loginToggle = $loginCompStore.showLogin
+        loginToggle = !loginToggle
+
+        loginCompStore.set({
+        showRegister: false,
+        showLogin: loginToggle,
+        })
     }
     
 </script>
@@ -61,7 +75,7 @@
         </div>
 
         <div>
-            <select bind:value = {brandValue}>
+            <select bind:value = {brandValue} on:change={filter}>
                 {#each allBrands as brands}
                     <option value = {brands.BrandId}>
                         {brands.Name}
@@ -71,7 +85,7 @@
         </div>
 
         <div>
-            <select bind:value = {catValue}>
+            <select bind:value = {catValue} on:change={filter}>
                 {#each allCategories as category}
                     <option value = {category.CategoryId}>
                         {category.Name}
@@ -82,9 +96,9 @@
 
         <div>
             <button
-                on:click= {filter}
+                on:click= {showLoginForm}
             >
-                Zoek
+                Login
             </button>
         </div>
     </div>
@@ -96,6 +110,10 @@
         <ProductComponent productData = {filteredData}/>
     {:else}
         <ProductComponent productData = {allProducts}/>
+    {/if}
+
+    {#if $loginCompStore.showLogin} 
+        <LoginComponent/>
     {/if}
     
 </section>
