@@ -1,22 +1,52 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { get } from '../utils/useApi'
-
+    import ProductComponent from '../components/productComponent.svelte'
     let allBrands:any[] = []
     let allCategories:any[] = []
     let allProducts:any[] = []
 
+    let brandValue:any= ''
+    let catValue:any = ''
+    let filteredData:any[] = []
+    let IsFiltered:boolean = false
+    console.log(IsFiltered)
+
     onMount(async () =>{
         allBrands = await get('/brand/all')
-        console.log(allBrands)
+        //console.log(allBrands)
 
         allCategories = await get('/category/all')
-        console.log(allCategories)
+        //console.log(allCategories)
 
         allProducts = await get('/product/all')
-        console.log(allProducts)
+        //console.log(allProducts)
     })
 
+    const filter = () => {
+        if (catValue !== "" || brandValue !== "") 
+            IsFiltered = true
+        else 
+            IsFiltered = false
+
+        console.log(`catValue ${catValue}`)
+        console.log( `brandValue ${brandValue}`)
+
+        if(catValue === '')
+            filteredData = allProducts.filter(p => p.Brand.BrandId === brandValue)
+
+        else if(brandValue === '')
+            filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
+
+        else if (brandValue !== '' && catValue !== '')
+            filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
+            filteredData = filteredData.filter(p => p.Brand.BrandId === brandValue)
+        
+        console.log(filteredData)
+
+        
+    }
+    
 </script>
 
 <svelte:head>
@@ -31,7 +61,7 @@
         </div>
 
         <div>
-            <select name="brands" id="brands">
+            <select bind:value = {brandValue}>
                 {#each allBrands as brands}
                     <option value = {brands.BrandId}>
                         {brands.Name}
@@ -41,7 +71,7 @@
         </div>
 
         <div>
-            <select name="categories" id="categories">
+            <select bind:value = {catValue}>
                 {#each allCategories as category}
                     <option value = {category.CategoryId}>
                         {category.Name}
@@ -49,14 +79,23 @@
                 {/each}
             </select>
         </div>
+
+        <div>
+            <button
+                on:click= {filter}
+            >
+                Zoek
+            </button>
+        </div>
     </div>
 </section>
 
 <!-- Main content -->
-<secion>
-    {#each allProducts as product}
-        <div class="m-4">
-            <h1>{product.Name}</h1>
-        </div>
-    {/each}
-</secion>
+<section>
+    {#if IsFiltered}
+        <ProductComponent productData = {filteredData}/>
+    {:else}
+        <ProductComponent productData = {allProducts}/>
+    {/if}
+    
+</section>
