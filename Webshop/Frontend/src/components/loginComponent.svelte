@@ -1,6 +1,8 @@
 <script lang="ts">
     import { fade } from 'svelte/transition'
     import loginCompStore from '../stores/loginCompStore'
+    import { post } from '../utils/useApi'
+    import {getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, } from 'firebase/auth'
 
     let validationError: boolean = true
     let email: string = ''
@@ -9,7 +11,68 @@
   
     let errors: any = {}
 
-    function showLoginForm() {
+    const auth = getAuth()
+
+    const loginWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider()
+      signInWithPopup(auth, provider).then(userCrendtial => {
+        const user = userCrendtial.user
+        const name = user.displayName.split(' ')
+        const data: {
+          id: string
+          firstname: string
+          lastname: string
+          email: string
+        } = {
+          id: user.uid,
+          firstname: name[0],
+          lastname: name[1],
+          email: user.email,
+        }
+
+        CreateUser(data)
+      })
+    } catch (error) {}
+  }
+
+  const loginWithEmail = () => {
+    loginClicked = true
+    signInWithEmailAndPassword(auth, email, pw)
+      .then(userCredential => {
+        const user = userCredential.user
+        if (user.email !== undefined) {
+          email = ''
+          pw = ''
+          showLoginForm()
+        }
+      })
+      .catch(error => {
+        loginClicked = false
+        //const errorCode = error.code
+        const errorMessage = error.message
+        errors.login = 'Email or password are incorrect'
+        if (error.message === 'Firebase: Error (auth/wrong-password).')
+          errors.login = 'Email or password are incorrect'
+        if (
+          error.message ===
+          'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).'
+        )
+          errors.login =
+            'Account temporarily disabled due to many failed attempts'
+      })
+  }
+
+  const CreateUser = async (data) => {
+    loginClicked = true
+    const res: any = await post('/user/createUser', data)
+    loginClicked = false
+    if (res.info === 'User already exists' || res.succes === true) {
+      showLoginForm()
+    }
+  }
+
+  const showLoginForm = () => {
     let loginToggle = $loginCompStore.showLogin
     loginToggle = !loginToggle
     loginCompStore.set({
@@ -27,11 +90,11 @@
     })
   }
   
-    const onSubmit = () => {
+  const onSubmit = () => {
+    loginWithEmail()
+  }
 
-    }
-
-  </script>
+</script>
   
   <div class="absolute top-0 left-0 h-full z-10 w-full">
     <div
@@ -107,7 +170,7 @@
             <p class="text-red-600 mt-2 mb-2">{errors.login}</p>
           {/if}
           <div class="mt-4">
-            <button type="button" >
+            <button type="button" on:click|preventDefault={loginWithGoogle}>
               sign in with google
             </button>
           </div>

@@ -1,8 +1,9 @@
 <script lang="ts">
-
+    import authStore from '../stores/authStore'
     import loginCompStore from '../stores/loginCompStore'
     import { post } from '../utils/useApi'
-  
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+
     let email: string
     let firstName: string
     let lastName: string
@@ -23,11 +24,44 @@
     }
   
     const register = () => {
-      
+      registerClicked = true
+        const auth = getAuth()
+        createUserWithEmailAndPassword(auth, email, pw)
+        .then(userCredential => {
+            const user = userCredential.user
+            console.log(user)
+            updateProfile(user, { displayName: `${firstName} ${lastName}` })
+            .then(() => {
+                const data: {
+                id: string
+                firstname: string
+                lastname: string
+                email: string
+                } = {
+                id: user.uid,
+                firstname: firstName,
+                lastname: lastName,
+                email: email,
+                }
+                CreateUser(data)
+            })
+            .catch(error => {})
+        })
+        .catch(error => {
+            const errorCode = error.code
+            const errorMessage = error.message
+            if (errorMessage == 'Firebase: Error (auth/email-already-in-use).') {
+                errors.email = 'Email already in use'
+            }
+        })
     }
-  
+    
     async function CreateUser(data) {
-      
+        const res: any = await post('/user/createUser', data)
+        registerClicked = false
+        if (res.info === 'User already exists' || res.succes === true) {
+        showRegisterForm()
+        }
     }
   
     const showRegisterForm = () => {
@@ -40,7 +74,7 @@
     }
   
     const onSubmit = () => {
-  
+        console.log('clicked')
       register()
     }
   </script>
