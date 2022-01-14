@@ -1,7 +1,7 @@
 <script lang="ts">
     import { fade } from 'svelte/transition'
     import loginCompStore from '../stores/loginCompStore'
-    import { post } from '../utils/useApi'
+    import { get, post } from '../utils/useApi'
     import {getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, } from 'firebase/auth'
 
     let validationError: boolean = true
@@ -12,6 +12,10 @@
     let errors: any = {}
 
     const auth = getAuth()
+
+    // const getUserWishlistId = async () => {
+    //   const data = await get()
+    // }
 
     const loginWithGoogle = async () => {
     try {
@@ -63,12 +67,28 @@
       })
   }
 
+  const createWishlist = (userId:string) => {
+      console.log('hier')
+      const data:{
+        userId: string
+      } = {
+        userId: userId,
+      }
+      const res:any = post('/wishlist', data)
+      if(res.succes){
+        console.log('Wishlist created')
+      }
+    }
+
   const CreateUser = async (data) => {
     loginClicked = true
     const res: any = await post('/user/createUser', data)
     loginClicked = false
-    if (res.info === 'User already exists' || res.succes === true) {
+    if (res.info === 'User already exists') {
       showLoginForm()
+    }
+    else if(res.succes){
+      createWishlist(data.id)
     }
   }
 

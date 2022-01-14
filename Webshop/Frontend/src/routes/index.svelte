@@ -108,11 +108,11 @@
 
         <div>
             {#if $authStore.isLoggedIn}
-            <button
-                on:click={logOut}
-                class="font-bold text-xl text-forest-green pl-4 pr-6"
-                >{$authStore.user.displayName}</button
-            >
+                <button
+                    on:click={logOut}
+                    class="font-bold text-xl text-forest-green pl-4 pr-6"
+                    >{$authStore.user.displayName}</button
+                >
             {:else}
                 <button
                     on:click= {showLoginForm}

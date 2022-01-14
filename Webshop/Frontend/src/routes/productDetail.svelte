@@ -13,6 +13,10 @@
         console.log(productInfo.Picture)
         
     })
+
+    const addToWishlist = () => {
+        
+    }
 </script>
 
 {#if productInfo}
@@ -27,6 +31,13 @@
                 src= {productInfo.Picture}
                 alt="Picture of {productInfo.Name}"
             />
+        </div>
+        <div class= "mt-8">
+            <button
+                on:click={addToWishlist}
+            >
+                Add to wishlist
+            </button>
         </div>
     </section>
     
