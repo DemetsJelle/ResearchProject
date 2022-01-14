@@ -17,6 +17,40 @@
     //   const data = await get()
     // }
 
+    const createWishlist = async (userData:any) => {
+      const wishlistData = null
+      const res:any = await post('/wishlist', wishlistData)
+      console.log(res.succes.id)
+
+      if(res.succes){
+        //console.log(res.succes.id)
+        const data: {
+          id: string
+          firstname: string
+          lastname: string
+          email: string
+          wishlistId: string
+        } = {
+          id: userData.id,
+          firstname: userData.firstname,
+          lastname: userData.lastname,
+          email: email,
+          wishlistId: res.succes.id
+        }
+        console.log('Wishlist created')
+        CreateUser(data)
+      }
+    }
+
+  const CreateUser = async (data) => {
+    console.log('-----------------------')
+    console.log(data)
+    const res: any = await post('/user/createUser', data)
+    if (res.info === 'User already exists' || res.succes) {
+        showLoginForm()
+    }
+  }
+
     const loginWithGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider()
@@ -32,10 +66,10 @@
           id: user.uid,
           firstname: name[0],
           lastname: name[1],
-          email: user.email,
+          email: user.email
         }
-
-        CreateUser(data)
+        createWishlist(data)
+        //CreateUser(data)
       })
     } catch (error) {}
   }
@@ -65,31 +99,6 @@
           errors.login =
             'Account temporarily disabled due to many failed attempts'
       })
-  }
-
-  const createWishlist = (userId:string) => {
-      console.log('hier')
-      const data:{
-        userId: string
-      } = {
-        userId: userId,
-      }
-      const res:any = post('/wishlist', data)
-      if(res.succes){
-        console.log('Wishlist created')
-      }
-    }
-
-  const CreateUser = async (data) => {
-    loginClicked = true
-    const res: any = await post('/user/createUser', data)
-    loginClicked = false
-    if (res.info === 'User already exists') {
-      showLoginForm()
-    }
-    else if(res.succes){
-      createWishlist(data.id)
-    }
   }
 
   const showLoginForm = () => {

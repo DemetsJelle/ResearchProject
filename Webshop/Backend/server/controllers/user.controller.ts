@@ -38,6 +38,7 @@ export class UserController extends CrudController<User> implements IUserControl
            }else if(request.body.data.email === undefined){
              response.status(400).json({error:"Email is missing"})
            }else{
+             console.log(request.body.data)
              const newUser:User ={
                UserId : request.body.data.id,
                Firstname: request.body.data.firstname,
@@ -45,7 +46,7 @@ export class UserController extends CrudController<User> implements IUserControl
                Email: request.body.data.email,
                Wishlist: request.body.data.wishlistId,
              } 
-             console.log(newUser)
+             //console.log(newUser)
              //Check if user exists
              const checkUser = await this.repository.findOne({UserId:request.body.data.id})
              if(checkUser === undefined) {
