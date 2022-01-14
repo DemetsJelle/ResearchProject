@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { getAuth } from 'firebase/auth'
     import { onMount } from 'svelte';
     import { get } from '../utils/useApi'
     
@@ -9,6 +10,7 @@
     import RegisterComponent from '../components/registerComponent.svelte'
 
     import loginCompStore from '../stores/loginCompStore'
+    import authStore from '../stores/authStore'
 
 
     let allBrands:any[] = []
@@ -65,6 +67,11 @@
         showLogin: loginToggle,
         })
     }
+
+    const logOut = () => {
+        const auth = getAuth()
+        auth.signOut()
+    }
     
 </script>
 
@@ -100,11 +107,19 @@
         </div>
 
         <div>
+            {#if $authStore.isLoggedIn}
             <button
-                on:click= {showLoginForm}
+                on:click={logOut}
+                class="font-bold text-xl text-forest-green pl-4 pr-6"
+                >{$authStore.user.displayName}</button
             >
-                Login
-            </button>
+            {:else}
+                <button
+                    on:click= {showLoginForm}
+                >
+                    Login
+                </button>
+            {/if}
         </div>
     </div>
 </section>

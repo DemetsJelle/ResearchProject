@@ -16,13 +16,13 @@
         initializeApp(firebaseConfig)
         
         getAuth().onAuthStateChanged((user:User) => {
-            if(user){
-                authStore.set({
+            console.log("im fired")
+            authStore.set({
                     isLoggedIn: user !== null,
                     user,
                     firebaseControlled: true,
                 })
-            }
+                console.log($authStore.isLoggedIn)
         })
     })
 
