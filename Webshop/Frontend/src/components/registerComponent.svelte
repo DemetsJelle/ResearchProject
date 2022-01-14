@@ -32,18 +32,7 @@
             console.log(user)
             updateProfile(user, { displayName: `${firstName} ${lastName}` })
             .then(() => {
-                const data: {
-                  id: string
-                  firstname: string
-                  lastname: string
-                  email: string
-                } = {
-                  id: user.uid,
-                  firstname: firstName,
-                  lastname: lastName,
-                  email: email,
-                }
-                CreateUser(data)
+                createWishlist(user.uid)
 
             })
             .catch(error => {})
@@ -57,27 +46,36 @@
         })
     }
 
-    const createWishlist = (userId:string) => {
-      console.log('hier')
-      const data:{
-        userId: string
-      } = {
-        userId: userId,
-      }
-      const res:any = post('/wishlist', data)
-      if(res.succes){
+    const createWishlist = async (userId:any) => {
+      const wishlistData = null
+      const res:any = await post('/wishlist', wishlistData)
+      console.log(res.succes)
+      
+      if(res.succes.id !== ''){
+        const data: {
+          id: string
+          firstname: string
+          lastname: string
+          email: string
+          wishlistId: string
+        } = {
+          id: userId,
+          firstname: firstName,
+          lastname: lastName,
+          email: email,
+          wishlistId: res.succes.id
+        }
         console.log('Wishlist created')
+        createUser(data)
       }
     }
     
-    async function CreateUser(data) {
+    async function createUser(data) {
+      console.log(data)
         const res: any = await post('/user/createUser', data)
         registerClicked = false
-        if (res.info === 'User already exists') {
+        if (res.info === 'User already exists' || res.succes) {
           showRegisterForm()
-        }
-        else if(res.succes){
-          createWishlist(data.id)
         }
     }
   

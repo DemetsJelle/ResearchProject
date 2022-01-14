@@ -24,8 +24,8 @@ const seedDatabase = async (connection: Connection) => {
         await connection.manager.save(plainToClass(Category, categories));
         await connection.manager.save(plainToClass(Product, products));
         await connection.manager.save(plainToClass(Review, reviews));
-        await connection.manager.save(plainToClass(User, users));
         await connection.manager.save(plainToClass(Wishlist, wishlists));
+        await connection.manager.save(plainToClass(User, users));
         
         // Mark as seeded.
         const seeded = new Config();

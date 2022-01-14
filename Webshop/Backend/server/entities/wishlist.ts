@@ -8,14 +8,8 @@ export class Wishlist {
     @PrimaryGeneratedColumn('uuid')
     WishlistId?: string
 
-    @Column({unique: true})
-    UserId?: string
-
     @Column({unique: true, nullable: true})
     ProductId?: string
-
-    @OneToOne(() => User, user => user.wishlist)
-    User: User;
 
     @OneToMany(() => Product, product => product.Wishlist, {nullable: true})
     Product?: Product[]
