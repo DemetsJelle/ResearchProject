@@ -28,7 +28,7 @@ import { CrudController, IController, ICrudController } from './crud.controller'
       try{
         const data = await this.repository
         .createQueryBuilder('p')
-        .select(['p.Name','p.Picture','p.Price','p.Gender','b.Name','b.BrandId','c.Name','c.CategoryId'])
+        .select(['p.ProductId', 'p.Name','p.Picture','p.Price','p.Gender','b.Name','b.BrandId','c.Name','c.CategoryId'])
         .innerJoin('p.Brand','b')
         .innerJoin('p.Category','c')
         .getMany()
