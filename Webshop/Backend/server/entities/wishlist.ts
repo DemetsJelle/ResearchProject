@@ -1,5 +1,5 @@
 import { Guid } from "guid-typescript";
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Product } from "./product";
 import { User } from "./user"
 
@@ -8,9 +8,11 @@ export class Wishlist {
     @PrimaryGeneratedColumn('uuid')
     WishlistId?: string
 
-    @Column({unique: true, nullable: true})
-    ProductId?: string
+    @ManyToOne(() => User)
+    @JoinColumn( {name: "UserId"})
+    public User!: User;
 
-    @OneToMany(() => Product, product => product.Wishlist, {nullable: true})
-    Product?: Product[]
+    @ManyToOne(() => Product)
+    @JoinColumn( {name: "ProductId"})
+    public Product!: Product;
 }

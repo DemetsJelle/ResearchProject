@@ -19,25 +19,30 @@ import { CrudController, IController, ICrudController } from './crud.controller'
       super(Wishlist) // Initialize the parent constructor
       this.router.get('/all', this.all)
       this.router.get('/:id', this.one)
-      this.router.post('/', this.createWishlist)
+      this.router.get('/userwishlist/:id', this.getWishlist)
+      this.router.post('/', this.addToWishlist)
+      
     }
 
-    createWishlist = async (request: Request, response: Response, next: NextFunction) => {
+    addToWishlist = async (request: Request, response: Response, next: NextFunction) => {
       try {
         let result:any
-        
+        if(request.body ===undefined)
+          return response.status(400).json({error: 'Parameters are missing'})
+
         const newWishlist:Wishlist = {
-          ProductId: null,
-          Product: null
+          User: request.body.userId,
+          Product: request.body.productId
         }
-        //console.log(newWishlist)
+        console.log(newWishlist)
 
         const addWishlist = await this.repository.create(newWishlist)
         result = await this.repository.save(addWishlist)
+
         if(result.WishlistId) {
-          const id = result.WishlistId
-          return response.status(200).json({succes: {id}})
+          return response.status(200).json({succes: true})
         }
+
         else 
           return response.status(500).json({error: "Something went wrong"})
         
@@ -46,40 +51,24 @@ import { CrudController, IController, ICrudController } from './crud.controller'
       }
     }
 
-    updateWishlist = async (request: Request, response: Response, next: NextFunction) => {
-      try {
-        if(request.params.id === undefined)
-          return response.status(406).json({error: 'No data has been provided'})
-
-        if (request.body.data === null) 
-          return response.status(406).json({error: 'No data has been provided'})
-
-        let wishlistId = request.params.id
-        let result:any
-
-        const oldProducts:Wishlist = await this.repository.findOne(wishlistId)
-        let newData:Product[]
+    getWishlist = async (request: Request, response: Response, next: NextFunction) => {
+      try{
+        const userId = request.params.id
         
-       oldProducts.Product.forEach((p) => {
-         newData.push(p)
-       })
-       newData.push(request.body.product)
+        if(userId === undefined) 
+          return response.status(500).json({error :  "Missing parameter" })
         
-        const update = await this.repository
-          .createQueryBuilder()
-          .update(Wishlist)
-          .set({ Product: newData})
-          .where('WishlistId = :id',{ id: wishlistId })
-          .execute()
-
-        if(update.affected === 1)
-          return response.status(200).json({succes: true})
-
-        else 
-          return response.status(500).json({error: "Something went wrong"})
-        
-      } catch (error) {
-        response.status(500).json({error:{error}})
+        console.log(userId)
+        const data = await this.repository
+        .createQueryBuilder('w')
+        .select(['w.WishlistId','p.Name','p.Picture','p.Price','p.InStock'])
+        .innerJoin('w.Product','p')
+        .innerJoin('w.User','u')
+        .where('w.User = :id', { id: userId })
+        .getMany()
+        response.send(data)
+      } catch(error){
+        response.status(500).json({error : { error }})
       }
     }
 }

@@ -19,7 +19,7 @@ export class UserController extends CrudController<User> implements IUserControl
 
         this.router.get('/all', this.all);
         this.router.get('/:id', this.getOne);
-        this.router.post('/createUser', this.createUser);
+        //this.router.post('/createUser', this.createUser);
     }
 
     createUser = async (request: Request, response: Response, next: NextFunction) => {
