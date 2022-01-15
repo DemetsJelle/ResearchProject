@@ -12,7 +12,6 @@
     import loginCompStore from '../stores/loginCompStore'
     import authStore from '../stores/authStore'
 
-
     let allBrands:any[] = []
     let allCategories:any[] = []
     let allProducts:any[] = []
@@ -63,8 +62,8 @@
         loginToggle = !loginToggle
 
         loginCompStore.set({
-        showRegister: false,
-        showLogin: loginToggle,
+            showRegister: false,
+            showLogin: loginToggle,
         })
     }
 
@@ -73,6 +72,10 @@
         auth.signOut()
     }
     
+    const gotoWishlist = () => {
+        console.log('pressed')
+        goto('/wishlist')
+    }
 </script>
 
 <svelte:head>
@@ -120,6 +123,14 @@
                     Login
                 </button>
             {/if}
+        </div>
+
+        <div>
+            <button
+                on:click={gotoWishlist}
+            >
+                Wishlist
+            </button>
         </div>
     </div>
 </section>

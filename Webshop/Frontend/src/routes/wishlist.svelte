@@ -6,8 +6,8 @@
 
     let wishlist:any
     onMount(async () => {
-        if($authStore.user.uid)
-        {
+        if($authStore.user !== undefined){
+            console.log('in')
             wishlist = await get(`/wishlist/userwishlist/${$authStore.user.uid}`)
             console.log(wishlist)   
         }

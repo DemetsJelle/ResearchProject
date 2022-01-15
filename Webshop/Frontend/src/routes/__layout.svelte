@@ -22,7 +22,7 @@
                 user: user,
                 firebaseControlled: true,
             })
-            //console.log(`Userid: ${$authStore.user.uid}`)
+            console.log(`Userid: ${$authStore.user.uid}`)
         })
     })
 

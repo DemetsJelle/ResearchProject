@@ -31,15 +31,15 @@ import { CrudController, IController, ICrudController } from './crud.controller'
           return response.status(400).json({error: 'Parameters are missing'})
 
         const newWishlist:Wishlist = {
-          User: request.body.userId,
-          Product: request.body.productId
+          User: request.body.data.userId,
+          Product: request.body.data.productId
         }
         console.log(newWishlist)
 
         const addWishlist = await this.repository.create(newWishlist)
         result = await this.repository.save(addWishlist)
 
-        if(result.WishlistId) {
+        if(result.UserId !== null) {
           return response.status(200).json({succes: true})
         }
 
