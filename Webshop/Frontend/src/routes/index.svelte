@@ -20,9 +20,12 @@
 
     let brandValue:any= ''
     let catValue:any = ''
+    let searchTerm:string = ''
+
     let filteredData:any[] = []
     let IsFiltered:boolean = false
-    console.log(IsFiltered)
+    let lastFilter:string =''
+
 
     onMount(async () =>{
         allBrands = await get('/brand/all')
@@ -36,26 +39,39 @@
     })
 
     const filter = () => {
-        if (catValue !== "" || brandValue !== "") 
-            IsFiltered = true
-        else 
-            IsFiltered = false
 
         console.log(`catValue ${catValue}`)
         console.log( `brandValue ${brandValue}`)
 
-        if(catValue === '')
-            filteredData = allProducts.filter(p => p.Brand.BrandId === brandValue)
-
-        else if(brandValue === '')
+        if(catValue !== '' && brandValue === ''){
             filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
+            IsFiltered = true
+        }
 
-        else if (brandValue !== '' && catValue !== '')
+        else if(brandValue !== '' && catValue === ''){
+            filteredData = allProducts.filter(p => p.Brand.BrandId === brandValue)
+            IsFiltered = true
+        }
+
+        else if (brandValue !== '' && catValue !== ''){
             filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
             filteredData = filteredData.filter(p => p.Brand.BrandId === brandValue)
+        }
+        
+        else if(searchTerm !== ''){
+            console.log(searchTerm)
+            filteredData = allProducts.filter(function(eachItem){
+                return eachItem['Name'].toLowerCase().includes(searchTerm.toLowerCase())
+            })
+            IsFiltered = true
+        }
+        else {
+            IsFiltered = false
+        }
         
         console.log(filteredData)  
     }
+
 
     const showLoginForm = () => {
         let loginToggle = $loginCompStore.showLogin
@@ -91,22 +107,37 @@
 
         <div>
             <select bind:value = {brandValue} on:change={filter}>
+                <option value = ''>
+                        
+                </option>
                 {#each allBrands as brands}
                     <option value = {brands.BrandId}>
                         {brands.Name}
                     </option>
                 {/each}
+
             </select>
         </div>
 
         <div>
             <select bind:value = {catValue} on:change={filter}>
+                <option value = ''>
+                        
+                </option>
                 {#each allCategories as category}
                     <option value = {category.CategoryId}>
                         {category.Name}
                     </option>
                 {/each}
             </select>
+        </div>
+
+        <div>
+            <input type='text' 
+                placeholder='item name' 
+                bind:value ={searchTerm}
+                on:input = {filter}    
+            />
         </div>
 
         <div>
@@ -137,7 +168,7 @@
 
 <!-- Main content -->
 <section>
-    {#if IsFiltered}
+    {#if IsFiltered && filteredData !== [] }
         <ProductComponent productData = {filteredData}/>
     {:else}
         <ProductComponent productData = {allProducts}/>
