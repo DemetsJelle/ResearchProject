@@ -18,11 +18,11 @@
         getAuth().onAuthStateChanged((user:User) => {
             console.log("im fired")
             authStore.set({
-                    isLoggedIn: user !== null,
-                    user,
-                    firebaseControlled: true,
-                })
-                console.log($authStore.isLoggedIn)
+                isLoggedIn: user !== null,
+                user: user,
+                firebaseControlled: true,
+            })
+            //console.log(`Userid: ${$authStore.user.uid}`)
         })
     })
 
