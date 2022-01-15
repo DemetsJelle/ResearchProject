@@ -17,31 +17,6 @@
     //   const data = await get()
     // }
 
-    const createWishlist = async (userData:any) => {
-      const wishlistData = null
-      const res:any = await post('/wishlist', wishlistData)
-      console.log(res.succes.id)
-
-      if(res.succes){
-        //console.log(res.succes.id)
-        const data: {
-          id: string
-          firstname: string
-          lastname: string
-          email: string
-          wishlistId: string
-        } = {
-          id: userData.id,
-          firstname: userData.firstname,
-          lastname: userData.lastname,
-          email: email,
-          wishlistId: res.succes.id
-        }
-        console.log('Wishlist created')
-        CreateUser(data)
-      }
-    }
-
   const CreateUser = async (data) => {
     console.log('-----------------------')
     console.log(data)
@@ -68,8 +43,7 @@
           lastname: name[1],
           email: user.email
         }
-        createWishlist(data)
-        //CreateUser(data)
+        CreateUser(data)
       })
     } catch (error) {}
   }

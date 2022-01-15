@@ -32,7 +32,7 @@
             console.log(user)
             updateProfile(user, { displayName: `${firstName} ${lastName}` })
             .then(() => {
-                createWishlist(user.uid)
+                //createWishlist(user.uid)
 
             })
             .catch(error => {})
@@ -46,29 +46,29 @@
         })
     }
 
-    const createWishlist = async (userId:any) => {
-      const wishlistData = null
-      const res:any = await post('/wishlist', wishlistData)
-      console.log(res.succes)
+    // const createWishlist = async (userId:any) => {
+    //   const wishlistData = null
+    //   const res:any = await post('/wishlist', wishlistData)
+    //   console.log(res.succes)
       
-      if(res.succes.id !== ''){
-        const data: {
-          id: string
-          firstname: string
-          lastname: string
-          email: string
-          wishlistId: string
-        } = {
-          id: userId,
-          firstname: firstName,
-          lastname: lastName,
-          email: email,
-          wishlistId: res.succes.id
-        }
-        console.log('Wishlist created')
-        createUser(data)
-      }
-    }
+    //   if(res.succes.id !== ''){
+    //     const data: {
+    //       id: string
+    //       firstname: string
+    //       lastname: string
+    //       email: string
+    //       wishlistId: string
+    //     } = {
+    //       id: userId,
+    //       firstname: firstName,
+    //       lastname: lastName,
+    //       email: email,
+    //       wishlistId: res.succes.id
+    //     }
+    //     console.log('Wishlist created')
+    //     createUser(data)
+    //   }
+    // }
     
     async function createUser(data) {
       console.log(data)
