@@ -35,7 +35,6 @@
         allCategories = await get('/category/all')
 
         allProducts = await get('/product/all')
-        console.log(allProducts)
 
         allGenders = await get('/product/all/genders')
     })
@@ -112,8 +111,11 @@
     }
     
     const gotoWishlist = () => {
-        console.log('pressed')
         goto('/wishlist')
+    }
+
+    const gotoShoppingCart = () => {
+        goto('/shoppinglist')
     }
 </script>
 
@@ -187,12 +189,21 @@
                 </button>
             {/if}
         </div>
-
-        <div>
+    </div>
+    <div class="flex m-4">
+        <div class="mr-4">
             <button
                 on:click={gotoWishlist}
             >
                 Wishlist
+            </button>
+        </div>
+
+        <div>
+            <button
+                on:click={gotoShoppingCart}
+            >
+                Shoppingcart
             </button>
         </div>
     </div>

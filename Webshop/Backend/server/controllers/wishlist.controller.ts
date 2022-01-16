@@ -34,7 +34,7 @@ import { CrudController, IController, ICrudController } from './crud.controller'
           User: request.body.data.userId,
           Product: request.body.data.productId
         }
-        console.log(newWishlist)
+        //console.log(newWishlist)
 
         const addWishlist = await this.repository.create(newWishlist)
         result = await this.repository.save(addWishlist)
@@ -58,7 +58,7 @@ import { CrudController, IController, ICrudController } from './crud.controller'
         if(userId === undefined) 
           return response.status(500).json({error :  "Missing parameter" })
         
-        console.log(userId)
+        //console.log(userId)
         const data = await this.repository
         .createQueryBuilder('w')
         .select(['w.WishlistId','p.Name','p.Picture','p.Price','p.InStock'])

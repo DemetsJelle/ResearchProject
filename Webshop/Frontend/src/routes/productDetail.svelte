@@ -5,7 +5,8 @@
     import { get, post } from '../utils/useApi'
 
     import authStore from '../stores/authStore'
-import { goto } from '$app/navigation';
+    import shoppingListStore from '../stores/shoppingListStore'
+    import { goto } from '$app/navigation';
 
     let alt:string = 'Picture of the product'
     let pictureUrl:string
@@ -30,6 +31,18 @@ import { goto } from '$app/navigation';
         if (res.info === 'User already exists' || res.succes) {
           console.log('succesfully saved')
         }
+    }
+
+    const addToBestelling = async () => {
+        $shoppingListStore.push({
+                productId: productInfo.ProductId,
+                picture: productInfo.Picture,
+                name: productInfo.Name,
+                price: productInfo.Price,
+                inStock: productInfo.InStock,
+            })
+
+        console.log($shoppingListStore)
     }
 
     const goBack = () => {
@@ -82,9 +95,9 @@ import { goto } from '$app/navigation';
         </div>
         <div class= "mt-8">
             <button
-                on:click={addToWishlist}
+                on:click={addToBestelling}
             >
-                Add to wishlist
+                Bestellen
             </button>
         </div>
     </section>
