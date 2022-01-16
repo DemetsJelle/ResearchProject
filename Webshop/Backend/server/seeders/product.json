@@ -76,7 +76,7 @@
             }
         ],
         "Sizes":["M"],
-        "Gender":"Dames",
+        "Gender":"Vrouwen",
         "Brand":"6dad4644-3233-42b1-a0e1-3e0e4f1c841a",
         "Category":"428f525b-075c-4e82-af58-2d221e6fa21d",
         "Review": null
@@ -121,7 +121,7 @@
             }
         ],
         "Sizes":["XS","S"],
-        "Gender":"Dames",
+        "Gender":"Vrouwen",
         "Brand":"6c9f4e09-57b3-4bd0-8c05-db433c630e2c",
         "Category":"428f525b-075c-4e82-af58-2d221e6fa21d",
         "Review": null
@@ -144,7 +144,7 @@
             }
         ],
         "Sizes":["163 cm","170 cm"],
-        "Gender":null,
+        "Gender":"Unisex",
         "Brand":"66a93dd8-3910-403c-83ee-409011615325",
         "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
         "Review": null
@@ -167,7 +167,7 @@
             }
         ],
         "Sizes":["153 cm"],
-        "Gender":null,
+        "Gender":"Kinderen",
         "Brand":"66a93dd8-3910-403c-83ee-409011615325",
         "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
         "Review": null
@@ -188,7 +188,7 @@
             }
         ],
         "Sizes":["153 cm"],
-        "Gender":null,
+        "Gender":"Vrouwen",
         "Brand":"66a93dd8-3910-403c-83ee-409011615325",
         "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
         "Review": null
@@ -232,7 +232,7 @@
             }
         ],
         "Sizes":["142 cm","152 cm","162 cm"],
-        "Gender":"Dames",
+        "Gender":"Vrouwen",
         "Brand":"de4d70f2-a427-467e-9d82-602ea03e4fa0",
         "Category":"edbde4e3-6314-427e-af51-fcc57d81b300",
         "Review": null
@@ -490,7 +490,7 @@
             }
         ],
         "Sizes":["22 cm","23 cm","24 cm","25 cm"],
-        "Gender":"Unisex",
+        "Gender":"Kinderen",
         "Brand":"66a93dd8-3910-403c-83ee-409011615325",
         "Category":"ee6b2f1e-c358-466b-a584-d5bfd98865b9",
         "Review": null

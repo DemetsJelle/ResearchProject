@@ -18,6 +18,7 @@ export class UserController extends CrudController<User> implements IUserControl
         super(User); // Initialize the parent constructor
 
         this.router.get('/all', this.all);
+        this.router.get('/:id', this.getOne);
         this.router.post('/createUser', this.createUser);
     }
 
@@ -37,13 +38,15 @@ export class UserController extends CrudController<User> implements IUserControl
            }else if(request.body.data.email === undefined){
              response.status(400).json({error:"Email is missing"})
            }else{
+             console.log(request.body.data)
              const newUser:User ={
                UserId : request.body.data.id,
                Firstname: request.body.data.firstname,
                Lastname: request.body.data.lastname,
                Email: request.body.data.email,
-               wishlist: null,
+               Wishlist: request.body.data.wishlistId,
              } 
+             //console.log(newUser)
              //Check if user exists
              const checkUser = await this.repository.findOne({UserId:request.body.data.id})
              if(checkUser === undefined) {
@@ -62,4 +65,22 @@ export class UserController extends CrudController<User> implements IUserControl
          response.status(500).json({error:error})
         }
        }
+    
+    getOne = async (request: Request, response: Response, next: NextFunction) => {
+      try{
+        if(request.params.id == undefined) 
+          return response.status(500).json({error :  "Missing parameter" })
+          
+        const data = await this.repository
+        .createQueryBuilder('u')
+        .select(['u.UserId','u.Firstname','u.Lastname','u.Email','w.WishlistId'])
+        .innerJoin('u.Wishlist','w')
+        .where('u.UserId = :id', { id: request.params.id })
+        .getOne()
+  
+        response.send(data)
+      } catch(error){
+        response.status(500).json({error : { error }})
+      }
+    }
 }

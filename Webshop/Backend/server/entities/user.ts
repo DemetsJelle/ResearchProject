@@ -1,5 +1,5 @@
 import { Guid } from "guid-typescript";
-import { Column, Entity, OneToOne, PrimaryColumn } from "typeorm"
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm"
 import { Wishlist } from "./wishlist"
 
 @Entity('user') // The table name
@@ -16,6 +16,6 @@ export class User {
     @Column({length: 100})
     Email?: string;
     
-    @OneToOne(() => Wishlist, wishlist => wishlist.User, {nullable: true})
-    wishlist: Wishlist;
+    @OneToMany(() => Wishlist, wishlist => wishlist.Product)
+    Wishlist?: Wishlist[]
 }

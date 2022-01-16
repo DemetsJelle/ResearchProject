@@ -22,13 +22,14 @@ import { CrudController, IController, ICrudController } from './crud.controller'
       this.router.get('/productsFromCategory/:categoryId', this.getProductsFromCategory)
       this.router.get('/productsFromBrand/:brandId', this.getProductsFromBrand)
       this.router.get('/reviews/:id', this.getReviews)
+      this.router.get('/all/genders', this.getGenders)
     }
 
     getAll = async (request: Request, response: Response, next: NextFunction) => {
       try{
         const data = await this.repository
         .createQueryBuilder('p')
-        .select(['p.Name','p.Picture','p.Price','p.Gender','b.Name','c.Name'])
+        .select(['p.ProductId', 'p.Name','p.Picture','p.Price','p.Gender','b.Name','b.BrandId','c.Name','c.CategoryId'])
         .innerJoin('p.Brand','b')
         .innerJoin('p.Category','c')
         .getMany()
@@ -113,6 +114,20 @@ import { CrudController, IController, ICrudController } from './crud.controller'
         .select(['r.Rating','r.Review','p.Name','p.ProductId'])
         .innerJoin('p.Review','r')
         .where('p.ProductId = :id', { id: productId })
+        .getMany()
+        response.send(data)
+      } catch(error){
+        response.status(500).json({error : { error }})
+      }
+    }
+
+    getGenders = async (request: Request, response: Response, next: NextFunction) => {
+      try{
+        console.log('test')
+        const data = await this.repository
+        .createQueryBuilder('p')
+        .select(['p.Gender'])
+        .groupBy('p.Gender')
         .getMany()
         response.send(data)
       } catch(error){

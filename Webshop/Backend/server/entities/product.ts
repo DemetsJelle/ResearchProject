@@ -33,9 +33,8 @@ export class Product{
     @Column('text',{nullable: true})
     Gender?:string
 
-    @ManyToOne(() => Wishlist , {nullable: true})
-    @JoinColumn( {name: "WishlistId"})
-    Wishlist: Wishlist
+    @OneToMany(() => Wishlist, wishlist => wishlist.Product)
+    Wishlist?: Wishlist[]
 
     @ManyToOne(() => Brand)
     @JoinColumn( {name: "BrandId"})
