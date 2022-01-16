@@ -13,18 +13,14 @@
 
     const auth = getAuth()
 
-    // const getUserWishlistId = async () => {
-    //   const data = await get()
-    // }
-
-  const CreateUser = async (data) => {
-    console.log('-----------------------')
-    console.log(data)
-    const res: any = await post('/user/createUser', data)
-    if (res.info === 'User already exists' || res.succes) {
-        showLoginForm()
+    const CreateUser = async (data) => {
+      console.log('-----------------------')
+      console.log(data)
+      const res: any = await post('/user/createUser', data)
+      if (res.info === 'User already exists' || res.succes) {
+          showLoginForm()
+      }
     }
-  }
 
     const loginWithGoogle = async () => {
     try {

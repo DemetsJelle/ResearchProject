@@ -15,11 +15,13 @@
     let allBrands:any[] = []
     let allCategories:any[] = []
     let allProducts:any[] = []
+    let allGenders:any[] = []
 
     let showLogin:boolean = false
 
-    let brandValue:any= ''
-    let catValue:any = ''
+    let brandValue:string = ''
+    let catValue:string = ''
+    let genderValue:string = ''
     let searchTerm:string = ''
 
     let filteredData:any[] = []
@@ -29,37 +31,58 @@
 
     onMount(async () =>{
         allBrands = await get('/brand/all')
-        //console.log(allBrands)
 
         allCategories = await get('/category/all')
-        //console.log(allCategories)
 
         allProducts = await get('/product/all')
-        //console.log(allProducts)
+        console.log(allProducts)
+
+        allGenders = await get('/product/all/genders')
     })
 
     const filter = () => {
-
-        console.log(`catValue ${catValue}`)
-        console.log( `brandValue ${brandValue}`)
-
-        if(catValue !== '' && brandValue === ''){
+        //Enkel categorie
+        if(catValue !== '' && brandValue === '' && genderValue === ''){
             filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
             IsFiltered = true
         }
-
-        else if(brandValue !== '' && catValue === ''){
+        //Enkel brand
+        else if(catValue === '' && brandValue !== '' && genderValue === ''){
             filteredData = allProducts.filter(p => p.Brand.BrandId === brandValue)
             IsFiltered = true
         }
-
-        else if (brandValue !== '' && catValue !== ''){
+        //Enkel gender
+        else if(catValue === '' && brandValue === '' && genderValue !== ''){
+            filteredData = allProducts.filter(p => p.Gender === genderValue)
+            IsFiltered = true
+        }
+        //Categorie en brand
+        else if (catValue !== '' && brandValue !== '' && genderValue === ''){
             filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
             filteredData = filteredData.filter(p => p.Brand.BrandId === brandValue)
         }
-        
+        //Categorie en gender
+        else if (catValue !== '' && brandValue === '' && genderValue !== ''){
+            filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
+            filteredData = filteredData.filter(p => p.Gender === genderValue)
+        }
+        //Brand en gender
+        else if (catValue === '' && brandValue !== '' && genderValue !== ''){
+            filteredData = allProducts.filter(p => p.Brand.BrandId === brandValue)
+            filteredData = filteredData.filter(p => p.Gender === genderValue)
+        }
+        //Alles
+        else if (catValue !== '' && brandValue !== '' && genderValue !== ''){
+            filteredData = allProducts.filter(p => p.Category.CategoryId === catValue)
+            filteredData = filteredData.filter(p => p.Brand.BrandId === brandValue)
+            filteredData = filteredData.filter(p => p.Gender === genderValue)
+        }
+        //Text search
         else if(searchTerm !== ''){
             console.log(searchTerm)
+            catValue = ''
+            brandValue = ''
+            genderValue = ''
             filteredData = allProducts.filter(function(eachItem){
                 return eachItem['Name'].toLowerCase().includes(searchTerm.toLowerCase())
             })
@@ -69,7 +92,7 @@
             IsFiltered = false
         }
         
-        console.log(filteredData)  
+        //console.log(filteredData) 
     }
 
 
@@ -102,10 +125,6 @@
 <section>
     <div class='m-4 flex justify-between'>
         <div>
-            <h1>LOGO</h1>
-        </div>
-
-        <div>
             <select bind:value = {brandValue} on:change={filter}>
                 <option value = ''>
                         
@@ -127,6 +146,19 @@
                 {#each allCategories as category}
                     <option value = {category.CategoryId}>
                         {category.Name}
+                    </option>
+                {/each}
+            </select>
+        </div>
+
+        <div>
+            <select bind:value = {genderValue} on:change={filter}>
+                <option value = ''>
+                        
+                </option>
+                {#each allGenders as gender}
+                    <option value = {gender.Gender}>
+                        {gender.Gender}
                     </option>
                 {/each}
             </select>
@@ -168,7 +200,7 @@
 
 <!-- Main content -->
 <section>
-    {#if IsFiltered && filteredData !== [] }
+    {#if IsFiltered}
         <ProductComponent productData = {filteredData}/>
     {:else}
         <ProductComponent productData = {allProducts}/>
