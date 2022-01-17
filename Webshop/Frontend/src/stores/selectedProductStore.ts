@@ -3,7 +3,6 @@ import type firebase from "firebase/app"
 
 const selectedProductStore = writable<{
     productId: string;
-    
 }>({
     productId:''
 });

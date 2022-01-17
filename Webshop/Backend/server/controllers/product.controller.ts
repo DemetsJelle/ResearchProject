@@ -123,7 +123,6 @@ import { CrudController, IController, ICrudController } from './crud.controller'
 
     getGenders = async (request: Request, response: Response, next: NextFunction) => {
       try{
-        console.log('test')
         const data = await this.repository
         .createQueryBuilder('p')
         .select(['p.Gender'])
