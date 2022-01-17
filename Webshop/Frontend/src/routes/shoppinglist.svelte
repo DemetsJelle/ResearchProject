@@ -7,6 +7,12 @@
     
     import { onMount } from 'svelte';
 
+    let shoppingList:any[]
+
+    onMount(async () => {
+        shoppingList = $shoppingListStore
+    })
+
     const goBack = () => {
         goto('/')
     }
@@ -15,9 +21,16 @@
         //CHECK IF USER IS LOGGED IN
         goto('/order')
     }
+
+    //Deze functie wordt uitgevoerd als er iets in de passengerStore verandert
+    let subscribeShoppingList = shoppingListStore.subscribe(currentStore => {
+        console.log('done')
+        shoppingList = currentStore
+        console.log(shoppingList)
+    })
 </script>
 
-<section class="w-screen h-screen bg-black text-white">
+<section class="w-screen h-screen">
     <section class="m-4 ">
         <section>
             <section
@@ -47,11 +60,13 @@
         </section>
         
         <section class="m-4">
-            {#each $shoppingListStore as item}
-                {#if item.productId !== ''}
-                    <ShoppingListComponent listItem = {item}/>
-                {/if}
-            {/each}
+            {#if shoppingList}
+                {#each shoppingList as item}
+                    {#if item.productId !== ''}
+                        <ShoppingListComponent listItem = {item}/>
+                    {/if}
+                {/each}
+            {/if}
         </section>
     
         <div class= 'm-auto border-t-2 border-gray-400 w-1/2 my-4'></div>
@@ -61,13 +76,14 @@
                 <h2>Total</h2>
                 <p>{$shoppingListPriceStore.totalPrice.toFixed(2)}</p>
             </div>
-        </section>
 
-        <button
-            on:click={goToOrderNow}
-        >
-            Order now
-        </button>
-        
+            <button
+                class = 'mt-8'
+                on:click={goToOrderNow}
+            >
+                Order now
+            </button>
+
+        </section>
     </section>
 </section>

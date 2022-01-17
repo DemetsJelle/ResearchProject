@@ -14,7 +14,7 @@
     const increase = () => {
         amount = amount + 1
         calculatePrice()
-        console.log(cost)
+        //console.log(cost)
         $shoppingListPriceStore.totalPrice  = $shoppingListPriceStore.totalPrice + cost
     }
 
@@ -32,14 +32,14 @@
     }
 
     const removeFromList = () => {
-        console.log('clicked')  
+        //console.log('clicked')  
         
         $shoppingListStore.forEach((value, index)=>{
             if(value.name === listItem.name) 
                 $shoppingListStore.splice(index,1)
         })
 
-        console.log($shoppingListStore) 
+        //console.log($shoppingListStore) 
     }
 </script>
 
