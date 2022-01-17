@@ -10,6 +10,11 @@
     const goBack = () => {
         goto('/')
     }
+
+    const goToOrderNow = () => {
+        //CHECK IF USER IS LOGGED IN
+        goto('/order')
+    }
 </script>
 
 <section class="w-screen h-screen bg-black text-white">
@@ -57,6 +62,12 @@
                 <p>{$shoppingListPriceStore.totalPrice.toFixed(2)}</p>
             </div>
         </section>
+
+        <button
+            on:click={goToOrderNow}
+        >
+            Order now
+        </button>
         
     </section>
 </section>
