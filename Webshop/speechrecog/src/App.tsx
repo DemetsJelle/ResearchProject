@@ -23,7 +23,7 @@ function App() {
   const [genderValue, setGenderValue] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const [filteredData, setFilteredData] = useState<any[]>(allProducts);
+  const [filteredData, setFilteredData] = useState<any[]>();
 
   const[latestCommando, setLatestCommando] = useState<any>()
 
@@ -35,6 +35,23 @@ function App() {
   useEffect(() => {
     getAllData();
   },[])
+
+  const getAllData = async () => {
+    try{
+      let brands:any = await API.get('brand/all')
+      let categories:any = await API.get('category/all')
+      let genders:any = await API.get('product/all/genders')
+      let products:any = await API.get('product/all')
+
+      setProducts(products)
+      setBrands(brands)
+      setCategories(categories)
+      setGenders(genders)
+      setFilteredData(products)
+    }catch(error){
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     setFilteredData(textFilter())
@@ -98,22 +115,6 @@ function App() {
     }
 
     //console.log(filteredData)
-  }
-
-  const getAllData = async () => {
-    try{
-      let brands:any = await API.get('brand/all')
-      let categories:any = await API.get('category/all')
-      let genders:any = await API.get('product/all/genders')
-      let products:any = await API.get('product/all')
-
-      setProducts(products)
-      setBrands(brands)
-      setCategories(categories)
-      setGenders(genders)
-    }catch(error){
-      console.log(error)
-    }
   }
 
   const getSearchTerm = (event: ChangeEvent<HTMLInputElement>) =>{
