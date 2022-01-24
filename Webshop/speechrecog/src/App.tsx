@@ -3,12 +3,14 @@ import React, {ChangeEvent, useEffect, useState, MouseEvent} from 'react';
 
 import './App.css';
 import API from './utils/api'
-import Loader from './components/loader/loader';
-import DetailProduct from './routes/detailsProduct'
+import {winkelMandContext} from './store/winkelmand'
 
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import DetailProduct from './routes/detailsProduct'
 import ShoppingCart from './routes/shoppingCart';
 import Wishlist from './routes/wishlist';
+
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+
 // import { useSpeechSynthesis } from 'react-speech-kit'
 
 
@@ -133,9 +135,6 @@ function App() {
     setGenderValue(event.target.value);
   }
 
-  const [message, setMessage] = useState('')
-
-
   const commands = [
     {
       command: ['search *','zoek :searchTerm'],
@@ -145,7 +144,7 @@ function App() {
       uitleg: "Zoeken naar boxy ski jas"
     },
     {
-      command: ['* selecteer :x (en) selecteer (daarna) :value'],
+      command: ['selecteer :x (en) selecteer (daarna) :value'],
       callback: (x:any, value:any) => {setIsLoading(!isLoading); openDropdown(x,value); setLatestCommando(`Gesorteert op ${x} ${value}`)},
       doel:'filter',
       voorbeeld:["selecteer 'merk', selecteer 'Protest'"],
@@ -159,15 +158,15 @@ function App() {
       uitleg: "Jassen tonen van het merk Protest"
     },
     {
-      command: ['* reset (filters)','clear (filters)','leeg (filters)','maak filters leeg',],
+      command: ['reset (filters)','clear (filters)','leeg (filters)','maak filters leeg',],
       callback: (x:any) => {clearFilters(); setLatestCommando(`Filters verwijderd`)},
       doel:'filter',
       voorbeeld:["reset","clear","leeg",'maak filters leeg'],
       uitleg: "Filters weghalen"
     },
     {
-      command:['selecteer :x'],
-      callback: (x:any) => {navigate(x)},
+      command:['selecteer *'],
+      callback: (x:any) => {navigateToDetailVoice(x)},
       doel: "info",
       voorbeeld:["selecteer 'boxi ski jas'"],
       uitleg: "'boxi ski jas' selecteren"
@@ -194,18 +193,6 @@ function App() {
       uitleg: "doorgaan naar betalen"
     }
   ]
-
-  const navigateToCheckOut = () => {
-    console.log('afrekenen')
-  }
-
-  const addToWishlist = (x:any) => {
-    console.log('addToWishlist')
-  }
-  
-  const addToShoppingList = (x:any) => {
-    console.log('addToShoppingList')
-  }
 
   const clearFilters = () => {
     setIsLoading(false);
@@ -300,12 +287,45 @@ function App() {
     resetTranscript()
   }
 
-  const navigate = (spokenText:string) => {
+  const saveToShoppingList = (item:any) => {
+    const empty:string = ''
+    const storage = JSON.parse(localStorage.getItem('winkelmand') || empty)
+
+    storage.push(item)
+
+    localStorage.setItem('winkelmand', JSON.stringify(storage))
+  }
+
+  const navigateToDetailVoice = (spokenText:string) => {
     const filteredData = allProducts.filter(function(eachItem){
       return eachItem['Name'].toLowerCase().includes(spokenText.toLowerCase())
     })
       
     window.location.href=`/detailsProduct/${filteredData[0].ProductId}`
+  }
+
+  const navigateToDetailUI = (id:string) => {  
+    window.location.href=`/detailsProduct/${id}`
+  }
+
+  const navigateToCheckOut = () => {
+    console.log('afrekenen')
+  }
+
+  const addToWishlist = (x:any) => {
+    console.log('addToWishlist')
+  }
+  
+  const addToShoppingList = (x:any) => {
+    let test = {
+      productId: 'test',
+      picture: 'hest',
+      name: 'test',
+      price: 3,
+      inStock: true
+    }
+    
+    console.log('addToShoppingList')
   }
 
   const navigateToInfoPage = () => {
@@ -331,7 +351,7 @@ function App() {
 
               <div className="header_nav_search">
                 <div className="searchbar_container">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 35.997 36.004">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="search_icon" viewBox="0 0 35.997 36.004">
                     <path id="Icon_awesome-search" data-name="Icon awesome-search" d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z"/>
                   </svg>
 
@@ -368,13 +388,23 @@ function App() {
       <div className="header_info"
         onClick={openInfo}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_flag_icon" viewBox="0 0 33 33">
+        {/* <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_flag_icon" viewBox="0 0 33 33">
           <g id="Group_5" data-name="Group 5" transform="translate(343.828 489.635)">
-            <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)"/>
-            <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
-            <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="3" cy="2.875" rx="3" ry="2.875" transform="translate(-330.328 -484.373)"/>
+            <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)" fill="#368ade"/>
+            <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#368ade" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            <path id="Path_5" data-name="Path 5" d="M3,0A2.939,2.939,0,0,1,6,2.875,2.939,2.939,0,0,1,3,5.75,2.939,2.939,0,0,1,0,2.875,2.939,2.939,0,0,1,3,0Z" transform="translate(-330.328 -484.373)" fill="#368ade"/>
+          </g>
+        </svg> */}
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33">
+          <g id="Group_6" data-name="Group 6" transform="translate(343.828 489.635)">
+            <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)" fill="#fff"/>
+            <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            <path id="Path_5" data-name="Path 5" d="M3,0A2.939,2.939,0,0,1,6,2.875,2.939,2.939,0,0,1,3,5.75,2.939,2.939,0,0,1,0,2.875,2.939,2.939,0,0,1,3,0Z" transform="translate(-330.328 -484.373)" fill="#fff"/>
           </g>
         </svg>
+
+
       </div>
 
       {showInfo &&
@@ -382,7 +412,7 @@ function App() {
           <div className="showInfo_item">
             <div className="showInfo_title_container">
               <div></div>
-              <h1>Spraak commando's</h1>
+              <h1 className="showInfo_title">Spraak commando's</h1>
               <svg xmlns="http://www.w3.org/2000/svg" onClick={openInfo} className='showInfo_icon' viewBox="0 0 21 21">
                 <path id="Icon_material-close" data-name="Icon material-close" d="M28.5,9.615,26.385,7.5,18,15.885,9.615,7.5,7.5,9.615,15.885,18,7.5,26.385,9.615,28.5,18,20.115,26.385,28.5,28.5,26.385,20.115,18Z" transform="translate(-7.5 -7.5)"/>
               </svg>
@@ -463,7 +493,7 @@ function App() {
                 <div className="box box4"></div>
                 <div className="box box5"></div>
             </div> :
-            <svg xmlns="http://www.w3.org/2000/svg" width="24.75" height="36" viewBox="0 0 24.75 36" fill="#12E2DC">
+            <svg xmlns="http://www.w3.org/2000/svg" className="speechButton_icon" viewBox="0 0 24.75 36"fill="#368ADE" >
               <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
             </svg>
           }
@@ -529,22 +559,27 @@ function App() {
       <div className="productSection">
         {filteredData && filteredData.map(item => {
           return(
-            <div
-              key = {item.ProductId}
-              className="product"
-              onClick = {() => navigate(item.Name)}
+            <div 
+              onClick={() => navigateToDetailUI(item.ProductId)}
+              className="productSection_item"
             >
-                <h1>{item.Name.toUpperCase()}</h1>
-                <img 
-                  src = {item.Picture}
-                  alt = {`Image of ${item.Name}`}
-                />
-                <div className="productSection_afkorting">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="productSection_afkorting_icon" viewBox="0 0 24.75 36">
-                    <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
-                  </svg>
-                  <p>{item.Afkorting.toLowerCase()}</p>
+              <img 
+                className="productSection_item_img"
+                src = {item.Picture}
+                alt = {`Image of ${item.Name}`}
+              />
+              <div className="productSection_item_textC">
+                <h1 className="productSection_item_name">{item.Name.toUpperCase()}</h1>
+                <div className="PS_item_textC">
+                  <div className="productSection_afkorting">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="productSection_afkorting_icon" viewBox="0 0 24.75 36">
+                      <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
+                    </svg>
+                    <p>{item.Afkorting.toLowerCase()}</p>
+                  </div>
+                  <p className="PS_item_Price">€{item.Price}</p>
                 </div>
+              </div>
             </div>
           )
           })}
