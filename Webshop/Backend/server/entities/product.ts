@@ -12,6 +12,9 @@ export class Product{
     @Column({unique: true})
     Name?: string
 
+    @Column('text')
+    Afkorting?: string
+
     @Column('double')
     Price?: number
 
