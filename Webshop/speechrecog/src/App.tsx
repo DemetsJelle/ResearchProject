@@ -461,7 +461,7 @@ function App() {
         {showTranscript && 
           <div className="showTranscript">
             <p className="showTranscript_text">Zeg iets als:</p>
-            <div className="showTranscript_example_container">
+            {/* <div className="showTranscript_example_container">
               <h2 className="showTranscript_example">'Zoek jassen van Protest'</h2>
               <svg xmlns="http://www.w3.org/2000/svg" className="showTranscript_icon" viewBox="0 0 33 33">
                 <g id="Group_5" data-name="Group 5" transform="translate(343.828 489.635)">
@@ -470,8 +470,9 @@ function App() {
                   <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="3" cy="2.875" rx="3" ry="2.875" transform="translate(-330.328 -484.373)"/>
                 </g>
               </svg>
-            </div>
-            <p className="showTranscript_transcript">{transcript}</p>
+            </div> */}
+            <p className="showTranscript_example">'Zoek jassen van Protest'</p>
+            <h3 className="showTranscript_transcript">{transcript}</h3>
             {isLoading &&
               <div className="ballsContainer">
                 <div></div>
@@ -479,6 +480,7 @@ function App() {
                 <div></div>
               </div>
             }
+            <button className="showTranscript_all_commandos">alle commando's</button>
           </div>
         }
         <button className="speechButton"
@@ -570,7 +572,7 @@ function App() {
               />
               
               <div className="productSection_item_textC">
-                <div className="productSection_buttonC">
+              <div className="productSection_buttonC">
                   <svg xmlns="http://www.w3.org/2000/svg" className="cart_icon" viewBox="0 0 30 30">
                       <path id="Icon_material-shopping-cart" data-name="Icon material-shopping-cart" d="M10.5,27a3,3,0,1,0,3,3A3,3,0,0,0,10.5,27ZM1.5,3V6h3L9.9,17.385,7.875,21.06A2.9,2.9,0,0,0,7.5,22.5a3.009,3.009,0,0,0,3,3h18v-3H11.13a.371.371,0,0,1-.375-.375l.045-.18L12.15,19.5H23.325a2.986,2.986,0,0,0,2.625-1.545L31.32,8.22a1.465,1.465,0,0,0,.18-.72A1.5,1.5,0,0,0,30,6H7.815L6.405,3Zm24,24a3,3,0,1,0,3,3A3,3,0,0,0,25.5,27Z" transform="translate(-1.5 -3)" fill="#368ade"/>
                   </svg>
