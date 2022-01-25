@@ -40,12 +40,12 @@ function DetailsProduct(){
             // for(let i = 0; i < 3; i++)
             //         test.push(productData)
             //     localStorage.setItem('wishlist', JSON.stringify(test))
-            checkLocalStorage()
+            checkLocalStorageWishlist()
         }
     },[productData])
 
     let listArray:any[] = []
-    const checkLocalStorage = () => {
+    const checkLocalStorageWishlist = () => {
         listArray = []
         const list = localStorage.getItem(`wishlist`)
             if(list){
@@ -82,7 +82,7 @@ function DetailsProduct(){
     
     const addToShoppingList = () => {
         //console.log('clicked')
-        checkLocalStorage()
+        checkLocalStorageWishlist()
 
         if(inWishlist === true){
             console.log(listArray)
@@ -104,39 +104,7 @@ function DetailsProduct(){
             listArray.push(productData)
             localStorage.setItem('wishlist', JSON.stringify(listArray))
             setInWishlist(true)
-        }
-        // listArray.push(productData)
-        // if(inWishlist === true) {
-        //     if(parsedList){
-        //         parsedList.forEach((i:any) => {
-        //             if(i.ProductId === productData.ProductId)
-        //                 parsedList.splice(i,1)
-        //         })
-        //         setInWishlist(false)
-        //     }
-        // }else{
-        //     if(parsedList) {
-        //         parsedList.forEach((i:any) => {
-        //             listArray.push(i)
-        //         })
-        //         localStorage.setItem('wishlist', JSON.stringify(listArray))
-        //     }else{
-        //         localStorage.setItem('wishlist', JSON.stringify(productData))
-        //     }
-        //     setInWishlist(true)
-        // }
-
-        
-        // console.log('clicked')
-        // if(inWishlist === true){
-        //     localStorage.removeItem(productData.ProductId)
-        //     setInWishlist(false)
-        // }
-        // else{
-        //     localStorage.setItem(`${productData.ProductId}`, JSON.stringify(productData))
-        //     setInWishlist(true)
-        // }
-        
+        }   
     }
 
     const commands = [

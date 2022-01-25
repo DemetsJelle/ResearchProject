@@ -310,14 +310,40 @@ function App() {
   
   //const [listArray, setListArray] = useState<any[]>([''])
   let listArray:any[] = []
+
+  const checkLocalStorageShoppingCart = (product:any) => {
+    listArray = []
+    const list = localStorage.getItem(`shoppingCart`)
+        if(list){
+            const parsedList:any = JSON.parse(list)
+            parsedList.forEach((i:any) => {
+              listArray.push(i)   
+            })
+            console.log(listArray)
+        }
+  }
+
+  const getIndex = (product:any) => {
+    let index = listArray.findIndex( element => {
+        if (element.ProductId === product.ProductId) {
+          return true;
+        }
+      });
+    console.log(index)
+    return index
+  }
   const addToShoppingList = (x:any) => {
-    const list:any  = localStorage.getItem('wishlist')
-    listArray = JSON.parse(list)
-    listArray.push(x)
-    // setListArray(listArray)
-    localStorage.setItem('shoppingList', JSON.stringify(listArray))
-    // const parsedList = JSON.parse(list);
-    console.log('addToShoppingList')
+    checkLocalStorageShoppingCart(x)
+
+    const inList = getIndex(x)
+    if(inList === -1) {
+      
+      listArray.push(x)
+      console.log(listArray)
+      localStorage.setItem('shoppingCart', JSON.stringify(listArray))
+    }else{
+      console.log('already in list')
+    }
   }
 
   const navigateToInfoPage = () => {

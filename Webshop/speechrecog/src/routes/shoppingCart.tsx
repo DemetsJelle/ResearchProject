@@ -5,7 +5,7 @@ function ShoppingCart(){
 
     const [shoppingCart, setShoppingCart] = useState<any[]>()
     useEffect(() =>{
-        const list:any = localStorage.getItem('shoppingList')
+        const list:any = localStorage.getItem('shoppingCart')
         const parsedList = JSON.parse(list)
         setShoppingCart(parsedList)
         console.log(parsedList)
