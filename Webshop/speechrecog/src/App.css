@@ -177,9 +177,8 @@ option{
 }
 
 .productSection_item_textC{
-  margin-top: auto;
   background-color:#4E4E4F;
-  padding:0.5rem 1rem;
+  padding:0 1rem 0.5rem 1rem;
   border-radius: 0px 0px 15px 15px;
 }
 
@@ -188,8 +187,10 @@ option{
   align-items:center;
   justify-content:center;
   gap: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0;
   border-bottom: 1px solid #BCBCBC;
+  background-color:#4E4E4F;
+  margin-top: auto; 
 }
 
 .cart_icon{

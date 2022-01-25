@@ -287,15 +287,6 @@ function App() {
     resetTranscript()
   }
 
-  const saveToShoppingList = (item:any) => {
-    const empty:string = ''
-    const storage = JSON.parse(localStorage.getItem('winkelmand') || empty)
-
-    storage.push(item)
-
-    localStorage.setItem('winkelmand', JSON.stringify(storage))
-  }
-
   const navigateToDetailVoice = (spokenText:string) => {
     const filteredData = allProducts.filter(function(eachItem){
       return eachItem['Name'].toLowerCase().includes(spokenText.toLowerCase())
@@ -309,6 +300,7 @@ function App() {
   }
 
   const navigateToCheckOut = () => {
+    window.location.href=`/shoppingCart`
     console.log('afrekenen')
   }
 
@@ -316,15 +308,15 @@ function App() {
     console.log('addToWishlist')
   }
   
+  //const [listArray, setListArray] = useState<any[]>([''])
+  let listArray:any[] = []
   const addToShoppingList = (x:any) => {
-    let test = {
-      productId: 'test',
-      picture: 'hest',
-      name: 'test',
-      price: 3,
-      inStock: true
-    }
-    
+    const list:any  = localStorage.getItem('wishlist')
+    listArray = JSON.parse(list)
+    listArray.push(x)
+    // setListArray(listArray)
+    localStorage.setItem('shoppingList', JSON.stringify(listArray))
+    // const parsedList = JSON.parse(list);
     console.log('addToShoppingList')
   }
 
@@ -374,7 +366,10 @@ function App() {
                   <p>Account</p>
                 </div>
 
-                <div className="icon_container">
+                <div 
+                  className="icon_container"
+                  onClick={navigateToCheckOut}
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 40.5 36">
                     <path id="Icon_awesome-shopping-cart" data-name="Icon awesome-shopping-cart" d="M37.133,21.186,40.457,6.561A1.688,1.688,0,0,0,38.812,4.5H11.194L10.55,1.349A1.687,1.687,0,0,0,8.9,0H1.688A1.687,1.687,0,0,0,0,1.688V2.813A1.687,1.687,0,0,0,1.688,4.5H6.6L11.54,28.648a3.938,3.938,0,1,0,4.714.6H31a3.936,3.936,0,1,0,4.472-.732l.388-1.707a1.688,1.688,0,0,0-1.646-2.061H15.336l-.46-2.25H35.488A1.687,1.687,0,0,0,37.133,21.186Z"/>
                   </svg>
@@ -391,7 +386,7 @@ function App() {
         {/* <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_flag_icon" viewBox="0 0 33 33">
           <g id="Group_5" data-name="Group 5" transform="translate(343.828 489.635)">
             <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)" fill="#368ade"/>
-            <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#368ade" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#368ade" sstrokeLinecap="round" trokeLinejoin="round" strokeWidth="3"/>
             <path id="Path_5" data-name="Path 5" d="M3,0A2.939,2.939,0,0,1,6,2.875,2.939,2.939,0,0,1,3,5.75,2.939,2.939,0,0,1,0,2.875,2.939,2.939,0,0,1,3,0Z" transform="translate(-330.328 -484.373)" fill="#368ade"/>
           </g>
         </svg> */}
@@ -399,7 +394,7 @@ function App() {
         <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33">
           <g id="Group_6" data-name="Group 6" transform="translate(343.828 489.635)">
             <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)" fill="#fff"/>
-            <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+            <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3"/>
             <path id="Path_5" data-name="Path 5" d="M3,0A2.939,2.939,0,0,1,6,2.875,2.939,2.939,0,0,1,3,5.75,2.939,2.939,0,0,1,0,2.875,2.939,2.939,0,0,1,3,0Z" transform="translate(-330.328 -484.373)" fill="#fff"/>
           </g>
         </svg>
@@ -466,7 +461,7 @@ function App() {
               <svg xmlns="http://www.w3.org/2000/svg" className="showTranscript_icon" viewBox="0 0 33 33">
                 <g id="Group_5" data-name="Group 5" transform="translate(343.828 489.635)">
                   <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)"/>
-                  <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                  <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#000" sstrokeLinecap="round" trokeLinejoin="round" strokeWidth="3"/>
                   <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="3" cy="2.875" rx="3" ry="2.875" transform="translate(-330.328 -484.373)"/>
                 </g>
               </svg>
@@ -562,22 +557,28 @@ function App() {
         {filteredData && filteredData.map(item => {
           return(
             <div 
-              onClick={() => navigateToDetailUI(item.ProductId)}
+              key={item.ProductId}
               className="productSection_item"
             >
               <img 
+                onClick={() => navigateToDetailUI(item.ProductId)}
                 className="productSection_item_img"
                 src = {item.Picture}
                 alt = {`Image of ${item.Name}`}
               />
               
-              <div className="productSection_item_textC">
+
               <div className="productSection_buttonC">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="cart_icon" viewBox="0 0 30 30">
-                      <path id="Icon_material-shopping-cart" data-name="Icon material-shopping-cart" d="M10.5,27a3,3,0,1,0,3,3A3,3,0,0,0,10.5,27ZM1.5,3V6h3L9.9,17.385,7.875,21.06A2.9,2.9,0,0,0,7.5,22.5a3.009,3.009,0,0,0,3,3h18v-3H11.13a.371.371,0,0,1-.375-.375l.045-.18L12.15,19.5H23.325a2.986,2.986,0,0,0,2.625-1.545L31.32,8.22a1.465,1.465,0,0,0,.18-.72A1.5,1.5,0,0,0,30,6H7.815L6.405,3Zm24,24a3,3,0,1,0,3,3A3,3,0,0,0,25.5,27Z" transform="translate(-1.5 -3)" fill="#368ade"/>
-                  </svg>
-                  <button className="productOverview_cart">Winkelmand</button>
-                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" className="cart_icon" viewBox="0 0 30 30">
+                  <path id="Icon_material-shopping-cart" data-name="Icon material-shopping-cart" d="M10.5,27a3,3,0,1,0,3,3A3,3,0,0,0,10.5,27ZM1.5,3V6h3L9.9,17.385,7.875,21.06A2.9,2.9,0,0,0,7.5,22.5a3.009,3.009,0,0,0,3,3h18v-3H11.13a.371.371,0,0,1-.375-.375l.045-.18L12.15,19.5H23.325a2.986,2.986,0,0,0,2.625-1.545L31.32,8.22a1.465,1.465,0,0,0,.18-.72A1.5,1.5,0,0,0,30,6H7.815L6.405,3Zm24,24a3,3,0,1,0,3,3A3,3,0,0,0,25.5,27Z" transform="translate(-1.5 -3)" fill="#368ade"/>
+                </svg>
+                <button onClick={() => addToShoppingList(item)} className="productOverview_cart">Winkelmand</button>
+              </div>
+
+              <div 
+                className="productSection_item_textC"
+                onClick={() => navigateToDetailUI(item.ProductId)}
+              >
                 <h1 className="productSection_item_name">{item.Name.toUpperCase()}</h1>
                 <div className="PS_item_textC">
                   <div className="productSection_afkorting">

@@ -20,23 +20,124 @@ function DetailsProduct(){
     const getData = async () => {
         try{
             let data = await API.get(`product/${productId}`)
-            console.log(data.ExtraInfo)
             setProductData(data)
         }catch(e){
             console.log(e)
         }
     }
 
+    const [wishlist, setWishlist] = useState<any[]>()
     useEffect(() => {
         if(productData !== undefined){
-            console.log(productData)
-            const test = localStorage.getItem(`${productData.ProductId}`)
-            if(test){
-                setInWishlist(true)
-                console.log(test)
-            }
+            // console.log(productData)
+            // const test = localStorage.getItem(`${productData.ProductId}`)
+            // if(test){
+            //     setInWishlist(true)
+            //     console.log(test)
+            // }
+
+            // let test:any[] = []
+            // for(let i = 0; i < 3; i++)
+            //         test.push(productData)
+            //     localStorage.setItem('wishlist', JSON.stringify(test))
+            checkLocalStorage()
         }
     },[productData])
+
+    let listArray:any[] = []
+    const checkLocalStorage = () => {
+        listArray = []
+        const list = localStorage.getItem(`wishlist`)
+            if(list){
+                const parsedList:any = JSON.parse(list)
+                // console.log(parsedList.length)
+                // console.log(parsedList)
+                if(parsedList.length === undefined){
+                    //Er zit maar 1 item in
+                    if(parsedList.ProductId === productData.ProductId)
+                        console.log("1")
+                        setInWishlist(true);
+                        listArray.push(parsedList)
+                }else{
+                    parsedList.forEach((i:any) => {
+                        console.log("meerdere")
+                        if(i.ProductId === productData.ProductId)
+                            setInWishlist(true)
+                        listArray.push(i)
+                    })
+                }
+                console.log(listArray)
+            }
+    }
+
+    const getIndex = () => {
+        let index = listArray.findIndex( element => {
+            if (element.ProductId === productData.ProductId) {
+              return true;
+            }
+          });
+        console.log(index)
+        return index
+    }
+    
+    const addToShoppingList = () => {
+        //console.log('clicked')
+        checkLocalStorage()
+
+        if(inWishlist === true){
+            console.log(listArray)
+            if(listArray.length === 1){
+                //Maar 1 item erin
+                console.log('pop')
+                listArray.pop()
+            }else{
+                console.log('niet pop')
+                const index = getIndex()
+                if(index !== -1){
+                    listArray.splice(index,1)
+                }
+            }
+            //console.log(listArray)
+            localStorage.setItem('wishlist', JSON.stringify(listArray))
+            setInWishlist(false)
+        }else{
+            listArray.push(productData)
+            localStorage.setItem('wishlist', JSON.stringify(listArray))
+            setInWishlist(true)
+        }
+        // listArray.push(productData)
+        // if(inWishlist === true) {
+        //     if(parsedList){
+        //         parsedList.forEach((i:any) => {
+        //             if(i.ProductId === productData.ProductId)
+        //                 parsedList.splice(i,1)
+        //         })
+        //         setInWishlist(false)
+        //     }
+        // }else{
+        //     if(parsedList) {
+        //         parsedList.forEach((i:any) => {
+        //             listArray.push(i)
+        //         })
+        //         localStorage.setItem('wishlist', JSON.stringify(listArray))
+        //     }else{
+        //         localStorage.setItem('wishlist', JSON.stringify(productData))
+        //     }
+        //     setInWishlist(true)
+        // }
+
+        
+        // console.log('clicked')
+        // if(inWishlist === true){
+        //     localStorage.removeItem(productData.ProductId)
+        //     setInWishlist(false)
+        // }
+        // else{
+        //     localStorage.setItem(`${productData.ProductId}`, JSON.stringify(productData))
+        //     setInWishlist(true)
+        // }
+        
+    }
 
     const commands = [
         {
@@ -57,18 +158,6 @@ function DetailsProduct(){
 
     const goBack = () => {
         window.location.href=`/`
-    }
-
-    const addToShoppingList = () => {
-        console.log('clicked')
-        if(inWishlist === true){
-            localStorage.removeItem(productData.ProductId)
-            setInWishlist(false)
-        }
-        else{
-            localStorage.setItem(`${productData.ProductId}`, JSON.stringify(productData))
-            setInWishlist(true)
-        }
     }
 
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition, interimTranscript } = useSpeechRecognition({ commands });
@@ -156,7 +245,10 @@ function DetailsProduct(){
                 <div className="test3">
                     {productData && productData.ExtraInfo.map((i:string) => (
                         Object.entries(i).map((x) =>(
-                            <div className="productVoordelen_item">
+                            <div 
+                                className="productVoordelen_item"
+                                key={x[0]}
+                            >
                                 <p className="item-a">{x[0]}</p>
                                 <p></p>
                                 <p className="item-b">{x[1]}</p>
