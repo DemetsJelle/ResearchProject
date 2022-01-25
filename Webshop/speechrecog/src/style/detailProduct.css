@@ -1,5 +1,8 @@
 .main{
     padding: 1rem 2rem;
+    background-color: #F8F8FF;
+    height: 100vh;
+    width: 100vw;
 }
 
 .container{
@@ -11,16 +14,21 @@
     display:flex;
     width:50%;
     margin: 0 auto;
+    background-color: white;
+    border-radius: 15px;
+    padding:1rem;
 }
 
 .productOverview_picture{
     width: 50%;
     height: 50%;
     margin-right:2rem;
+    border-radius: 15px;
 }
 
 .productOverview_productInfo{
     width: 50%;
+    padding: 1rem
 }
 
 .productOverview_name{
@@ -87,6 +95,8 @@
 
 .productVoordelen_container{
     width: 100%;
+    background-color: white;
+    border-radius:15px;
 }
 
 .productVoordelen_item{
@@ -95,14 +105,7 @@
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-}
-
-.test3{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    width:50%;
-    margin: 0 auto
+    margin-bottom:1rem;
 }
 
 .item-a{
