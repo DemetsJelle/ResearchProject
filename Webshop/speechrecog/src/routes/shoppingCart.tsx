@@ -14,6 +14,9 @@ function ShoppingCart(){
     const [shoppingCart, setShoppingCart] = useState<any[]>()
     const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState)
 
+    useEffect(() => {
+        console.log('aangepast')
+    }, [shoppingCart])
 
     useEffect(() =>{
         const list:any = localStorage.getItem('shoppingCart')
@@ -54,7 +57,7 @@ function ShoppingCart(){
                 <div className="shoppingList_grid_container">
                     {shoppingCart && shoppingCart.map(item => {
                         return(
-                            <ShoppingListItem key={item.ProductId} product={item} />
+                            <ShoppingListItem key={item.ProductId} product={item} list={setShoppingCart} />
                         )
                     })}
                 </div>
