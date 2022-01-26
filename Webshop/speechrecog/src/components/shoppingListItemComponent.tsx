@@ -19,6 +19,14 @@ export default function ShoppingListItem(props:any){
         })
     },[])
 
+    useEffect(() => {
+        if(props.voiceSelected){
+            console.log(props.voiceSelected)
+            if(props.voiceSelected.Name === props.product.Name)
+                setAmount(amount + 1)
+        }
+    },[props.voiceSelected])
+
     useEffect(() =>{
         let totalPrice:number = amount * Number(props.product.Price)
         setTotal(Math.round(totalPrice * 100)/100)
