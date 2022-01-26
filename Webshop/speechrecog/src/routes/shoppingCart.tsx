@@ -43,15 +43,33 @@ function ShoppingCart(){
                 </div>
             </div>
 
-            <div className="shoppingList_grid_container">
-                {shoppingCart && shoppingCart.map(item => {
-                    return(
-                        <ShoppingListItem key={item.ProductId} product={item} />
-                    )
-                })}
-            </div>
-            <div>
-                <p>{totalPrice}</p>
+
+           <div className="grid_container">
+                <div className="shoppingList_grid whitespace ">
+                    <p>Product</p>
+                    <p>Eenheidsprijs</p>
+                    <p>Aantal</p>
+                    <p>Totale prijs</p>
+                </div>
+                <div className="shoppingList_grid_container">
+                    {shoppingCart && shoppingCart.map(item => {
+                        return(
+                            <ShoppingListItem key={item.ProductId} product={item} />
+                        )
+                    })}
+                </div>
+           </div>
+            <div className="checkout_container">
+                <div className="totalPrice_container">
+                    <p>Totaalprijs:</p>
+                    <p className="totalPrice_text">{totalPrice}</p>
+                </div>
+                <div className="checkout_btn_container">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="btn_icon" viewBox="0 0 30 24">
+                        <path id="Icon_material-payment" data-name="Icon material-payment" d="M30,6H6A2.977,2.977,0,0,0,3.015,9L3,27a2.99,2.99,0,0,0,3,3H30a2.99,2.99,0,0,0,3-3V9A2.99,2.99,0,0,0,30,6Zm0,21H6V18H30Zm0-15H6V9H30Z" transform="translate(-3 -6)"/>
+                    </svg>
+                    <button className="checkout_btn">Verder naar bestellen</button>
+                </div>
             </div>
         </main>
     )
