@@ -11,6 +11,25 @@ export const totalPriceState = atom({
     default:0
 })
 
+export const commandsListShoppingCart = [
+  {
+      doel:'navigatie',
+      voorbeeld:["terug"],
+      uitleg: "Terug keren naar de vorige pagina."
+  },
+  {
+    doel:'afrekenen',
+    voorbeeld: ['"2" stuks "boxy ski jas"','"2" keer "boxy ski jas"'],
+    uitleg: "De hoeveelheid van een bepaald product aanpassen."
+    
+  },
+  {
+    doel:'afrekenen',
+    voorbeeld:['verwijder "boxy ski jas"'],
+    uitleg: "Een bepaald product verwijderen."
+  }
+]
+
 function ShoppingCart(){
     const [showTranscript, setshowTranscript] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)

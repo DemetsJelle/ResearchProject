@@ -14,7 +14,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 // import { useSpeechSynthesis } from 'react-speech-kit'
 
 
-export const commandsList = [
+export const commandsListHome = [
   {
     doel:'filter',
     voorbeeld:["zoek 'boxy ski jas'"],

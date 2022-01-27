@@ -5,6 +5,24 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import API from '../utils/api'
 import '../style/detailProduct.css'
 
+export const commandsDetail = [
+    {
+        doel:'navigatie',
+        voorbeeld:["terug"],
+        uitleg: "Terug gaan naar de vorige pagina"
+    },
+    {
+        doel:'afrekenen',
+        voorbeeld:['toevoegen aan wikelmand','winkelmand'],
+        uitleg: "Artikel toevoegen aan de winkelmand"
+    },
+    {
+        doel:'verlanglijst',
+        voorbeeld:['toevoegen aan verlanglijst','verlanglijst'],
+        uitleg: "Artikel toevoegen aan de verlanglijst"
+    },
+]
+
 function DetailsProduct(){
     let { productId } = useParams()
     const [productData, setProductData] = useState<any>()

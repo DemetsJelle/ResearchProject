@@ -1,9 +1,10 @@
 import React, {ChangeEvent, useEffect, useState, MouseEvent} from 'react';
 import '../style/commandsPage.css';
-import { commandsList } from '../App'
+import { commandsListHome } from '../App'
+import { commandsListShoppingCart } from '../routes/shoppingCart'
+import { commandsDetail } from '../routes/detailsProduct'
 
 export default function CommandsPage(){
-
     const goBack = () => {
         window.location.href=`/`
     }
@@ -27,7 +28,23 @@ export default function CommandsPage(){
 
             <div className="commands_container">
                 <div className='commands_text_container'>
-                    {commandsList && commandsList.map((command:any) => {
+                    {commandsListHome && commandsListHome.map((command:any) => {
+                        return(
+                            <div>
+                                <p>{command.voorbeeld}</p>
+                            </div>
+                        )
+                    })}
+
+                    {commandsListShoppingCart && commandsListShoppingCart.map((command:any) => {
+                        return(
+                            <div>
+                                <p>{command.voorbeeld}</p>
+                            </div>
+                        )
+                    })}
+
+                    {commandsDetail && commandsDetail.map((command:any) => {
                         return(
                             <div>
                                 <p>{command.voorbeeld}</p>

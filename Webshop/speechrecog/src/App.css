@@ -162,8 +162,8 @@ option{
 }
 
 .latestCommand_container{
-  /* background-color:#4E4E4F; */
-  background-color: #06d6a0;
+  background-color:#368ADE;
+  /* background-color: #06d6a0; */
   padding: 0.5rem 0;
   border-radius: 0px 0px 15px 15px;
   
@@ -247,6 +247,7 @@ option{
 
 .PS_item_Price{
   color: #fca311;
+  /* color:#368ADE; */
   font-weight: bold;
 }
 
