@@ -1,6 +1,29 @@
 import React, {ChangeEvent, useEffect, useState, MouseEvent} from 'react';
 import '../style/wishlist.css'
 
+export const commandsWishlist = [
+    {
+        doel:'filter',
+        voorbeeld:["terug"],
+        uitleg: "Terug gaan naar de vorige pagina"
+    },
+    {
+        doel:'info',
+        voorbeeld:["selecteer Raptor 60"],
+        uitleg: "Meer informatie zien over het product"
+    },
+    {
+        doel:'afrekenen',
+        voorbeeld:["voeg 'lenado ski jas' toe aan winkelmand",'"lenado ski jas" toevoegen aan winkelmand'],
+        uitleg: "Product aan winkelmand toevoegen toevoegen"
+    },
+    {
+        doel:'afrekenen',
+        voorbeeld:['verwijder "lenado ski jas"','"lenado ski jas" verwijderen'],
+        uitleg: "Product uit de verlanglijst halen"
+    },
+]
+
 function Wishlist(){
     const [wishlist, setWishlist] = useState<any[]>()
 
@@ -11,8 +34,51 @@ function Wishlist(){
         console.log(parsedList)
     },[])
 
+    const commands = [
+        {
+            command: ['terug'],
+            callback: () => goBack(),
+            doel:'filter',
+            voorbeeld:["terug"],
+            uitleg: "Terug gaan naar de vorige pagina"
+        },
+        {
+            command: ['selecteer *'],
+            callback: (spokenText:any) => selectProduct(spokenText),
+            doel:'info',
+            voorbeeld:["selecteer Raptor 60"],
+            uitleg: "Meer informatie zien over het product"
+        },
+        {
+            command: ['* toevoegen aan winkelmand','voeg * toe aan winkelmand',],
+            callback: (spokenText:any) => addToShoppingCart(spokenText),
+            doel:'afrekenen',
+            voorbeeld:["voeg 'lenado ski jas' toe aan winkelmand"],
+            uitleg: "Product aan winkelmand toevoegen toevoegen"
+        },
+        {
+            command: ['verwijder *','* verwijderen'],
+            callback: (spokenText:any) => removeFromWishlist(spokenText),
+            doel:'afrekenen',
+            voorbeeld:["verwijder 'lenado ski jas'"],
+            uitleg: "Product uit de verlanglijst halen"
+        },
+    ]
+
     const goBack = () => {
         window.location.href=`/`
+    }
+
+    const selectProduct = (spokenText:any) => {
+
+    }
+
+    const addToShoppingCart = (spokenText:any) => {
+
+    }
+
+    const removeFromWishlist = (spokenText:any) => {
+
     }
 
     const localSWishlist:any[] = []

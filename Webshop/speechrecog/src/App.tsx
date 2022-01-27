@@ -22,13 +22,13 @@ export const commandsListHome = [
   },
   {
     doel:'filter',
-    voorbeeld:["selecteer 'merk', selecteer 'Protest'"],
+    voorbeeld:['selecteer "merk"',' selecteer "Protest"'],
     uitleg: "Zoeken op merk naar alles van Protest"
   },
   {
    
     doel:'filter',
-    voorbeeld:["zoek 'jassen' van 'Protest'","vind 'jassen' van 'Protest'"],
+    voorbeeld:['zoek "jassen" van "Protest"','vind "jassen" van "Protest"'],
     uitleg: "Jassen tonen van het merk Protest"
   },
   {
@@ -38,12 +38,12 @@ export const commandsListHome = [
   },
   {
     doel: "info",
-    voorbeeld:["selecteer 'boxi ski jas'"],
+    voorbeeld:['selecteer "boxi ski jas"'],
     uitleg: "'boxi ski jas' selecteren"
   },
   {
     doel: "verlanglijst",
-    voorbeeld:["voeg 'lenado ski jas' toe aan verlanglijst",'verlanglijst "lenado ski jas"','plaats "lenado ski jas" in verlanglijst','voeg "lenado ski jas" toe aan verlanglijst'],
+    voorbeeld:['voeg "lenado ski jas" toe aan verlanglijst','verlanglijst "lenado ski jas"','plaats "lenado ski jas" in verlanglijst','voeg "lenado ski jas" toe aan verlanglijst'],
     uitleg: "'lenado ski jas aan verlanglijst toevoegen"
   },
   {
@@ -224,7 +224,7 @@ function App() {
       uitleg: "'lenado ski jas aan verlanglijst toevoegen"
     },
     {
-      command:['voeg * toe aan winkelmand','add * to shoppinglist','winkelmand *','* winkelmandr','plaats * op winkelmand','voeg * toe aan winkelmand'],
+      command:['voeg * toe aan winkelmand','add * to shoppinglist','winkelmand *','* winkelmand','plaats * op winkelmand','voeg * toe aan winkelmand'],
       callback: (x:any) => {addToShoppingList(x)},
       doel: "afrekenen",
       voorbeeld:["voeg 'lenado ski jas' toe aan winkelmand"],
