@@ -172,14 +172,14 @@ function App() {
       uitleg: "'boxi ski jas' selecteren"
     },
     {
-      command:['voeg :x toe aan verlanglijst(je)','add :x to wishlist','verlanglijst(je) :x',':x verlanglijst','plaats :x op verlanglijst','voeg :x toe aan verlanglijst'],
+      command:['voeg * toe aan verlanglijst(je)','add * to wishlist','verlanglijst(je) *','* verlanglijst','plaats * op verlanglijst','voeg * toe aan verlanglijst'],
       callback: (x:any) => {addToWishlist(x)},
       doel: "verlanglijst",
       voorbeeld:["voeg 'lenado ski jas' toe aan verlanglijst"],
       uitleg: "'lenado ski jas aan verlanglijst toevoegen"
     },
     {
-      command:['voeg :x toe aan winkelkar','add :x to shoppinglist','winkelkar :x',':x winkelkar','plaats :x op winkelkar','voeg :x toe aan winkelkar'],
+      command:['voeg * toe aan winkelkar','add * to shoppinglist','winkelkar *','* winkelkar','plaats * op winkelkar','voeg * toe aan winkelkar'],
       callback: (x:any) => {addToShoppingList(x)},
       doel: "afrekenen",
       voorbeeld:["voeg 'lenado ski jas' toe aan winkelkar"],
@@ -307,26 +307,45 @@ function App() {
     window.location.href=`/wishlist`
   }
 
-  const addToWishlist = (x:any) => {
-    console.log('addToWishlist')
+  const validateProduct = (spokenText:any) => {
+    const list = allProducts?.filter(function(eachItem){
+      return eachItem['Name'].toLowerCase().includes(spokenText.toLowerCase())
+    })
+    return list[0]
+  }
+
+  const addToWishlist = (spokenText:any) => {
+    const product = validateProduct(spokenText)
+    console.log(product)
+    getLocalStorage('wishlist')
+
+    const inList = getIndex(product)
+    if(inList === -1){
+      listArray.push(product)
+      console.log(listArray)
+      localStorage.setItem('wishlist', JSON.stringify(listArray))
+    }else{
+      console.log('already in wishlist')
+    }
   }
   
   //const [listArray, setListArray] = useState<any[]>([''])
   let listArray:any[] = []
-
-  const checkLocalStorageShoppingCart = (product:any) => {
+  const getLocalStorage = (storage:string) => {
     listArray = []
-    const list = localStorage.getItem(`shoppingCart`)
-        if(list){
-            const parsedList:any = JSON.parse(list)
-            parsedList.forEach((i:any) => {
-              listArray.push(i)   
-            })
-            console.log(listArray)
-        }
+    const list = localStorage.getItem(storage)
+      if(list){
+        const parsedList:any = JSON.parse(list)
+        parsedList.forEach((i:any) => {
+          listArray.push(i)   
+        })
+        console.log(listArray)
+      }
   }
 
   const getIndex = (product:any) => {
+    console.log({product})
+    console.log({listArray})
     let index = listArray.findIndex( element => {
         if (element.ProductId === product.ProductId) {
           return true;
@@ -335,13 +354,14 @@ function App() {
     console.log(index)
     return index
   }
-  const addToShoppingList = (x:any) => {
-    checkLocalStorageShoppingCart(x)
 
-    const inList = getIndex(x)
+  const addToShoppingList = (spokenText:any) => {
+    const product = validateProduct(spokenText)
+    getLocalStorage('shoppingCart')
+
+    const inList = getIndex(product)
     if(inList === -1) {
-      
-      listArray.push(x)
+      listArray.push(product)
       console.log(listArray)
       localStorage.setItem('shoppingCart', JSON.stringify(listArray))
     }else{
@@ -363,8 +383,8 @@ function App() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="logo" viewBox="0 0 50.416 56">
                   <g id="Group_68" data-name="Group 68" transform="translate(0 -0.01)">
                     <g id="MCT" transform="translate(0 0.01)">
-                      <path id="Path_80" data-name="Path 80" d="M35.979,45.21l-9.095,5.016L17.79,45.21V55.7l5.451,3.13a7.278,7.278,0,0,0,7.287,0l5.451-3.14Z" transform="translate(-1.676 -3.805)" fill="#000"/>
-                      <path id="Path_81" data-name="Path 81" d="M46.943,11.347,28.653.923a6.953,6.953,0,0,0-6.89,0L3.473,11.347A6.794,6.794,0,0,0,0,17.242V38.109A6.794,6.794,0,0,0,3.473,44l3.184,1.845V18.4A1.464,1.464,0,0,1,7.4,17.119a1.5,1.5,0,0,1,1.489,0l16.32,9.1,16.311-9.1a1.5,1.5,0,0,1,1.489,0A1.464,1.464,0,0,1,43.75,18.4V45.821l3.184-1.845a6.8,6.8,0,0,0,3.482-5.867V17.242a6.794,6.794,0,0,0-3.473-5.895Z" transform="translate(0 -0.01)" fill="#000"/>
+                      <path id="Path_80" data-name="Path 80" d="M35.979,45.21l-9.095,5.016L17.79,45.21V55.7l5.451,3.13a7.278,7.278,0,0,0,7.287,0l5.451-3.14Z" transform="translate(-1.676 -3.805)"/>
+                      <path id="Path_81" data-name="Path 81" d="M46.943,11.347,28.653.923a6.953,6.953,0,0,0-6.89,0L3.473,11.347A6.794,6.794,0,0,0,0,17.242V38.109A6.794,6.794,0,0,0,3.473,44l3.184,1.845V18.4A1.464,1.464,0,0,1,7.4,17.119a1.5,1.5,0,0,1,1.489,0l16.32,9.1,16.311-9.1a1.5,1.5,0,0,1,1.489,0A1.464,1.464,0,0,1,43.75,18.4V45.821l3.184-1.845a6.8,6.8,0,0,0,3.482-5.867V17.242a6.794,6.794,0,0,0-3.473-5.895Z" transform="translate(0 -0.01)"/>
                     </g>
                   </g>
                 </svg>
@@ -486,8 +506,14 @@ function App() {
              </div>
           </div>
 
-          
-          <h2 onClick={navigateToInfoPage} className="showInfo_item_title text-center">Alle commando's</h2>
+          <div className="showInfo_btnC">
+            <div className="showInfo_btn">
+              <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_btn_icon" viewBox="0 0 36 29.25">
+                <path id="Icon_awesome-list" data-name="Icon awesome-list" d="M5.625,25.875h-4.5A1.125,1.125,0,0,0,0,27v4.5a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,31.5V27A1.125,1.125,0,0,0,5.625,25.875Zm0-22.5h-4.5A1.125,1.125,0,0,0,0,4.5V9a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,9V4.5A1.125,1.125,0,0,0,5.625,3.375Zm0,11.25h-4.5A1.125,1.125,0,0,0,0,15.75v4.5a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,20.25v-4.5A1.125,1.125,0,0,0,5.625,14.625ZM34.875,27h-22.5a1.125,1.125,0,0,0-1.125,1.125v2.25A1.125,1.125,0,0,0,12.375,31.5h22.5A1.125,1.125,0,0,0,36,30.375v-2.25A1.125,1.125,0,0,0,34.875,27Zm0-22.5h-22.5A1.125,1.125,0,0,0,11.25,5.625v2.25A1.125,1.125,0,0,0,12.375,9h22.5A1.125,1.125,0,0,0,36,7.875V5.625A1.125,1.125,0,0,0,34.875,4.5Zm0,11.25h-22.5a1.125,1.125,0,0,0-1.125,1.125v2.25a1.125,1.125,0,0,0,1.125,1.125h22.5A1.125,1.125,0,0,0,36,19.125v-2.25A1.125,1.125,0,0,0,34.875,15.75Z" transform="translate(0 -3.375)"/>
+              </svg>
+              <button onClick={navigateToInfoPage} className="showInfo_allCommands_btn">Alle commando's</button>
+            </div>
+          </div>
         </div>
       }
 
@@ -605,8 +631,7 @@ function App() {
                 src = {item.Picture}
                 alt = {`Image of ${item.Name}`}
               />
-              
-
+            
               <div className="productSection_buttonC">
                 <svg xmlns="http://www.w3.org/2000/svg" className="cart_icon" viewBox="0 0 30 30">
                   <path id="Icon_material-shopping-cart" data-name="Icon material-shopping-cart" d="M10.5,27a3,3,0,1,0,3,3A3,3,0,0,0,10.5,27ZM1.5,3V6h3L9.9,17.385,7.875,21.06A2.9,2.9,0,0,0,7.5,22.5a3.009,3.009,0,0,0,3,3h18v-3H11.13a.371.371,0,0,1-.375-.375l.045-.18L12.15,19.5H23.325a2.986,2.986,0,0,0,2.625-1.545L31.32,8.22a1.465,1.465,0,0,0,.18-.72A1.5,1.5,0,0,0,30,6H7.815L6.405,3Zm24,24a3,3,0,1,0,3,3A3,3,0,0,0,25.5,27Z" transform="translate(-1.5 -3)" fill="#368ade"/>

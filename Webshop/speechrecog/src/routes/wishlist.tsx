@@ -47,7 +47,7 @@ function Wishlist(){
     }
 
     return (
-        <main className="main">
+        <main className="App">
             <div>
                 <div className="goBack_container" onClick={goBack}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="goBack_icon" viewBox="0 0 24.743 23.34">
