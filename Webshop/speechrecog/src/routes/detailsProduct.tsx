@@ -29,17 +29,6 @@ function DetailsProduct(){
     const [wishlist, setWishlist] = useState<any[]>()
     useEffect(() => {
         if(productData !== undefined){
-            // console.log(productData)
-            // const test = localStorage.getItem(`${productData.ProductId}`)
-            // if(test){
-            //     setInWishlist(true)
-            //     console.log(test)
-            // }
-
-            // let test:any[] = []
-            // for(let i = 0; i < 3; i++)
-            //         test.push(productData)
-            //     localStorage.setItem('wishlist', JSON.stringify(test))
             checkLocalStorageWishlist()
         }
     },[productData])
@@ -50,8 +39,6 @@ function DetailsProduct(){
         const list = localStorage.getItem(`wishlist`)
             if(list){
                 const parsedList:any = JSON.parse(list)
-                // console.log(parsedList.length)
-                // console.log(parsedList)
                 if(parsedList.length === undefined){
                     //Er zit maar 1 item in
                     if(parsedList.ProductId === productData.ProductId)
@@ -80,7 +67,7 @@ function DetailsProduct(){
         return index
     }
     
-    const addToShoppingList = () => {
+    const addToWishlist = () => {
         //console.log('clicked')
         checkLocalStorageWishlist()
 
@@ -107,20 +94,46 @@ function DetailsProduct(){
         }   
     }
 
+    const addToShoppingCart = () =>{
+        const list = localStorage.getItem('shoppingCart')
+        if(list){
+            const parsedList = JSON.parse(list)
+            let index = parsedList.findIndex((e:any) => {
+                if(e.ProductId === productData.ProductId){
+                    return true
+                }
+            })
+            if(index === -1){
+                parsedList.push(productData)
+                localStorage.setItem('shoppingCart', JSON.stringify(parsedList))
+            }else{
+                //TOON IN UI DAT IE DER AL IN ZIT
+                console.log('item zit al in winkelmand')
+            }
+        }
+    }
+
     const commands = [
         {
             command: ['terug'],
             callback: () => goBack(),
             doel:'filter',
-            voorbeeld:["zoek 'boxy ski jas'","search 'boxy ski jas'"],
-            uitleg: "Zoeken naar boxy ski jas"
+            voorbeeld:["terug"],
+            uitleg: "Terug gaan naar de vorige pagina"
         },
         {
             command: ['toevoegen aan winkelmand','winkelmand'],
-            callback: () => addToShoppingList(),
-            doel:'filter',
-            voorbeeld:["zoek 'boxy ski jas'","search 'boxy ski jas'"],
-            uitleg: "Zoeken naar boxy ski jas"
+            callback: () => addToShoppingCart(),
+            doel:'afrekenen',
+            voorbeeld:['toevoegen aan wikelmand','winkelmand'],
+            uitleg: "Artikel toevoegen aan de winkelmand"
+        },
+        {
+            command: ['toevoegen aan verlanglijst','verlanglijst'],
+            callback: () => addToWishlist(),
+            doel:'verlanglijst',
+            voorbeeld:['toevoegen aan verlanglijst','verlanglijst'],
+            uitleg: "Artikel toevoegen aan de verlanglijst"
         },
     ]
 
@@ -191,13 +204,16 @@ function DetailsProduct(){
                                 </select>
                             </div>
                             <div className="productOverview_buttons">
-                                <div className="productOverview_cartC">
+                                <div 
+                                    className="productOverview_cartC"
+                                    onClick={addToShoppingCart}
+                                >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
                                         <path id="Icon_material-shopping-cart" data-name="Icon material-shopping-cart" d="M10.5,27a3,3,0,1,0,3,3A3,3,0,0,0,10.5,27ZM1.5,3V6h3L9.9,17.385,7.875,21.06A2.9,2.9,0,0,0,7.5,22.5a3.009,3.009,0,0,0,3,3h18v-3H11.13a.371.371,0,0,1-.375-.375l.045-.18L12.15,19.5H23.325a2.986,2.986,0,0,0,2.625-1.545L31.32,8.22a1.465,1.465,0,0,0,.18-.72A1.5,1.5,0,0,0,30,6H7.815L6.405,3Zm24,24a3,3,0,1,0,3,3A3,3,0,0,0,25.5,27Z" transform="translate(-1.5 -3)" fill="#368ade"/>
                                     </svg>
                                     <button className="productOverview_cart">Toevoegen aan winkelmand</button>
                                 </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" onClick={addToShoppingList} className="wishlist_icon" viewBox="0 0 34.355 30.348">
+                                <svg xmlns="http://www.w3.org/2000/svg" onClick={addToWishlist} className="wishlist_icon" viewBox="0 0 34.355 30.348">
                                     <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M31.26,6.915a8.25,8.25,0,0,0-11.67,0L18,8.505l-1.59-1.59A8.252,8.252,0,1,0,4.74,18.585l1.59,1.59L18,31.845l11.67-11.67,1.59-1.59a8.25,8.25,0,0,0,0-11.67Z" transform="translate(-0.823 -2.997)" fill={inWishlist? "#368ADE" : "none"} stroke={inWishlist ? "#368ADE" : "#368ade"} strokeLinecap="round" strokeLinejoin="round" strokeWidth="3"/>
                                 </svg>
 

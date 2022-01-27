@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Wishlist from './routes/wishlist';
 import ShoppingCart from './routes/shoppingCart';
 import DetailProduct from './routes/detailsProduct';
+import CommandsPage from './routes/commandsPage'
 import { RecoilRoot } from 'recoil';
 
 ReactDOM.render(
@@ -15,11 +16,12 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route path="wishlist" element={<Wishlist />} />
         <Route path="shoppingCart" element={
-        <RecoilRoot>
-          <ShoppingCart />
-        </RecoilRoot>
+          <RecoilRoot>
+            <ShoppingCart />
+          </RecoilRoot>
         } />
         <Route path="detailsProduct/:productId" element={<DetailProduct />} />
+        <Route path="commandPage" element={<CommandsPage />}/>
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

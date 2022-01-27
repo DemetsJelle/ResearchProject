@@ -97,6 +97,7 @@
 .info_icon{
   width: 2rem;
   height: 2rem;
+  fill:#368ADE
 }
 
 .filterSection {
@@ -154,6 +155,22 @@ option{
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: white;
   opacity: 1; /* Firefox */
+}
+
+.latestCommandSection{
+  margin: 0 auto;
+}
+
+.latestCommand_container{
+  /* background-color:#4E4E4F; */
+  background-color: #06d6a0;
+  padding: 0.5rem 0;
+  border-radius: 0px 0px 15px 15px;
+  
+}
+
+.latestCommand_text{
+  color:4E4E4F;
 }
 
 .productSection{
@@ -330,6 +347,7 @@ option{
   border: 0;
   color:white;
   font-size: 1rem;
+  cursor:pointer;
 }
 
 .showTranscript_transcript{
@@ -445,6 +463,8 @@ p{
   margin-top:0;
   margin-bottom:0;
 }
+
+
 
 @keyframes App-logo-spin {
   from {

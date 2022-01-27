@@ -14,6 +14,51 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 // import { useSpeechSynthesis } from 'react-speech-kit'
 
 
+export const commandsList = [
+  {
+    doel:'filter',
+    voorbeeld:["zoek 'boxy ski jas'"],
+    uitleg: "Zoeken naar boxy ski jas"
+  },
+  {
+    doel:'filter',
+    voorbeeld:["selecteer 'merk', selecteer 'Protest'"],
+    uitleg: "Zoeken op merk naar alles van Protest"
+  },
+  {
+   
+    doel:'filter',
+    voorbeeld:["zoek 'jassen' van 'Protest'","vind 'jassen' van 'Protest'"],
+    uitleg: "Jassen tonen van het merk Protest"
+  },
+  {
+    doel:'filter',
+    voorbeeld:["reset","clear","leeg",'maak filters leeg'],
+    uitleg: "Filters weghalen"
+  },
+  {
+    doel: "info",
+    voorbeeld:["selecteer 'boxi ski jas'"],
+    uitleg: "'boxi ski jas' selecteren"
+  },
+  {
+    doel: "verlanglijst",
+    voorbeeld:["voeg 'lenado ski jas' toe aan verlanglijst",'verlanglijst "lenado ski jas"','plaats "lenado ski jas" in verlanglijst','voeg "lenado ski jas" toe aan verlanglijst'],
+    uitleg: "'lenado ski jas aan verlanglijst toevoegen"
+  },
+  {
+    doel: "afrekenen",
+    voorbeeld:["voeg 'lenado ski jas' toe aan winkelmand",'winkelmand "lenado ski jas"','plaats "lenado ski jas" in winkelmand','voeg "lenado ski jas" toe aan winkelmand'],
+    uitleg: "'lenado ski jas aan winkelmand toevoegen toevoegen"
+  },
+  {
+    doel:"afrekenen",
+    voorbeeld:["afrekenen"],
+    uitleg: "doorgaan naar betalen"
+  }
+]
+
+
 function App() {
   const [allBrands, setBrands] = useState<any[]>([]);
   const [allCategories, setCategories] = useState<any[]>([]);
@@ -137,7 +182,7 @@ function App() {
 
   const commands = [
     {
-      command: ['search *','zoek :searchTerm'],
+      command: ['search *','zoek *'],
       callback: (searchTerm:any) => {setSearchTerm(searchTerm); setLatestCommando(`Zoekresultaten met: ${searchTerm}`);},
       doel:'filter',
       voorbeeld:["zoek 'boxy ski jas'","search 'boxy ski jas'"],
@@ -179,10 +224,10 @@ function App() {
       uitleg: "'lenado ski jas aan verlanglijst toevoegen"
     },
     {
-      command:['voeg * toe aan winkelkar','add * to shoppinglist','winkelkar *','* winkelkar','plaats * op winkelkar','voeg * toe aan winkelkar'],
+      command:['voeg * toe aan winkelmand','add * to shoppinglist','winkelmand *','* winkelmandr','plaats * op winkelmand','voeg * toe aan winkelmand'],
       callback: (x:any) => {addToShoppingList(x)},
       doel: "afrekenen",
-      voorbeeld:["voeg 'lenado ski jas' toe aan winkelkar"],
+      voorbeeld:["voeg 'lenado ski jas' toe aan winkelmand"],
       uitleg: "'lenado ski jas aan winkelmand toevoegen toevoegen"
     },
     {
@@ -316,7 +361,6 @@ function App() {
 
   const addToWishlist = (spokenText:any) => {
     const product = validateProduct(spokenText)
-    console.log(product)
     getLocalStorage('wishlist')
 
     const inList = getIndex(product)
@@ -324,6 +368,7 @@ function App() {
       listArray.push(product)
       console.log(listArray)
       localStorage.setItem('wishlist', JSON.stringify(listArray))
+      setLatestCommando(`${product.Name} aan verlanglijst toegevoegd`)
     }else{
       console.log('already in wishlist')
     }
@@ -364,13 +409,14 @@ function App() {
       listArray.push(product)
       console.log(listArray)
       localStorage.setItem('shoppingCart', JSON.stringify(listArray))
+      setLatestCommando(`${product.Name} aan winkelmand toegevoegd`)
     }else{
       console.log('already in list')
     }
   }
 
   const navigateToInfoPage = () => {
-    window.location.href=`/infoPage`
+    window.location.href=`/commandPage`
   }
 
 
@@ -450,7 +496,7 @@ function App() {
           </g>
         </svg> */}
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33">
+        <svg xmlns="http://www.w3.org/2000/svg" className="info_icon" viewBox="0 0 33 33">
           <g id="Group_6" data-name="Group 6" transform="translate(343.828 489.635)">
             <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)" fill="#fff"/>
             <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3"/>
@@ -506,6 +552,42 @@ function App() {
              </div>
           </div>
 
+          <div className="showInfo_item">
+            <h2 className="showInfo_item_title">Toevoegen aan verlanglijst</h2>
+            <div className="showInfo_item_command">
+              <div className="test">
+                <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_icon" viewBox="0 0 24.75 36">
+                  <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
+                </svg>
+                <p>Voeg "boxy ski jas" toe aan verlanglijst</p>
+              </div>
+             </div>
+          </div>
+
+          <div className="showInfo_item">
+            <h2 className="showInfo_item_title">Toevoegen aan winkelmand</h2>
+            <div className="showInfo_item_command">
+              <div className="test">
+                <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_icon" viewBox="0 0 24.75 36">
+                  <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
+                </svg>
+                <p>Voeg "boxy ski jas" toe aan winkelmand</p>
+              </div>
+             </div>
+          </div>
+
+          <div className="showInfo_item">
+            <h2 className="showInfo_item_title">Filters resetten</h2>
+            <div className="showInfo_item_command">
+              <div className="test">
+                <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_icon" viewBox="0 0 24.75 36">
+                  <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
+                </svg>
+                <p>Reset</p>
+              </div>
+             </div>
+          </div>
+
           <div className="showInfo_btnC">
             <div className="showInfo_btn">
               <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_btn_icon" viewBox="0 0 36 29.25">
@@ -540,7 +622,12 @@ function App() {
                 <div></div>
               </div>
             }
-            <button className="showTranscript_all_commandos">alle commando's</button>
+            <button 
+              className="showTranscript_all_commandos"
+              onClick={navigateToInfoPage} 
+            >
+              alle commando's
+            </button>
           </div>
         }
         <button className="speechButton"
@@ -562,8 +649,10 @@ function App() {
         </button>
       </div>
 
-      <div>
-        <h1>{latestCommando}</h1>
+      <div className="latestCommandSection">
+        <div className="latestCommand_container">
+          <h1 className="latestCommand_text">{latestCommando}</h1>
+        </div>
       </div>
 
       <div className="filterSection">
