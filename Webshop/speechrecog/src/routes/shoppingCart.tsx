@@ -44,11 +44,14 @@ function ShoppingCart(){
         {
           command: [':amount stuks *',':amount keer *'],
           callback: (amount:any,spokenName:any) => addOne(amount,spokenName),
+        },
+        {
+          command:'verwijder *',
+          callback: (spokenName:any) => removeItem(spokenName)
         }
     ]
 
-    // let voiceSelected:string = ''
-    const [voiceSelected, setVoiceSelected] = useState<{product:any, amount:any}>({product:'', amount:''})
+    const [voiceSelected, setVoiceSelected] = useState<{product:any, amount:any, remove:boolean}>({product:'', amount:'', remove:false})
     const addOne = (amount:any,spokenText:string) =>{
       console.log(spokenText)
       const list = shoppingCart?.filter(function(eachItem){
@@ -61,6 +64,23 @@ function ShoppingCart(){
             ...prev,
             product: list[0],
             amount: checkAmount(amount),
+          }
+        })
+        console.log(voiceSelected)
+      }
+    }
+
+    const removeItem = (spokenText:any) => {
+      console.log(spokenText)
+      const list = shoppingCart?.filter(function(eachItem){
+        return eachItem['Name'].toLowerCase().includes(spokenText.toLowerCase())
+      })
+      if(list){
+        setVoiceSelected((prev) => {
+          return{
+            ...prev,
+            product: list[0],
+            remove: true,
           }
         })
         console.log(voiceSelected)
