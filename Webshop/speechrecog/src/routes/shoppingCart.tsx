@@ -42,22 +42,60 @@ function ShoppingCart(){
             uitleg: "Terug keren naar de vorige pagina"
         },
         {
-          command: 'plus *',
-          callback: (spokenName:any) => addOne(spokenName),
+          command: [':amount stuks *',':amount keer *'],
+          callback: (amount:any,spokenName:any) => addOne(amount,spokenName),
         }
     ]
 
     // let voiceSelected:string = ''
-    const [voiceSelected, setVoiceSelected] = useState()
-    const addOne = (spokenText:string) =>{
-      console.log(spokenText )
+    const [voiceSelected, setVoiceSelected] = useState<{product:any, amount:any}>({product:'', amount:''})
+    const addOne = (amount:any,spokenText:string) =>{
+      console.log(spokenText)
       const list = shoppingCart?.filter(function(eachItem){
         return eachItem['Name'].toLowerCase().includes(spokenText.toLowerCase())
       })
+      console.log(list)
       if(list){
-        setVoiceSelected(list[0])
+        setVoiceSelected((prev) => {
+          return{
+            ...prev,
+            product: list[0],
+            amount: checkAmount(amount),
+          }
+        })
         console.log(voiceSelected)
       }
+    }
+
+    const checkAmount = (amount:any) => {
+      const numbers = {
+        'een':1,
+        'één':1,
+        'twee':2,
+        'drie':3,
+        'vier':4,
+        'vijf':5,
+        'zes':6,
+        'zeven':7,
+        'acht':8,
+        'negen':9,
+        1:1,
+        2:2,
+        3:3,
+        4:4,
+        5:5,
+        6:6,
+        7:7,
+        8:8,
+        9:9
+      }
+      for(const[key, value] of Object.entries(numbers)) {
+        if(key === amount){
+          console.log(value)
+          return value
+        }
+      }
+      
     }
 
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition, interimTranscript } = useSpeechRecognition({ commands });

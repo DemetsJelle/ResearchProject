@@ -20,16 +20,26 @@ export default function ShoppingListItem(props:any){
     },[])
 
     useEffect(() => {
-        if(props.voiceSelected){
-            console.log(props.voiceSelected)
-            if(props.voiceSelected.Name === props.product.Name)
-                setAmount(amount + 1)
+        if(props.voiceSelected.product !== undefined){
+            console.log(props.voiceSelected.product)
+            if(props.voiceSelected.product.Name === props.product.Name){
+                const prevTotal = total
+                setAmount(props.voiceSelected.amount)
+
+                const newTotal = (totalPriceValue - prevTotal) + (props.product.Price * props.voiceSelected.amount)
+                setTotalPriceValue(newTotal)
+            }
         }
     },[props.voiceSelected])
 
     useEffect(() =>{
         let totalPrice:number = amount * Number(props.product.Price)
         setTotal(Math.round(totalPrice * 100)/100)
+        // setTotalPriceValue((prev) => {
+        //     return(
+        //         prev = prev - (amount * product) 
+        //     )
+        // })
     },[amount])
 
     const increaseAmount = () => {
