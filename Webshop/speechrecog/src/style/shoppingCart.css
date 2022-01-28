@@ -38,6 +38,7 @@
 .grid_product{
     display:flex;   
     gap:0.5rem;
+    text-align: left;
 }
 
 .grid_amount{
@@ -94,6 +95,7 @@
     align-items: center;
     gap:0.5rem;
     margin-bottom:1rem;
+    cursor: pointer;
 }
 
 .checkout_btn{

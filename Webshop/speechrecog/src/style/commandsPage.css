@@ -5,8 +5,7 @@
   }
 
 .commands_container{
-    width: 50%;
-    margin:0 auto;
+    width: 100%
 }
 
 .commands_text_container{
@@ -18,12 +17,12 @@
 
 .commands_page_title{
     text-align: left;
-    font-size:2rem;
+    font-size:1.5rem;
 }
 
 .commands_purpose_title{
-    font-size:1.5rem;
-    margin-top: 2rem;
+    font-size:1.25rem;
+    margin-top: 1rem;
 }   
 
 .command_textC{
@@ -34,6 +33,7 @@
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #BCBCBC;
     margin-top:1rem;
+    
 }
 
 .command_text_command{
@@ -43,6 +43,7 @@
     align-items:center;
     font-size: 1.25rem;
     font-weight: bold;
+
 }
 
 .command_text_icon{
@@ -52,4 +53,40 @@
 
 .command_text_uitleg{
     margin-left: 1.5rem;
+}
+
+p{
+    word-wrap: break-word;
+}
+
+@media (min-width: 576px){
+
+}
+
+@media (min-width: 768px){
+  
+}
+
+@media (min-width: 992px){
+  
+}
+
+@media (min-width: 1200px){
+    .none{
+        display: block;
+      }
+
+    .commands_container{
+        width: 50%;
+        margin:0 auto;
+    }
+
+    .commands_purpose_title{
+        font-size:1.5rem;
+        margin-top: 2rem;
+    }  
+
+    .commands_page_title{
+        font-size:2rem;
+    }
 }
