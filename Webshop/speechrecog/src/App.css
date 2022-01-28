@@ -1,6 +1,11 @@
 .App {
   text-align: center;
   padding: 1rem 2rem;
+  
+}
+
+body{
+  height: 100%;
   background-color: #F3F3F3;
 }
 
@@ -90,7 +95,7 @@
   background-color:#4E4E4F;
   border-radius: 0 0 10px 10px;
   position: absolute;
-  right: 5rem;
+  right: 2rem;
   padding-top: 0.5rem;
   cursor: pointer;
 }
@@ -171,6 +176,7 @@ option{
   display: flex;
   justify-content:space-between;
   align-items: center;
+  animation: hide 0.5s linear 3s 1 forwards;
 }
 
 .latestCommand_text{
@@ -184,6 +190,7 @@ option{
   height:1rem;
   fill:white;
   cursor:pointer;
+  padding-right:3.5rem;
 }
 
 .productSection{

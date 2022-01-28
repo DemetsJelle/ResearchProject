@@ -30,6 +30,7 @@ function DetailsProduct(){
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [micState, setMicState] = useState<boolean>(false)
     const [inWishlist, setInWishlist] = useState<boolean>(false)
+    
     const [showInfo, setShowInfo] = useState<boolean>(false)
     const [latestCommando, setLatestCommando] = useState<any>('');
     const [showLatestCommando, setShowLatestCommando] = useState<boolean>(true);

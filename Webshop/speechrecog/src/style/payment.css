@@ -63,9 +63,15 @@
 }
 
 .active_state{
-    background-color:#4E4E4F;
+    background-color:#368ADE;
     color:white;
-    border: 3px solid #368ADE;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.icon_active_state{
+    width:1rem;
+    height:1rem;
+    fill: white;
 }
 
 .afrekenBtn{

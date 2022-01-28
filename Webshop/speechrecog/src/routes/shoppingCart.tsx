@@ -42,7 +42,7 @@ function ShoppingCart(){
     const [shoppingCart, setShoppingCart] = useState<any[]>()
     const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState)
 
-    const [latestCommando, setLatestCommando] = useState<any>();
+    const [latestCommando, setLatestCommando] = useState<any>('');
     const [showLatestCommando, setShowLatestCommando] = useState<boolean>(true);
     const [showInfo, setShowInfo] = useState<boolean>(false)
 

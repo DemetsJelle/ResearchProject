@@ -91,6 +91,9 @@ function App() {
     else{
       setShowLatestCommando(true)
     }
+
+    setTimeout(() => setShowLatestCommando(false), 3000);
+    
   }, [latestCommando])
 
   const getAllData = async () => {
