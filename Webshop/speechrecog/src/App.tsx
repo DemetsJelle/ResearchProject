@@ -72,7 +72,7 @@ function App() {
 
   const [filteredData, setFilteredData] = useState<any[]>();
 
-  const [latestCommando, setLatestCommando] = useState<any>('Gesorteerd op test');
+  const [latestCommando, setLatestCommando] = useState<any>('');
   const [showLatestCommando, setShowLatestCommando] = useState<boolean>(true);
 
   const [micState, setMicState] = useState<boolean>(false)

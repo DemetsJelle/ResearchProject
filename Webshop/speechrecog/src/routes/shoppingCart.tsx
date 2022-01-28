@@ -42,7 +42,7 @@ function ShoppingCart(){
     const [shoppingCart, setShoppingCart] = useState<any[]>()
     const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState)
 
-    const [latestCommando, setLatestCommando] = useState<any>('Gesorteerd op test');
+    const [latestCommando, setLatestCommando] = useState<any>();
     const [showLatestCommando, setShowLatestCommando] = useState<boolean>(true);
     const [showInfo, setShowInfo] = useState<boolean>(false)
 
@@ -74,9 +74,6 @@ function ShoppingCart(){
         {
             command: ['terug'],
             callback: () => goBack(),
-            doel:'navigatie',
-            voorbeeld:["terug"],
-            uitleg: "Terug keren naar de vorige pagina"
         },
         {
           command: [':amount stuks *',':amount keer *'],
@@ -292,9 +289,6 @@ function ShoppingCart(){
               </div>
             </div>
           }
-          
-        
-      
 
           <div className="header_info"
             onClick={openInfo}
