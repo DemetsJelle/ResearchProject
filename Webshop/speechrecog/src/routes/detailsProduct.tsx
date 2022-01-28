@@ -415,46 +415,38 @@ function DetailsProduct(){
 
 
             <div className="voiceControl">
-                {showTranscript && 
+              {showTranscript && 
                 <div className="showTranscript">
-                    <p className="showTranscript_text">Zeg iets als:</p>
-                    <div className="showTranscript_example_container">
-                    <h2 className="showTranscript_example">'Zoek jassen van Protest'</h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="showTranscript_icon" viewBox="0 0 33 33">
-                        <g id="Group_5" data-name="Group 5" transform="translate(343.828 489.635)">
-                        <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)"/>
-                        <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3"/>
-                        <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="3" cy="2.875" rx="3" ry="2.875" transform="translate(-330.328 -484.373)"/>
-                        </g>
-                    </svg>
-                    </div>
-                    <p className="showTranscript_transcript">{transcript}</p>
-                    {isLoading &&
+                  <p className="showTranscript_text">Zeg iets als:</p>
+                  <p className="showTranscript_example">'Zoek jassen van Protest'</p>
+                  <h3 className="showTranscript_transcript">{transcript}</h3>
+                  {isLoading &&
                     <div className="ballsContainer">
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
                     </div>
-                    }
+                  }
+                  <button className="showTranscript_all_commandos">alle commando's</button>
                 </div>
-                }
-                <button className="speechButton"
+              }
+              <button className="speechButton"
                 onClick={startListening}
-                >
+              >
                 {
-                    micState ?  
+                  micState ?  
                     <div className="boxContainer">
-                        <div className="box box1"></div>
-                        <div className="box box2"></div>
-                        <div className="box box3"></div>
-                        <div className="box box4"></div>
-                        <div className="box box5"></div>
-                    </div> :
-                    <svg xmlns="http://www.w3.org/2000/svg" className="speechButton_icon" viewBox="0 0 24.75 36"fill="#368ADE" >
+                      <div className="box box1"></div>
+                      <div className="box box2"></div>
+                      <div className="box box3"></div>
+                      <div className="box box4"></div>
+                      <div className="box box5"></div>
+                  </div> :
+                  <svg xmlns="http://www.w3.org/2000/svg" className="speechButton_icon" viewBox="0 0 24.75 36"fill="#368ADE" >
                     <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
-                    </svg>
+                  </svg>
                 }
-                </button>
+              </button>
             </div>
         </main>
     )
