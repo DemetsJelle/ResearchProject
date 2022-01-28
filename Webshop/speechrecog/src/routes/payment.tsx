@@ -3,6 +3,50 @@ import '../style/payment.css'
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
+export const commandsPayment = [
+    {
+        doel:'invullen',
+        voorbeeld:['voornaam "Jelle"'],
+        uitleg: "voornaam invullen"
+    },
+    {
+        doel:'invullen',
+        voorbeeld:['achternaam "Demets"'],
+        uitleg: "Achternaam invullen"
+    },
+    {
+        doel:'invullen',
+        voorbeeld:['email "jelle.demets@student.howest.be"'],
+        uitleg: "Email adres invullen"
+    },
+    {
+        doel:'invullen',
+        voorbeeld:['straat "Marksesteenweg"'],
+        uitleg: "Straat invullen"
+    },
+    {
+        doel:'invullen',
+        voorbeeld:['nummer "58"'],
+        uitleg: "Huisnummer invullen"
+    },
+    {
+        doel:'invullen',
+        voorbeeld:['stad "Kortrijk"'],
+        uitleg: "Stad invullen"
+    },
+    {
+        doel:'navigatie',
+        voorbeeld: ['terug'],
+        uitleg: "Terug keren naar de vorige pagina"
+    },
+    {
+        doel:'invullen',
+        voorbeeld:['betalen met "paypal"','betalen met "mastercard"','betalen met "cash"'],
+        uitleg: "Betaal methode aanduiden"
+    }
+    
+]
+
 export default function PaymentPage(){
     const [voornaam, setVoornaam] = useState<string>('')
     const [achternaam, setAchternaam] = useState<string>('')
@@ -15,6 +59,10 @@ export default function PaymentPage(){
     const [showTranscript, setshowTranscript] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [showInfo, setShowInfo] = useState<boolean>(false)
+
+    const [paypal, setPaypal] = useState<boolean>(false)
+    const [mc, setMc] = useState<boolean>(false)
+    const [cash, setCash] = useState<boolean>(false)
 
     const getVoornaam = (event: ChangeEvent<HTMLInputElement>) => {
         setVoornaam(event.target.value)
@@ -72,9 +120,33 @@ export default function PaymentPage(){
         {
             command: ['terug'],
             callback:() => goBack()
+        },
+        {
+            command:['betalen (met) :x'],
+            callback:(spokenText:any) => setPaymentMethod(spokenText)
         }
         
     ]
+
+    const setPaymentMethod = (spokenText:any) => {
+        setPaypal(false)
+        setCash(false)
+        setMc(false)
+
+        switch(spokenText.toLowerCase()){
+            case 'paypal':
+                setPaypal(true)
+                break
+            
+            case 'cash':
+                setCash(true)
+                break
+            
+            case 'mastercard':
+                setMc(true)
+                break
+        }
+    }
 
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition, interimTranscript } = useSpeechRecognition({ commands });
 
@@ -205,19 +277,19 @@ export default function PaymentPage(){
                     <h1 className="form_interTitle">Betalings methode</h1>
 
                     <div className='payment_container'>
-                        <div className="payment_btn">
+                        <div className={mc ? "payment_btn active_state": "payment_btn" }>
                             <svg xmlns="http://www.w3.org/2000/svg" className='btn_icon' viewBox="0 0 40.5 31.5">
                                 <path id="Icon_awesome-cc-mastercard" data-name="Icon awesome-cc-mastercard" d="M33.954,28.849a.788.788,0,1,1-.787-.823A.786.786,0,0,1,33.954,28.849ZM12.1,28.027a.825.825,0,1,0,.766.823A.778.778,0,0,0,12.1,28.027Zm8.262-.021a.652.652,0,0,0-.668.612h1.343A.646.646,0,0,0,20.363,28.005Zm7.58.021a.823.823,0,1,0,.788.823A.778.778,0,0,0,27.942,28.027Zm7.446,1.835c0,.021.021.035.021.077,0,.021-.021.035-.021.077a.247.247,0,0,0-.035.056.091.091,0,0,1-.077.035c-.021.021-.035.021-.077.021a.139.139,0,0,1-.077-.021c-.021,0-.035-.021-.056-.035s-.035-.035-.035-.056a.128.128,0,0,1-.021-.077c0-.035,0-.056.021-.077a.132.132,0,0,1,.035-.077.247.247,0,0,1,.056-.035.128.128,0,0,1,.077-.021c.035,0,.056,0,.077.021s.056.021.077.035S35.367,29.827,35.388,29.862Zm-.155.1c.035,0,.035-.021.056-.021a.086.086,0,0,0,0-.112c-.021,0-.035-.021-.077-.021H35.1v.246h.056v-.1h.021l.077.1h.056l-.077-.091ZM40.5,5.7v24.75a3.376,3.376,0,0,1-3.375,3.375H3.375A3.376,3.376,0,0,1,0,30.445V5.7A3.376,3.376,0,0,1,3.375,2.32h33.75A3.376,3.376,0,0,1,40.5,5.7Zm-36,9.816a9.734,9.734,0,0,0,15.117,8.114,10.486,10.486,0,0,1,0-16.207A9.734,9.734,0,0,0,4.5,15.511Zm15.75,7.65a9.735,9.735,0,0,0,0-15.293A9.735,9.735,0,0,0,20.25,23.161ZM10.245,28.526a.985.985,0,0,0-1.034-1.034,1,1,0,0,0-.9.457.932.932,0,0,0-.858-.457.893.893,0,0,0-.745.38v-.309H6.131v2.58h.577c0-1.329-.176-2.123.633-2.123.717,0,.577.717.577,2.123h.555c0-1.287-.176-2.123.633-2.123.717,0,.577.7.577,2.123h.577V28.526Zm3.157-.963h-.555v.309a1.013,1.013,0,0,0-.823-.38,1.359,1.359,0,0,0,0,2.714.975.975,0,0,0,.823-.38v.323H13.4Zm2.848,1.8c0-1.055-1.61-.577-1.61-1.069,0-.4.837-.337,1.3-.077l.232-.457c-.661-.429-2.123-.422-2.123.577s1.61.584,1.61,1.055c0,.443-.949.408-1.455.056l-.246.443C14.745,30.424,16.249,30.312,16.249,29.362Zm2.489.654-.155-.478c-.267.148-.858.309-.858-.288V28.083h.921v-.52h-.921v-.788h-.577v.788h-.534v.513h.534V29.25c0,1.237,1.216,1.013,1.589.766Zm.935-.942h1.934c0-1.139-.52-1.589-1.223-1.589a1.266,1.266,0,0,0-1.28,1.357,1.4,1.4,0,0,0,2.377,1l-.267-.422c-.548.45-1.378.408-1.54-.345Zm4.155-1.512a.825.825,0,0,0-1.069.309v-.309h-.577v2.58h.577V28.688a.587.587,0,0,1,.9-.591l.169-.534Zm.745,1.287c0-.8.816-1.062,1.455-.591L26.3,27.8a1.392,1.392,0,1,0,0,2.109l-.267-.457C25.383,29.911,24.574,29.637,24.574,28.849Zm4.69-1.287h-.577v.309a1.278,1.278,0,1,0,0,1.955v.323h.577V27.563Zm2.37,0a.845.845,0,0,0-1.069.309v-.309h-.555v2.58h.555V28.688a.59.59,0,0,1,.9-.591l.169-.534Zm2.834-1.048h-.555v1.357a1.278,1.278,0,1,0,0,1.955v.323h.555ZM35,21.234v.323h.056v-.323h.134v-.056h-.323v.056H35Zm.464,8.7a.214.214,0,0,0-.021-.112c-.021-.021-.035-.056-.056-.077s-.056-.035-.077-.056c-.035,0-.077-.021-.112-.021a.747.747,0,0,1-.1.021.367.367,0,0,0-.077.056.11.11,0,0,0-.056.077.214.214,0,0,0-.021.112.2.2,0,0,0,.021.1.11.11,0,0,0,.056.077.244.244,0,0,0,.077.056.191.191,0,0,0,.1.021.214.214,0,0,0,.112-.021c.021-.021.056-.035.077-.056s.035-.056.056-.077A.2.2,0,0,0,35.466,29.939Zm.225-8.768h-.1l-.112.246-.112-.246h-.1v.38h.056v-.288l.112.246h.077l.1-.246v.288h.077ZM36,15.511a9.734,9.734,0,0,0-15.117-8.1,10.486,10.486,0,0,1,0,16.207A9.734,9.734,0,0,0,36,15.511Z" transform="translate(0 -2.32)"/>
                             </svg>
                             <p className="button_form">Mastercard</p>
                         </div>
-                        <div className="payment_btn">
+                        <div className={paypal ? "payment_btn active_state": "payment_btn" }>
                             <svg xmlns="http://www.w3.org/2000/svg" className='btn_icon' viewBox="0 0 26.994 31.887">
                                 <path id="Icon_awesome-paypal" data-name="Icon awesome-paypal" d="M7.833,20.805c-.246,1.35-1.223,7.643-1.512,9.422-.021.127-.07.176-.211.176H.865a.854.854,0,0,1-.851-.977L4.134,3.277A1.428,1.428,0,0,1,5.541,2.088c10.709,0,11.609-.26,14.344.8,4.226,1.638,4.613,5.59,3.094,9.865-1.512,4.4-5.1,6.293-9.851,6.349-3.052.049-4.887-.492-5.295,1.7ZM25.109,10.688c-.127-.091-.176-.127-.211.091a16.456,16.456,0,0,1-.619,2.363c-2.805,8-10.582,7.305-14.379,7.305a.707.707,0,0,0-.766.661C7.545,30.98,7.228,33.04,7.228,33.04a.749.749,0,0,0,.745.907h4.465A1.261,1.261,0,0,0,13.662,32.9c.049-.38-.077.429,1.012-6.42.323-1.547,1.005-1.385,2.06-1.385,4.992,0,8.888-2.025,10.048-7.9.457-2.447.323-5.02-1.673-6.511Z" transform="translate(-0.006 -2.06)"/>
                             </svg>
                             <p className="button_form">Paypal</p>
                         </div>
-                        <div className="payment_btn">
+                        <div className={cash ? "payment_btn active_state": "payment_btn" }>
                             <svg xmlns="http://www.w3.org/2000/svg" className='btn_icon' viewBox="0 0 23.091 15.424">
                                 <path id="Icon_payment-cash" data-name="Icon payment-cash" d="M29.541,17.116V31.007a.99.99,0,0,1-.226.541.737.737,0,0,1-.541.226H7.216a.735.735,0,0,1-.541-.226.986.986,0,0,1-.226-.541V17.116a.988.988,0,0,1,.226-.541.738.738,0,0,1,.541-.226H28.774a.74.74,0,0,1,.541.226.993.993,0,0,1,.226.541ZM28.007,27.129V20.995a2.95,2.95,0,0,1-2.165-.9,3,3,0,0,1-.9-2.21H11.049a3,3,0,0,1-.9,2.21,2.952,2.952,0,0,1-2.165.9v6.134a2.955,2.955,0,0,1,2.165.9,3.007,3.007,0,0,1,.9,2.21H24.94a3,3,0,0,1,.9-2.21,2.954,2.954,0,0,1,2.165-.9Zm-6.179-3.067a7.9,7.9,0,0,1-.226,1.714,5.78,5.78,0,0,1-.722,1.624,3.92,3.92,0,0,1-1.218,1.218,3.312,3.312,0,0,1-3.337,0A3.907,3.907,0,0,1,15.109,27.4a5.765,5.765,0,0,1-.722-1.624,7.866,7.866,0,0,1-.226-1.714,7.873,7.873,0,0,1,.226-1.714,5.762,5.762,0,0,1,.722-1.624,3.92,3.92,0,0,1,1.218-1.218,3.312,3.312,0,0,1,3.337,0,3.939,3.939,0,0,1,1.218,1.218,5.782,5.782,0,0,1,.722,1.624,7.9,7.9,0,0,1,.226,1.714Zm-6.134,3.067h4.6V26H18.762V20.589H17.409l-1.8,1.669.947.947a7.384,7.384,0,0,0,.631-.676h.045V26H15.695v1.128Z" transform="translate(-6.449 -16.35)"/>
                             </svg>

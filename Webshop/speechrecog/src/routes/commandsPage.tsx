@@ -4,6 +4,7 @@ import { commandsListHome } from '../App'
 import { commandsListShoppingCart } from '../routes/shoppingCart'
 import { commandsDetail } from '../routes/detailsProduct'
 import { commandsWishlist } from '../routes/wishlist'
+import { commandsPayment } from '../routes/payment'
 
 export default function CommandsPage(){
     const goBack = () => {
@@ -272,7 +273,47 @@ export default function CommandsPage(){
                         </div>
                     ))}
                 </div>
+                
+                <h1  className="commands_page_title">Stembediening bestellen pagina</h1>
+                <div className='commands_text_container'>
+                    <h2 className="commands_purpose_title">Invul commando's</h2>
+                    {commandsPayment.filter(c => c.doel === 'invullen').map(c => (
+                        <div>
+                            {c.voorbeeld.map(v => (
+                                <div className="command_textC">
+                                    <div className="command_text_command">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="command_text_icon" viewBox="0 0 24.75 36">
+                                            <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
+                                        </svg>
+                                        <p>{v}</p>
+                                    </div>
+                                    <div className="command_text_uitleg">
+                                        <p>{c.uitleg}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
 
+                    <h2 className="commands_purpose_title">Overige commando's</h2>
+                    {commandsPayment.filter(c => c.doel === 'navigatie').map(c => (
+                        <div>
+                            {c.voorbeeld.map(v => (
+                                <div className="command_textC">
+                                    <div className="command_text_command">
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="command_text_icon" viewBox="0 0 24.75 36">
+                                            <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M12.375,24.75A6.75,6.75,0,0,0,19.125,18V6.75a6.75,6.75,0,0,0-13.5,0V18A6.75,6.75,0,0,0,12.375,24.75ZM23.625,13.5H22.5a1.125,1.125,0,0,0-1.125,1.125V18a9.01,9.01,0,0,1-9.9,8.956,9.273,9.273,0,0,1-8.1-9.357V14.625A1.125,1.125,0,0,0,2.25,13.5H1.125A1.125,1.125,0,0,0,0,14.625v2.824A12.762,12.762,0,0,0,10.688,30.224v2.4H6.75A1.125,1.125,0,0,0,5.625,33.75v1.125A1.125,1.125,0,0,0,6.75,36H18a1.125,1.125,0,0,0,1.125-1.125V33.75A1.125,1.125,0,0,0,18,32.625H14.063V30.251A12.387,12.387,0,0,0,24.75,18V14.625A1.125,1.125,0,0,0,23.625,13.5Z"/>
+                                        </svg>
+                                        <p>{v}</p>
+                                    </div>
+                                    <div className="command_text_uitleg">
+                                        <p>{c.uitleg}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                </div>
             </div>
         </main>
     )

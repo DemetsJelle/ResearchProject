@@ -62,6 +62,12 @@
     border-radius: 15px;
 }
 
+.active_state{
+    background-color:#4E4E4F;
+    color:white;
+    border: 3px solid #368ADE;
+}
+
 .afrekenBtn{
     display: flex;
     align-items:center;
