@@ -37,7 +37,7 @@
     text-align:left;
 }
 
-input{
+.input_from{
     margin-top: 0.5rem;
     line-height: 1.5rem;
     border: 0;
@@ -51,13 +51,27 @@ input{
     justify-content:space-around;
 }
 
-.paymentBtn{
+.payment_btn{
+    border: 1px solid #368ADE;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    width:8rem;
+    border-radius: 15px;
+}
+
+.afrekenBtn{
     display: flex;
     align-items:center;
     gap:0.5rem;
     background-color:#4E4E4F;
     padding:1rem;
     border-radius: 15px;
+    width: 8rem;
+    justify-content:center;
+    color:white;
 }
 
 .btn_icon{
@@ -66,8 +80,15 @@ input{
     fill:#368ADE;
 }
 
-button{
+.button_form{
     all:unset;
+}
+
+.afreken_container{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .u-1-of-2 {
