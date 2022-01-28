@@ -3,7 +3,7 @@ import '../style/wishlist.css'
 
 export const commandsWishlist = [
     {
-        doel:'filter',
+        doel:'navigatie',
         voorbeeld:["terug"],
         uitleg: "Terug gaan naar de vorige pagina"
     },

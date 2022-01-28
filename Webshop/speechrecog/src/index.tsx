@@ -7,7 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Wishlist from './routes/wishlist';
 import ShoppingCart from './routes/shoppingCart';
 import DetailProduct from './routes/detailsProduct';
-import CommandsPage from './routes/commandsPage'
+import CommandsPage from './routes/commandsPage';
+import PaymentPage from './routes/payment'
 import { RecoilRoot } from 'recoil';
 
 ReactDOM.render(
@@ -22,6 +23,7 @@ ReactDOM.render(
         } />
         <Route path="detailsProduct/:productId" element={<DetailProduct />} />
         <Route path="commandPage" element={<CommandsPage />}/>
+        <Route path="paymentPage" element={<PaymentPage />}/>
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

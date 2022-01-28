@@ -27,6 +27,11 @@ export const commandsListShoppingCart = [
     doel:'afrekenen',
     voorbeeld:['verwijder "boxy ski jas"'],
     uitleg: "Een bepaald product verwijderen."
+  },
+  {
+    doel:'navigatie',
+    voorbeeld:['betalen','verder naar betalen','afrekenen','bestellen'],
+    uitleg:"Producten bestellen"
   }
 ]
 
@@ -67,8 +72,16 @@ function ShoppingCart(){
         {
           command:'verwijder *',
           callback: (spokenName:any) => removeItem(spokenName)
+        },
+        {
+          command:['betalen','verder naar betalen','afrekenen','bestellen'],
+          callback:() => navigateToPayment()
         }
     ]
+
+    const navigateToPayment = () => {
+      window.location.href = '/paymentPage'
+    }
 
     const [voiceSelected, setVoiceSelected] = useState<{product:any, amount:any, remove:boolean}>({product:'', amount:'', remove:false})
     const addOne = (amount:any,spokenText:string) =>{
@@ -200,7 +213,12 @@ function ShoppingCart(){
                     <svg xmlns="http://www.w3.org/2000/svg" className="btn_icon" viewBox="0 0 30 24">
                         <path id="Icon_material-payment" data-name="Icon material-payment" d="M30,6H6A2.977,2.977,0,0,0,3.015,9L3,27a2.99,2.99,0,0,0,3,3H30a2.99,2.99,0,0,0,3-3V9A2.99,2.99,0,0,0,30,6Zm0,21H6V18H30Zm0-15H6V9H30Z" transform="translate(-3 -6)"/>
                     </svg>
-                    <button className="checkout_btn">Verder naar bestellen</button>
+                    <button 
+                      className="checkout_btn"
+                      onClick={navigateToPayment}
+                    >
+                      Verder naar bestellen
+                    </button>
                 </div>
             </div>
 
