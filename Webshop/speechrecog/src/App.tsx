@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState, MouseEvent} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 //import { Routes, Route, Link, useParams,  } from "react-router-dom";
 
 import './App.css';
@@ -72,7 +72,8 @@ function App() {
 
   const [filteredData, setFilteredData] = useState<any[]>();
 
-  const[latestCommando, setLatestCommando] = useState<any>()
+  const [latestCommando, setLatestCommando] = useState<any>('Gesorteerd op test');
+  const [showLatestCommando, setShowLatestCommando] = useState<boolean>(true);
 
   const [micState, setMicState] = useState<boolean>(false)
   const [showTranscript, setshowTranscript] = useState<boolean>(false)
@@ -82,6 +83,15 @@ function App() {
   useEffect(() => {
     getAllData();
   },[])
+
+  useEffect(() => {
+    console.log(latestCommando)
+    if(latestCommando === '')
+      setShowLatestCommando(false)
+    else{
+      setShowLatestCommando(true)
+    }
+  }, [latestCommando])
 
   const getAllData = async () => {
     try{
@@ -120,9 +130,6 @@ function App() {
   }, [catValue, brandValue, genderValue])
 
   const dropdownFilter = () => {
-    // console.log(`BrandValue: ${brandValue}`)
-    // console.log(`CatValue: ${catValue}`)
-    // console.log(`GenValue: ${genderValue}`)
     //Enkel categorie
     if(catValue !== '' && brandValue === '' && genderValue === '')
       setFilteredData(allProducts.filter(p => p.Category.CategoryId === catValue)) 
@@ -183,59 +190,35 @@ function App() {
   const commands = [
     {
       command: ['search *','zoek *'],
-      callback: (searchTerm:any) => {setSearchTerm(searchTerm); setLatestCommando(`Zoekresultaten met: ${searchTerm}`);},
-      doel:'filter',
-      voorbeeld:["zoek 'boxy ski jas'","search 'boxy ski jas'"],
-      uitleg: "Zoeken naar boxy ski jas"
+      callback: (searchTerm:any) => {setSearchTerm(searchTerm); setLatestCommando(`Zoekresultaten met: ${searchTerm}`); resetTranscript()},
     },
     {
       command: ['selecteer :x (en) selecteer (daarna) :value'],
-      callback: (x:any, value:any) => {setIsLoading(!isLoading); openDropdown(x,value); setLatestCommando(`Gesorteert op ${x} ${value}`)},
-      doel:'filter',
-      voorbeeld:["selecteer 'merk', selecteer 'Protest'"],
-      uitleg: "Zoeken op merk naar alles van Protest"
+      callback: (x:any, value:any) => {setIsLoading(!isLoading); openDropdown(x,value); setLatestCommando(`Gesorteert op ${x} ${value}`); resetTranscript()},
     },
     {
       command: ['zoek :cat (van) :merk','vind :cat (van) :merk'],
-      callback: (cat:any, merk:any) => {quickSearch(cat, merk); setLatestCommando(`Gesorteert op ${cat} ${merk}`)},
-      doel:'filter',
-      voorbeeld:["zoek 'jassen' van 'Protest'","vind 'jassen' van 'Protest'"],
-      uitleg: "Jassen tonen van het merk Protest"
+      callback: (cat:any, merk:any) => {quickSearch(cat, merk); setLatestCommando(`Gesorteert op ${cat} ${merk}`); resetTranscript()},
     },
     {
       command: ['reset (filters)','clear (filters)','leeg (filters)','maak filters leeg',],
-      callback: (x:any) => {clearFilters(); setLatestCommando(`Filters verwijderd`)},
-      doel:'filter',
-      voorbeeld:["reset","clear","leeg",'maak filters leeg'],
-      uitleg: "Filters weghalen"
+      callback: (x:any) => {clearFilters(); setLatestCommando(`Filters verwijderd`); resetTranscript()},
     },
     {
       command:['selecteer *'],
-      callback: (x:any) => {navigateToDetailVoice(x)},
-      doel: "info",
-      voorbeeld:["selecteer 'boxi ski jas'"],
-      uitleg: "'boxi ski jas' selecteren"
+      callback: (x:any) => {navigateToDetailVoice(x) ; resetTranscript()},
     },
     {
       command:['voeg * toe aan verlanglijst(je)','add * to wishlist','verlanglijst(je) *','* verlanglijst','plaats * op verlanglijst','voeg * toe aan verlanglijst'],
-      callback: (x:any) => {addToWishlist(x)},
-      doel: "verlanglijst",
-      voorbeeld:["voeg 'lenado ski jas' toe aan verlanglijst"],
-      uitleg: "'lenado ski jas aan verlanglijst toevoegen"
+      callback: (x:any) => {addToWishlist(x) ; resetTranscript()},
     },
     {
       command:['voeg * toe aan winkelmand','add * to shoppinglist','winkelmand *','* winkelmand','plaats * op winkelmand','voeg * toe aan winkelmand'],
-      callback: (x:any) => {addToShoppingList(x)},
-      doel: "afrekenen",
-      voorbeeld:["voeg 'lenado ski jas' toe aan winkelmand"],
-      uitleg: "'lenado ski jas aan winkelmand toevoegen toevoegen"
+      callback: (x:any) => {addToShoppingList(x) ; resetTranscript()},
     },
     {
       command:'afrekenen',
-      callback:() => {navigateToCheckOut()},
-      doel:"afrekenen",
-      voorbeeld:["afrekenen"],
-      uitleg: "doorgaan naar betalen"
+      callback:() => {navigateToCheckOut(); resetTranscript()},
     }
   ]
 
@@ -250,8 +233,6 @@ function App() {
 
   const quickSearch =(cat:any, merk:any) => {
     setIsLoading(false)
-    // console.log(cat)
-    // console.log(merk)
     allCategories.forEach((e) => {
       if(e.Name.toLowerCase() === cat.toLowerCase()){
         setCatValue(e.CategoryId)
@@ -482,20 +463,11 @@ function App() {
                 </div>
               </div>
           </div>
-        
       </div>
 
       <div className="header_info"
         onClick={openInfo}
       >
-        {/* <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_flag_icon" viewBox="0 0 33 33">
-          <g id="Group_5" data-name="Group 5" transform="translate(343.828 489.635)">
-            <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)" fill="#368ade"/>
-            <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#368ade" sstrokeLinecap="round" trokeLinejoin="round" strokeWidth="3"/>
-            <path id="Path_5" data-name="Path 5" d="M3,0A2.939,2.939,0,0,1,6,2.875,2.939,2.939,0,0,1,3,5.75,2.939,2.939,0,0,1,0,2.875,2.939,2.939,0,0,1,3,0Z" transform="translate(-330.328 -484.373)" fill="#368ade"/>
-          </g>
-        </svg> */}
-
         <svg xmlns="http://www.w3.org/2000/svg" className="info_icon" viewBox="0 0 33 33">
           <g id="Group_6" data-name="Group 6" transform="translate(343.828 489.635)">
             <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)" fill="#fff"/>
@@ -503,8 +475,6 @@ function App() {
             <path id="Path_5" data-name="Path 5" d="M3,0A2.939,2.939,0,0,1,6,2.875,2.939,2.939,0,0,1,3,5.75,2.939,2.939,0,0,1,0,2.875,2.939,2.939,0,0,1,3,0Z" transform="translate(-330.328 -484.373)" fill="#fff"/>
           </g>
         </svg>
-
-
       </div>
 
       {showInfo &&
@@ -512,7 +482,7 @@ function App() {
           <div className="showInfo_item">
             <div className="showInfo_title_container">
               <div></div>
-              <h1 className="showInfo_title">Spraak commando's</h1>
+              <h1 className="showInfo_title">Spraakbediening</h1>
               <svg xmlns="http://www.w3.org/2000/svg" onClick={openInfo} className='showInfo_icon' viewBox="0 0 21 21">
                 <path id="Icon_material-close" data-name="Icon material-close" d="M28.5,9.615,26.385,7.5,18,15.885,9.615,7.5,7.5,9.615,15.885,18,7.5,26.385,9.615,28.5,18,20.115,26.385,28.5,28.5,26.385,20.115,18Z" transform="translate(-7.5 -7.5)"/>
               </svg>
@@ -603,16 +573,6 @@ function App() {
         {showTranscript && 
           <div className="showTranscript">
             <p className="showTranscript_text">Zeg iets als:</p>
-            {/* <div className="showTranscript_example_container">
-              <h2 className="showTranscript_example">'Zoek jassen van Protest'</h2>
-              <svg xmlns="http://www.w3.org/2000/svg" className="showTranscript_icon" viewBox="0 0 33 33">
-                <g id="Group_5" data-name="Group 5" transform="translate(343.828 489.635)">
-                  <path id="Icon_awesome-microphone" data-name="Icon awesome-microphone" d="M6,12A3.273,3.273,0,0,0,9.273,8.727V3.273a3.273,3.273,0,0,0-6.545,0V8.727A3.273,3.273,0,0,0,6,12Zm5.455-5.455h-.545a.545.545,0,0,0-.545.545V8.727a4.369,4.369,0,0,1-4.8,4.342A4.5,4.5,0,0,1,1.636,8.533V7.091a.545.545,0,0,0-.545-.545H.545A.545.545,0,0,0,0,7.091V8.46a6.188,6.188,0,0,0,5.182,6.194v1.164H3.273a.545.545,0,0,0-.545.545v.545a.545.545,0,0,0,.545.545H8.727a.545.545,0,0,0,.545-.545v-.545a.545.545,0,0,0-.545-.545H6.818V14.667A6.006,6.006,0,0,0,12,8.727V7.091A.545.545,0,0,0,11.455,6.545Z" transform="translate(-333.328 -477.998)"/>
-                  <path id="Path_4" data-name="Path 4" d="M33,18A15,15,0,1,1,18,3,15,15,0,0,1,33,18Z" transform="translate(-345.328 -491.135)" fill="none" stroke="#000" sstrokeLinecap="round" trokeLinejoin="round" strokeWidth="3"/>
-                  <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="3" cy="2.875" rx="3" ry="2.875" transform="translate(-330.328 -484.373)"/>
-                </g>
-              </svg>
-            </div> */}
             <p className="showTranscript_example">'Zoek jassen van Protest'</p>
             <h3 className="showTranscript_transcript">{transcript}</h3>
             {isLoading &&
@@ -649,11 +609,18 @@ function App() {
         </button>
       </div>
 
-      <div className="latestCommandSection">
-        <div className="latestCommand_container">
-          <h1 className="latestCommand_text">{latestCommando}</h1>
-        </div>
-      </div>
+      {showLatestCommando && 
+          <div className="latestCommandSection">
+            <div className="latestCommand_container">
+              <p> </p>
+              <h1 className="latestCommand_text">{latestCommando}</h1>
+              <svg xmlns="http://www.w3.org/2000/svg" onClick={() => setShowLatestCommando(false)} className="latestCommand_icon" viewBox="0 0 21 21">
+                  <path id="Icon_material-close" data-name="Icon material-close" d="M28.5,9.615,26.385,7.5,18,15.885,9.615,7.5,7.5,9.615,15.885,18,7.5,26.385,9.615,28.5,18,20.115,26.385,28.5,28.5,26.385,20.115,18Z" transform="translate(-7.5 -7.5)"/>
+              </svg>
+            </div>
+          </div>
+      }
+
 
       <div className="filterSection">
         <div className="filterSection_dropdowns">
