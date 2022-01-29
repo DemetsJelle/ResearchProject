@@ -112,15 +112,7 @@
     fill: #368ADE;
 }
 
-@media (min-width:1200px){
-    .grid_container{
-        width: 50%;
-    }
-
-    .shoppingList_grid_container{
-        padding: 1rem;
-    }
-
+@media (min-width: 768px){
     .shoppingList_grid{
         display: grid;
         grid-template-columns: 1fr 0.5fr 1fr 0.5fr 0.25fr;
@@ -138,6 +130,18 @@
         padding:1rem 2rem 1rem 2rem;
         border:0;
         font-weight: bold;
+    }
+
+
+}
+
+@media (min-width:1200px){
+    .grid_container{
+        width: 50%;
+    }
+
+    .shoppingList_grid_container{
+        padding: 1rem;
     }
 
     .grid_product{

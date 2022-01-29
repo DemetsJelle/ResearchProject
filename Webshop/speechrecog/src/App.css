@@ -497,7 +497,9 @@ p{
 }
 
 @media (min-width: 768px){
-  
+  .none{
+    display: block;
+  }
 }
 
 @media (min-width: 992px){
@@ -507,10 +509,6 @@ p{
 @media (min-width: 1200px){
 
   body {
-    display: block;
-  }
-
-  .none{
     display: block;
   }
 

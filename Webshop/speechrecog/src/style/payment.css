@@ -111,16 +111,7 @@
     align-items: center;
 }
 
-@media (min-width:1200px){
-    .form_container{
-        width:50%;
-        margin-bottom: 0;
-    }
-
-    .form_textC{
-        padding: 1rem 2rem
-    }
-
+@media(min-width:768px){
     .form_divs{
         display:flex;
         flex-direction: row;
@@ -132,6 +123,17 @@
         display:flex;
         flex-direction: row;
         gap:0;
+    }
+}
+
+@media (min-width:1200px){
+    .form_container{
+        width:50%;
+        margin-bottom: 0;
+    }
+
+    .form_textC{
+        padding: 1rem 2rem
     }
 
     .afreken_container{
