@@ -46,6 +46,7 @@
     border: 0;
     border-bottom: 1px solid #BCBCBC;
     width: 100%;
+    padding-left: 0.5rem;
 }
 
 .payment_container{
@@ -159,4 +160,43 @@
     .u-3-of-4 {
         flex-basis: calc(100%/4*3) !important;
     }
+}
+
+.input_from:hover{
+    border:1px solid #4E4E4F;
+    border-radius: 5px;
+}
+
+.input_from:focus{
+    border:1px solid #4E4E4F;
+    border-radius: 5px;
+}
+
+.input_from:active{
+    border:1px solid #4E4E4F;
+    border-radius: 5px;
+}
+
+.afrekenBtn:hover{
+    background-color: #368ADE;
+}
+
+.afrekenBtn:hover .btn_icon{
+    fill:white
+}
+
+.afrekenBtn:focus{
+    background-color: #368ADE;
+}
+
+.afrekenBtn:focus .btn_icon{
+    fill:white
+}
+
+.afrekenBtn:active{
+    background-color: #368ADE;
+}
+
+.afrekenBtn:active .btn_icon{
+    fill:white
 }

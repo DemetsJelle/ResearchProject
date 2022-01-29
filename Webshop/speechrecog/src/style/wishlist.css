@@ -99,3 +99,40 @@
     }
 }
 
+.wishlist_item_buttonC:hover{
+    background-color: #368ADE;
+}
+
+.wishlist_item_buttonC:hover .cart_icon{
+    fill: white;
+}
+
+.wishlist_item_buttonC:active{
+    background-color: #368ADE;
+}
+
+.wishlist_item_buttonC:active .cart_icon{
+    fill: white;
+}
+
+.wishlist_item_buttonC:focus{
+    background-color: #368ADE;
+}
+
+.wishlist_item_buttonC:focus .cart_icon{
+    fill: white;
+}
+
+.wishlist_item_text:hover{
+    background-color: #368ADE;
+}
+
+.wishlist_item_text:focus{
+    background-color: #368ADE;
+}
+
+.wishlist_item_text:active{
+    background-color: #368ADE;
+}
+
+

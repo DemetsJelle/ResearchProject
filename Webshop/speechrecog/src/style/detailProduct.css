@@ -117,6 +117,12 @@
     color:white;    
 }
 
+.productOverview_cart_icon{
+    width:1.5rem;
+    height:1.5rem;
+    fill: #368ADE;
+}
+
 .wishlist_icon{
     width: 2rem;
     height: 2rem;
@@ -234,4 +240,47 @@ h2{
         padding: 1rem;
         width: 50%;
     }
+}
+
+.productOverview_cartC:hover{
+    background-color: #368ADE;
+}
+
+.productOverview_cartC:hover .productOverview_cart_icon{
+    fill: white;
+}
+
+.productOverview_cartC:focus{
+    background-color: #368ADE;
+}
+
+.productOverview_cartC:focus .productOverview_cart_icon{
+    fill: white;
+}
+
+.productOverview_cartC:active{
+    background-color: #368ADE;
+}
+
+.productOverview_cartC:active .productOverview_cart_icon{
+    fill: white;
+}
+
+.wishlist_icon:hover{
+    transform: scale(1.2);
+}
+
+.goBack_container:hover{
+    color: #368ADE;
+    font-size: 1.25rem;
+}
+
+.goBack_container:focus{
+    color: #368ADE;
+    font-size: 1.25rem;
+}
+
+.goBack_container:active{
+    color: #368ADE;
+    font-size: 1.25rem;
 }

@@ -237,6 +237,7 @@ option{
 }
 
 .cart_icon{
+  fill:#368ADE;
   width:1rem;
   height:1rem;
 }
@@ -812,4 +813,145 @@ p{
   margin-top:0.5rem;
   text-align: center;
 }
+
+select:focus{
+  border: 0;
+  background-color:#368ADE;
+}
+
+select:hover{
+  border: 0;
+  background-color:#368ADE;
+  transform: scale(1.2); 
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+select:active{
+  border: 0;
+  background-color:#368ADE;
+}
+
+.searchbar_container:hover{
+  border: 3px solid #368ADE;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.searchbar_container:active{
+  border: 3px solid #368ADE;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.searchbar_container:focus{
+  border: 3px solid #368ADE;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+input:focus{
+  outline: 0 none;
+}
+
+input:active{
+  outline: 0 none
+}
+
+.productSection_buttonC:hover{
+  background-color: #368ADE;
+}
+
+.productSection_buttonC:hover .cart_icon{
+  fill:white;
+}
+
+.productSection_buttonC:focus{
+  background-color: #368ADE;
+}
+
+.productSection_buttonC:focus .cart_icon{
+  fill:white;
+}
+
+.productSection_item_textC:hover{
+  background-color: #368ADE;
+}
+
+.productSection_item_textC:focus{
+  background-color: #368ADE;
+}
+
+.productSection_item_textC:active{
+  background-color: #368ADE;
+}
+
+.speechButton:hover{
+  transform: scale(1.1);
+  border: 5px solid #368ADE;
+}
+
+.speechButton:active{
+  transform: scale(1.1);
+  border: 5px solid #368ADE;
+}
+
+.speechButton:focus{
+  transform: scale(1.1);
+  border: 5px solid #368ADE;
+}
+
+.icon_container:hover{
+  transform: scale(1.2);
+  color: #368ADE;
+}
+
+.icon_container:active{
+  transform: scale(1.2);
+  color: #368ADE;
+}
+
+.icon_container:focus{
+  transform: scale(1.2);
+  color: #368ADE;
+}
+
+.showInfo_icon:hover{
+  fill: #368ADE;
+  transform: scale(1.2);
+}
+
+.showInfo_icon:focus{
+  fill: #368ADE;
+  transform: scale(1.2);
+}
+
+.showInfo_icon:active{
+  fill: #368ADE;
+  transform: scale(1.2);
+}
+
+.showInfo_btn:hover{
+  background-color: #368ADE;
+  border-color: #368ADE;
+}
+
+.showInfo_btn:focus{
+  background-color: #368ADE;
+  border-color: #368ADE;
+}
+
+.showInfo_btn:active{
+  background-color: #368ADE;
+  border-color: #368ADE;
+}
+
+.showInfo_btn:hover .showInfo_btn_icon{
+  fill:white;
+}
+
+.showInfo_btn:focus .showInfo_btn_icon{
+  fill:white;
+}
+
+.showInfo_btn:active .showInfo_btn_icon{
+  fill:white;
+}
+
 
