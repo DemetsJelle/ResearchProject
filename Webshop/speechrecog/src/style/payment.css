@@ -1,0 +1,202 @@
+/* .app{
+    text-align: center;
+    padding: 1rem 2rem;
+    background-color: #F3F3F3;
+    display:flex;
+    flex-direction: column;
+} */
+
+.form_container{
+    width:100%;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+}
+
+.form_textC{
+    background-color:white;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+
+.form_interTitle{
+    margin-top: 1rem;
+}
+
+.form_divs{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    gap: 1rem 
+}
+
+.input_container{
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    text-align:left;
+    width:100%
+}
+
+.input_from{
+    margin-top: 0.5rem;
+    line-height: 1.5rem;
+    border: 0;
+    border-bottom: 1px solid #BCBCBC;
+    width: 100%;
+    padding-left: 0.5rem;
+}
+
+.payment_container{
+    margin-top: 1rem;
+    display:flex;
+    flex-direction: column;
+    gap:0.5rem;
+    align-items:center;
+    justify-content:space-around;
+}
+
+.payment_btn{
+    border: 1px solid #368ADE;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    width:8rem;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.active_state{
+    background-color:#368ADE;
+    color:white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.icon_active_state{
+    width:1rem;
+    height:1rem;
+    fill: white;
+}
+
+.afrekenBtn{
+    display: flex;
+    align-items:center;
+    gap:0.5rem;
+    background-color:#4E4E4F;
+    padding:1rem;
+    border-radius: 15px;
+    width: 8rem;
+    justify-content:center;
+    color:white;
+    cursor: pointer;
+}
+
+.btn_icon{
+    width:1rem;
+    height:1rem;
+    fill:#368ADE;
+}
+
+.button_form{
+    all:unset;
+}
+
+.afreken_container{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(min-width:768px){
+    .form_divs{
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .payment_container{
+        display:flex;
+        flex-direction: row;
+        gap:0;
+    }
+}
+
+@media (min-width:1200px){
+    .form_container{
+        width:50%;
+        margin-bottom: 0;
+    }
+
+    .form_textC{
+        padding: 1rem 2rem
+    }
+
+    .afreken_container{
+        margin-bottom: 0;
+    }
+
+    .u-1-of-2 {
+        flex-basis: calc(100%/2) !important;
+    }
+    
+    .u-1-of-3 {
+        flex-basis: calc(100%/3) !important;
+    }
+    
+    .u-2-of-3 {
+        flex-basis: calc(100%/3*2) !important;
+    }
+    
+    .u-1-of-4 {
+        flex-basis: calc(100%/4) !important;
+    }
+    
+    .u-3-of-4 {
+        flex-basis: calc(100%/4*3) !important;
+    }
+}
+
+.input_from:hover{
+    border:1px solid #4E4E4F;
+    border-radius: 5px;
+}
+
+.input_from:focus{
+    border:1px solid #4E4E4F;
+    border-radius: 5px;
+}
+
+.input_from:active{
+    border:1px solid #4E4E4F;
+    border-radius: 5px;
+}
+
+.afrekenBtn:hover{
+    background-color: #368ADE;
+}
+
+.afrekenBtn:hover .btn_icon{
+    fill:white
+}
+
+.afrekenBtn:focus{
+    background-color: #368ADE;
+}
+
+.afrekenBtn:focus .btn_icon{
+    fill:white
+}
+
+.afrekenBtn:active{
+    background-color: #368ADE;
+}
+
+.afrekenBtn:active .btn_icon{
+    fill:white
+}

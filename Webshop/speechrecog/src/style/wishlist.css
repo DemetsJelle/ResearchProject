@@ -1,0 +1,138 @@
+.wishlist_grid{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.wishlist_item_container{
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    cursor: pointer;
+}
+
+.wishlist_item_img{
+    margin: 0 auto;
+}
+
+.wishlist_item_buttonC{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #BCBCBC;
+    background-color:#4E4E4F;
+    margin-top: auto;
+}
+
+.cart_icon{
+    width:1rem;
+    height:1rem;
+}
+
+.wishlist_item_button_cart{
+    all:unset;
+    height:100%;
+    color:white;
+}
+
+.wishlist_item_text{
+    background-color:#4E4E4F;
+    padding:0 1rem 0.5rem 1rem;
+    border-radius: 0px 0px 15px 15px;
+}
+
+.wishlist_item_name{
+    text-align: left;
+    color:white;
+}
+
+.wishlist_item_priceC{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.wishlist_item_price{
+    color: #fca311;
+    font-weight: bold;
+}
+
+.wishlist_item_removebtn{
+    width:2rem;
+    height:2rem;
+    border: 1px solid #BCBCBC;
+    border-radius: 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.wishlist_item_icon{
+    width:1rem;
+    height:1rem;
+    fill:#368ADE;
+}
+
+@media (min-width:768px){
+    .wishlist_grid{
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 5rem;
+    }
+}
+
+@media(min-width:1200px){
+    .wishlist_grid{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-column-gap: 1.5rem;
+        grid-row-gap: 1.5rem;
+        margin-bottom: 6rem;
+    }
+}
+
+.wishlist_item_buttonC:hover{
+    background-color: #368ADE;
+}
+
+.wishlist_item_buttonC:hover .cart_icon{
+    fill: white;
+}
+
+.wishlist_item_buttonC:active{
+    background-color: #368ADE;
+}
+
+.wishlist_item_buttonC:active .cart_icon{
+    fill: white;
+}
+
+.wishlist_item_buttonC:focus{
+    background-color: #368ADE;
+}
+
+.wishlist_item_buttonC:focus .cart_icon{
+    fill: white;
+}
+
+.wishlist_item_text:hover{
+    background-color: #368ADE;
+}
+
+.wishlist_item_text:focus{
+    background-color: #368ADE;
+}
+
+.wishlist_item_text:active{
+    background-color: #368ADE;
+}
+
+
