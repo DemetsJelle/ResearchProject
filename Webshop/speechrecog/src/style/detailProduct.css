@@ -129,6 +129,7 @@
 
 .productVoordelen_container{
    width: 100%;
+   margin-bottom: 4rem;
 }
 
 .productVoordelen_item{
@@ -205,6 +206,10 @@ h2{
         width: 3rem;
         height: 3rem;
     }
+
+    .productVoordelen_container{
+        margin-bottom: 0rem;
+     }
 
     .productVoordelen_item{
         grid-template-columns: 1fr 1fr 1fr;

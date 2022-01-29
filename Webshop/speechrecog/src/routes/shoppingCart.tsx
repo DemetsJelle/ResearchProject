@@ -212,13 +212,6 @@ function ShoppingCart(){
               </div>
 
               <div className='header_nav_icons'>
-                <div className="icon_container">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 34.875 34.875">
-                    <path id="Icon_awesome-user-circle" data-name="Icon awesome-user-circle" d="M17.438.563A17.438,17.438,0,1,0,34.875,18,17.434,17.434,0,0,0,17.438.563Zm0,6.75A6.188,6.188,0,1,1,11.25,13.5,6.188,6.188,0,0,1,17.438,7.313Zm0,24.188a13.474,13.474,0,0,1-10.3-4.8,7.839,7.839,0,0,1,6.926-4.2,1.72,1.72,0,0,1,.5.077,9.309,9.309,0,0,0,2.876.485,9.274,9.274,0,0,0,2.876-.485,1.72,1.72,0,0,1,.5-.077,7.839,7.839,0,0,1,6.926,4.2A13.474,13.474,0,0,1,17.438,31.5Z" transform="translate(0 -0.563)"/>
-                  </svg>
-                  <p>Account</p>
-                </div>
-
                 <div
                   className="icon_container"
                   onClick={navigateToWihsList}
@@ -226,7 +219,7 @@ function ShoppingCart(){
                   <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 34.355 30.348">
                     <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M31.26,6.915a8.25,8.25,0,0,0-11.67,0L18,8.505l-1.59-1.59A8.252,8.252,0,1,0,4.74,18.585l1.59,1.59L18,31.845l11.67-11.67,1.59-1.59a8.25,8.25,0,0,0,0-11.67Z" transform="translate(-0.823 -2.997)" fill="#368ADE" stroke="#368ADE" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3"/>
                   </svg>
-                  <p>Verlanglijst</p>
+                  <p className='none'>Verlanglijst</p>
                 </div>
               </div>
             </div>
@@ -332,7 +325,7 @@ function ShoppingCart(){
 
 
            <div className="grid_container">
-                <div className="shoppingList_grid whitespace ">
+                <div className="shoppingList_grid whitespace">
                     <p>Product</p>
                     <p>Eenheidsprijs</p>
                     <p>Aantal</p>

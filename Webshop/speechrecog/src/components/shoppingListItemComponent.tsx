@@ -89,7 +89,7 @@ export default function ShoppingListItem(props:any){
                 />
                 <p>{props.product.Name}</p>
             </div>
-            <h2 className="grid_price">€{props.product.Price}</h2>
+            <h2 className="grid_price none">€{props.product.Price}</h2>
             <div className="grid_amount">
                 <button
                     className="grid_amount_btn"

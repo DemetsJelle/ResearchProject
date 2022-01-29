@@ -4,25 +4,23 @@
 }
 
 .grid_container{
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
     background-color:white;
     border-radius: 15px;
 }
 
 .shoppingList_grid_container{
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 15px;
 }
 
 .shoppingList_grid{
-    display: grid;
-    grid-template-columns: 1fr 0.5fr 1fr 0.5fr 0.25fr;
-    grid-template-rows: 1;
-    grid-column-gap: 0px;   
-    margin-bottom: 1rem;
-    justify-items: center;
-    align-items: center;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    gap:1rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #BCBCBC;
 }
@@ -33,33 +31,38 @@
     padding:1rem 2rem 1rem 2rem;
     border:0;
     font-weight: bold;
+    display: none;
 }
 
 .grid_product{
     display:flex;   
     gap:0.5rem;
     text-align: left;
+    font-size:0.75rem;
 }
 
 .grid_amount{
     display:flex;
     gap:1rem;
-    font-size:1rem;
+    font-size:0.75rem;
     font-weight:bold;
 }
 
 .grid_amount_btn{
+    display:flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     background-color: #4E4E4F;
-    width:2rem;
-    height:2rem;
+    width:1.5rem;
+    height:1.5rem;
     border-radius:15px;
     border: 0;
-    font-size:1.5rem;
+    font-size:1rem;
 }
 
 .grid_price{
-    font-size:1rem;
+    font-size:0.75rem;
     color:#282c34;
 }
 
@@ -70,12 +73,13 @@
 }
 
 .checkout_container{
-    width:50%;
+    width:100%;
     margin: 0 auto;
     display:flex;
     justify-content:center;
-    align-items:flex-end;
+    align-items:center;
     flex-direction:column;
+    margin-bottom:4rem;
 }
 
 .totalPrice_container{
@@ -106,6 +110,60 @@
     width:2rem;
     height:2rem;
     fill: #368ADE;
+}
+
+@media (min-width:1200px){
+    .grid_container{
+        width: 50%;
+    }
+
+    .shoppingList_grid_container{
+        padding: 1rem;
+    }
+
+    .shoppingList_grid{
+        display: grid;
+        grid-template-columns: 1fr 0.5fr 1fr 0.5fr 0.25fr;
+        grid-template-rows: 1;
+        grid-column-gap: 0px;   
+        margin-bottom: 1rem;
+        justify-items: center;
+        align-items: center;
+        padding-bottom: 0.5rem;
+    }
+
+    .whitespace{
+        margin-top: 1rem;
+        margin-bottom: 0rem;
+        padding:1rem 2rem 1rem 2rem;
+        border:0;
+        font-weight: bold;
+    }
+
+    .grid_product{
+        font-size: 1rem;
+    }
+
+    .grid_amount{
+        font-size:1rem;
+    }
+
+    .grid_amount_btn{
+        width:2rem;
+        height:2rem;
+        font-size:1.5rem;
+    }
+
+    .grid_price{
+        font-size:1rem;
+    }
+
+    .checkout_container{
+        width:50%;
+        align-items:flex-end;
+        flex-direction:column;
+        margin-bottom:0rem;
+    }
 }
 
 /* fca311 */
