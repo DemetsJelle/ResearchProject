@@ -161,7 +161,7 @@ option{
 .search_icon{
   width:1.5rem; 
   height: 1.5rem;
-  fill: #BCBCBC;
+  fill: #368ADE;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -390,8 +390,8 @@ option{
   background-color:#4E4E4F;
   border-radius: 10px;
   padding: 1rem;
-  left:30%;
-  right:30%;
+  left:40%;
+  right:40%;
   color:white;
   fill:white;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -416,11 +416,6 @@ option{
 }
 
 .showInfo_item_command{
-  display:grid;
-  grid-template-columns: 1fr 1rem 1fr;
-  grid-template-rows: auto;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
   margin-bottom: 0.5rem;
 }
 
@@ -492,18 +487,101 @@ p{
   margin-bottom:0;
 }
 
-@media (min-width: 576px){
-
-}
 
 @media (min-width: 768px){
   .none{
     display: block;
   }
-}
 
-@media (min-width: 992px){
-  
+  .icon{
+    height:1.5rem;
+    width: 1.5rem;
+  }
+
+  .logo{
+    height:3rem;
+    width: 3rem;
+  }
+
+  .searchbar_container{
+    width:100%;
+  } 
+
+  .header_nav_search{
+    width:50%;
+  }
+
+  .filterSection {
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .filterSection_dropdowns {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+    gap: 0;
+  }
+
+  .header_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    background-color:#4E4E4F;
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    right: 2rem;
+    cursor: pointer;
+  }
+
+  .info_icon{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .showInfo{
+    left: 25%;
+    right:25%;
+  }
+
+  .productSection{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1.5rem;
+    margin: 0;
+    margin-bottom:5rem;
+  }
+
+  .speechButton{
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .speechButton_icon{
+    width:2.5rem;
+    height:2.5rem;
+  }
+
+  .voiceControl{
+    bottom: 1rem;
+    left:30%;
+    right:30%;
+    margin-left: 0;
+    width:39.5%
+  }
+
+  .latestCommand_icon{
+    padding-right:2rem;
+  }
+
 }
 
 @media (min-width: 1200px){
@@ -521,10 +599,13 @@ p{
     margin-left:3rem;
   }
 
-  .logo{
-    height:3rem;
-    width: 3rem;
+  .header_nav_search{
+    width:25%;
   }
+
+  .searchbar_container{
+    width:100%;
+  } 
 
   .header_info{
     display:block;
@@ -538,13 +619,10 @@ p{
     cursor: pointer;
   }
 
-  .header_nav_search{
-    width:25%;
+  .info_icon{
+    width: 2rem;
+    height: 2rem;
   }
-
-  .searchbar_container{
-    width:100%;
-  } 
 
   .productSection{
     display: grid;
@@ -553,19 +631,11 @@ p{
     grid-column-gap: 1.5rem;
     grid-row-gap: 1.5rem;
     margin: 0;
-  }
-
-  .filterSection {
-    margin: 2rem auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    margin-bottom:6rem;
   }
 
   .filterSection_dropdowns {
-    display: flex;
-    flex-direction: row;
-    gap: 0;
+    width:0;
   }
 
   .filter{
