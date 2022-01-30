@@ -59,15 +59,19 @@ function Wishlist(){
         },
         {
             command: ['selecteer *'],
-            callback: (spokenText:any) => selectProduct(spokenText),
+            callback: (spokenText:any) => {selectProduct(spokenText)},
         },
         {
             command: ['* toevoegen aan winkelmand','voeg * toe aan winkelmand',],
-            callback: (spokenText:any) => addToShoppingCart(spokenText),
+            callback: (spokenText:any) => {addToShoppingCart(spokenText); resetTranscript()},
         },
         {
             command: ['verwijder *','* verwijderen'],
-            callback: (spokenText:any) => removeFromWishlist(spokenText),
+            callback: (spokenText:any) => {removeFromWishlist(spokenText); resetTranscript()},
+        },
+        {
+            command: ['(ga naar) winkelmand'],
+            callback: () => {navigateToShoppingCart()},
         },
     ]
 
@@ -87,28 +91,68 @@ function Wishlist(){
         window.location.href=`/detailsProduct/${productId}`
     }
 
+    const navigateToShoppingCart = () => {
+        window.location.href=`/shoppingCart`
+    }
+
     const navigateHome = () => {
         window.location.href=`/`
     }
 
     const selectProduct = (spokenText:any) => {
+        const filteredData = wishlist!.filter(function (eachItem){
+            return eachItem["Name"].toLowerCase().includes(spokenText.toLowerCase())
+        })
 
+        window.location.href=`/detailsProduct/${filteredData[0].ProductId}`
     }
 
     const addToShoppingCart = (spokenText:any) => {
-
+        const filteredData = wishlist!.filter(function (eachItem){
+            return eachItem["Name"].toLowerCase().includes(spokenText.toLowerCase())
+        })
+        const holder:any[] = []
+        const list = localStorage.getItem('shoppingCart')
+        if(list){
+            const parsedList:any = JSON.parse(list)
+            parsedList.forEach((i:any) => {
+                holder.push(i)   
+            })
+            holder.push(filteredData[0])
+            localStorage.setItem('shoppingCart', JSON.stringify(holder))
+            setLatestCommando(`${filteredData[0].Name} aan winkelmand toegevoegd`)
+        }
     }
 
     const removeFromWishlist = (spokenText:any) => {
+        localSWishlist = []
+        console.log(spokenText)
+        console.log(wishlist)
+        const list = wishlist?.filter(function (eachItem){
+            return eachItem["Name"].toLowerCase().includes(spokenText.toLowerCase())
+        })
 
+        console.log(list)
+
+        if(list){
+            wishlist?.forEach((item:any) => {
+                if(item.ProductId !== list[0].ProductId){
+                    localSWishlist.push(item)
+                }
+            })
+        }
+        setWishlist(localSWishlist)
+        localStorage.setItem('wishlist', JSON.stringify(localSWishlist))
+        setLatestCommando(`${list![0].Name} uit verlanglijst verwijderd`)
     }
 
     const openInfo = () => {
         setShowInfo(!showInfo)
     }
 
-    const localSWishlist:any[] = []
+    let localSWishlist:any[] = []
     const removeItemFromWishlist = (productId:any) => {
+        localSWishlist = []
         const list:any = localStorage.getItem('wishlist')
         if(list){
             const parsedList = JSON.parse(list)

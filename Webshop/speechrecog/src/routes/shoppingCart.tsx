@@ -86,7 +86,15 @@ function ShoppingCart(){
         {
           command:['betalen','verder naar betalen','afrekenen','bestellen'],
           callback:() => navigateToPayment()
-        }
+        },
+        {
+          command: ['(ga naar) verlanglijst'],
+          callback: () => {navigateToWihsList()},
+        },
+        {
+          command: ['(ga naar) bestellen'],
+          callback: () => {navigateToPayment()},
+        },
     ]
 
     const navigateToPayment = () => {

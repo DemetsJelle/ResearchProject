@@ -3,11 +3,6 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 
 import './App.css';
 import API from './utils/api'
-import {winkelMandContext} from './store/winkelmand'
-
-import DetailProduct from './routes/detailsProduct'
-import ShoppingCart from './routes/shoppingCart';
-import Wishlist from './routes/wishlist';
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
@@ -209,16 +204,25 @@ function App() {
       callback: (x:any) => {navigateToDetailVoice(x) ; resetTranscript()},
     },
     {
-      command:['voeg * toe aan verlanglijst(je)','add * to wishlist','verlanglijst(je) *','* verlanglijst','plaats * op verlanglijst','voeg * toe aan verlanglijst'],
+      command:['voeg * toe aan verlanglijst(je)','add * to wishlist','verlanglijst(je) *','plaats * op verlanglijst','voeg * toe aan verlanglijst'],
       callback: (x:any) => {addToWishlistVUI(x) ; resetTranscript()},
     },
     {
-      command:['voeg * toe aan winkelmand','add * to shoppinglist','winkelmand *','* winkelmand','plaats * op winkelmand','voeg * toe aan winkelmand'],
+      command:['voeg * toe aan winkelmand','add * to shoppinglist','winkelmand *','plaats * op winkelmand','voeg * toe aan winkelmand'],
       callback: (x:any) => {addToShoppingListVUI(x) ; resetTranscript()},
     },
     {
-      command:'afrekenen',
+      command:'(ga naar) bestellen',
+      callback:() => {navigateToOrder(); resetTranscript()},
+    },
+    {
+      command:'(ga naar) winkelmand',
       callback:() => {navigateToCheckOut(); resetTranscript()},
+    }
+    ,
+    {
+      command:'(ga naar) verlanglijst',
+      callback:() => {navigateToWihsList(); resetTranscript()},
     }
   ]
 
@@ -327,6 +331,10 @@ function App() {
 
   const navigateToCheckOut = () => {
     window.location.href=`/shoppingCart`
+  }
+
+  const navigateToOrder = () => {
+    window.location.href=`/payment`
   }
 
   const navigateToWihsList = () => {
