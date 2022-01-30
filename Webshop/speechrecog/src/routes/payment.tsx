@@ -145,7 +145,19 @@ export default function PaymentPage(){
         {
             command:['betalen (met) :x'],
             callback:(spokenText:any) => {setPaymentMethod(spokenText); setLatestCommando(`Betaal methode: "${spokenText}" geselecteerd`); resetTranscript() }
-        }
+        },
+        {
+            command: ['(ga naar) verlanglijst'],
+            callback: () => navigateToWihsList(),
+        },
+        {
+            command: ['(ga naar) winkelmand'],
+            callback: () => navigateToCheckOut(),
+        },
+        {
+            command: ['(ga naar) overzicht','(ga naar) home'],
+            callback: () => navigateHome(),
+        },
         
     ]
 

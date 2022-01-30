@@ -48,7 +48,7 @@ export const commandsListHome = [
   },
   {
     doel:"afrekenen",
-    voorbeeld:["afrekenen"],
+    voorbeeld:["bestellen"],
     uitleg: "doorgaan naar betalen"
   }
 ]
@@ -334,7 +334,7 @@ function App() {
   }
 
   const navigateToOrder = () => {
-    window.location.href=`/payment`
+    window.location.href=`/paymentPage`
   }
 
   const navigateToWihsList = () => {

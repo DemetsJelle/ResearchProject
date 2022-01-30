@@ -73,6 +73,10 @@ function Wishlist(){
             command: ['(ga naar) winkelmand'],
             callback: () => {navigateToShoppingCart()},
         },
+        {
+            command: ['(ga naar) bestellen'],
+            callback: () => {navigateToPayment()},
+        },
     ]
 
     const goBack = () => {
@@ -93,6 +97,10 @@ function Wishlist(){
 
     const navigateToShoppingCart = () => {
         window.location.href=`/shoppingCart`
+    }
+
+    const navigateToPayment = () => {
+        window.location.href=`/paymentPage`
     }
 
     const navigateHome = () => {
