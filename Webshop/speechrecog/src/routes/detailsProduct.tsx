@@ -118,12 +118,12 @@ function DetailsProduct(){
             //console.log(listArray)
             localStorage.setItem('wishlist', JSON.stringify(listArray))
             setInWishlist(false)
-            setLatestCommando(`Product uit verlanglijst gehaald`)
+            setLatestCommando(`${productData.Name} uit verlanglijst gehaald`)
         }else{
             listArray.push(productData)
             localStorage.setItem('wishlist', JSON.stringify(listArray))
             setInWishlist(true)
-            setLatestCommando(`Product aan verlanglijst toegevoegd`)
+            setLatestCommando(`${productData.Name} aan verlanglijst toegevoegd`)
         }   
     }
 
@@ -139,7 +139,7 @@ function DetailsProduct(){
             if(index === -1){
                 parsedList.push(productData)
                 localStorage.setItem('shoppingCart', JSON.stringify(parsedList))
-                setLatestCommando(`Product aan wikelmand toegevoegd`)
+                setLatestCommando(`${productData.Name} aan wikelmand toegevoegd`)
             }else{
                 //TOON IN UI DAT IE DER AL IN ZIT
                 console.log('item zit al in winkelmand')
@@ -159,6 +159,14 @@ function DetailsProduct(){
         {
             command: ['toevoegen aan verlanglijst','verlanglijst'],
             callback: () => addToWishlist(),
+        },
+        {
+            command: ['ga naar verlanglijst'],
+            callback: () => navigateToWihsList(),
+        },
+        {
+            command: ['ga naar winkelmand'],
+            callback: () => navigateToCheckOut(),
         },
     ]
 
