@@ -194,6 +194,10 @@ export default function PaymentPage(){
         window.location.href=`/shoppingCart`
     }
 
+    const navigateHome = () => {
+        window.location.href=`/`
+    }
+
     const navigateToInfoPage = () => {
         window.location.href=`/commandPage`
     }
@@ -232,7 +236,10 @@ export default function PaymentPage(){
         <main className="App">
             <div className="header">
                 <div className="header_nav">
-                <div className="header_nav_icons">
+                <div 
+                    className="header_nav_icons"
+                    onClick={navigateHome}
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" className="logo" viewBox="0 0 50.416 56">
                     <g id="Group_68" data-name="Group 68" transform="translate(0 -0.01)">
                         <g id="MCT" transform="translate(0 0.01)">
@@ -241,6 +248,11 @@ export default function PaymentPage(){
                         </g>
                     </g>
                     </svg>
+                </div>
+
+                
+                <div>
+                    <h1 className="header_pageTitle">Betaling</h1>
                 </div>
 
                 <div className='header_nav_icons'>

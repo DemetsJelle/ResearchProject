@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState, MouseEvent} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../style/wishlist.css'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
@@ -87,6 +87,10 @@ function Wishlist(){
         window.location.href=`/detailsProduct/${productId}`
     }
 
+    const navigateHome = () => {
+        window.location.href=`/`
+    }
+
     const selectProduct = (spokenText:any) => {
 
     }
@@ -156,7 +160,10 @@ function Wishlist(){
 
             <div className="header">
                 <div className="header_nav">
-                    <div className="header_nav_icons">
+                    <div 
+                        className="header_nav_icons"
+                        onClick={navigateHome}
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" className="logo" viewBox="0 0 50.416 56">
                         <g id="Group_68" data-name="Group 68" transform="translate(0 -0.01)">
                             <g id="MCT" transform="translate(0 0.01)">
@@ -166,6 +173,10 @@ function Wishlist(){
                         </g>
                         </svg>
                     </div>
+
+                <div>
+                    <h1 className="header_pageTitle">Verlanglijst</h1>
+                </div>
 
                 <div className='header_nav_icons'>
                     <div 
@@ -281,7 +292,7 @@ function Wishlist(){
             <div className="wishlist_grid">
                 {wishlist && wishlist.map(item => {
                     return(
-                        <div className="wishlist_item_container">
+                        <div className="wishlist_item_container" key={item.ProductId}>
                             <img
                                 onClick={() => navigateToDetail(item.ProductId)}
                                 className="wishlist_item_img"
@@ -297,14 +308,20 @@ function Wishlist(){
                             </div>
 
                             <div 
-                                className="wishlist_item_text"
-                                onClick={() => navigateToDetail(item.ProductId)}    
+                                className="wishlist_item_text"  
                             >
-                                <h1 className="wishlist_item_name">{item.Name}</h1>
+                                <h1 
+                                    className="wishlist_item_name"
+                                    onClick={() => navigateToDetail(item.ProductId)}  
+                                >
+                                    {item.Name}</h1>
                                 <div className="wishlist_item_priceC">
                                     <p className="wishlist_item_price">€{item.Price}</p>
-                                    <div className="wishlist_item_removebtn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" onClick={() => removeItemFromWishlist(item.ProductId)} className="wishlist_item_icon" viewBox="0 0 21 27">
+                                    <div 
+                                        className="wishlist_item_removebtn"
+                                        onClick={() => removeItemFromWishlist(item.ProductId)}
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="wishlist_item_icon" viewBox="0 0 21 27">
                                             <path id="Icon_material-delete" data-name="Icon material-delete" d="M9,28.5a3.009,3.009,0,0,0,3,3H24a3.009,3.009,0,0,0,3-3v-18H9ZM28.5,6H23.25l-1.5-1.5h-7.5L12.75,6H7.5V9h21Z" transform="translate(-7.5 -4.5)"/>
                                         </svg>
                                     </div>

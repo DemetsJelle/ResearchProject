@@ -210,11 +210,11 @@ function App() {
     },
     {
       command:['voeg * toe aan verlanglijst(je)','add * to wishlist','verlanglijst(je) *','* verlanglijst','plaats * op verlanglijst','voeg * toe aan verlanglijst'],
-      callback: (x:any) => {addToWishlist(x) ; resetTranscript()},
+      callback: (x:any) => {addToWishlistVUI(x) ; resetTranscript()},
     },
     {
       command:['voeg * toe aan winkelmand','add * to shoppinglist','winkelmand *','* winkelmand','plaats * op winkelmand','voeg * toe aan winkelmand'],
-      callback: (x:any) => {addToShoppingList(x) ; resetTranscript()},
+      callback: (x:any) => {addToShoppingListVUI(x) ; resetTranscript()},
     },
     {
       command:'afrekenen',
@@ -340,7 +340,7 @@ function App() {
     return list[0]
   }
 
-  const addToWishlist = (spokenText:any) => {
+  const addToWishlistVUI = (spokenText:any) => {
     const product = validateProduct(spokenText)
     getLocalStorage('wishlist')
 
@@ -381,7 +381,7 @@ function App() {
     return index
   }
 
-  const addToShoppingList = (spokenText:any) => {
+  const addToShoppingListVUI = (spokenText:any) => {
     const product = validateProduct(spokenText)
     getLocalStorage('shoppingCart')
 
@@ -396,9 +396,25 @@ function App() {
     }
   }
 
+  const addToShoppingListUI = (item:any) => {
+    getLocalStorage('shoppingCart')
+
+    const inList = getIndex(item)
+    if(inList === -1) {
+      listArray.push(item)
+      console.log(listArray)
+      localStorage.setItem('shoppingCart', JSON.stringify(listArray))
+      setLatestCommando(`${item.Name} aan winkelmand toegevoegd`)
+    }else{
+      console.log('already in list')
+    }
+  }
+
   const navigateToInfoPage = () => {
     window.location.href=`/commandPage`
   }
+
+
 
 
   return (
@@ -683,7 +699,7 @@ function App() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="cart_icon" viewBox="0 0 30 30">
                   <path id="Icon_material-shopping-cart" data-name="Icon material-shopping-cart" d="M10.5,27a3,3,0,1,0,3,3A3,3,0,0,0,10.5,27ZM1.5,3V6h3L9.9,17.385,7.875,21.06A2.9,2.9,0,0,0,7.5,22.5a3.009,3.009,0,0,0,3,3h18v-3H11.13a.371.371,0,0,1-.375-.375l.045-.18L12.15,19.5H23.325a2.986,2.986,0,0,0,2.625-1.545L31.32,8.22a1.465,1.465,0,0,0,.18-.72A1.5,1.5,0,0,0,30,6H7.815L6.405,3Zm24,24a3,3,0,1,0,3,3A3,3,0,0,0,25.5,27Z" transform="translate(-1.5 -3)" />
                 </svg>
-                <button onClick={() => addToShoppingList(item)} className="productOverview_cart">Winkelmand</button>
+                <button onClick={() => addToShoppingListUI(item)} className="productOverview_cart">Winkelmand</button>
               </div>
 
               <div 

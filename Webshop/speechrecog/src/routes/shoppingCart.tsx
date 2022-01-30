@@ -101,6 +101,10 @@ function ShoppingCart(){
       window.location.href=`/commandPage`
     }
 
+    const navigateHome = () => {
+      window.location.href=`/`
+  }
+
     const openInfo = () => {
       setShowInfo(!showInfo)
     } 
@@ -200,7 +204,10 @@ function ShoppingCart(){
 
           <div className="header">
             <div className="header_nav">
-              <div className="header_nav_icons">
+              <div 
+                className="header_nav_icons"
+                onClick={navigateHome}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" className="logo" viewBox="0 0 50.416 56">
                   <g id="Group_68" data-name="Group 68" transform="translate(0 -0.01)">
                     <g id="MCT" transform="translate(0 0.01)">
@@ -209,6 +216,11 @@ function ShoppingCart(){
                     </g>
                   </g>
                 </svg>
+              </div>
+
+
+              <div>
+                <h1 className="header_pageTitle">Winkelmand</h1>
               </div>
 
               <div className='header_nav_icons'>

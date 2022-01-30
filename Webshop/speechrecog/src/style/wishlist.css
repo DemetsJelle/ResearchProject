@@ -1,3 +1,8 @@
+.header_pageTitle{
+    font-size:1.5rem;
+    color:#368ADE;
+}
+
 .wishlist_grid{
     margin-top: 1rem;
     display: grid;
@@ -133,6 +138,30 @@
 
 .wishlist_item_text:active{
     background-color: #368ADE;
+}
+
+.wishlist_item_removebtn:hover{
+    background-color: #368ADE;
+}
+
+.wishlist_item_removebtn:hover .wishlist_item_icon{
+    fill:white;
+}
+
+.wishlist_item_removebtn:focus{
+    background-color: #368ADE;
+}
+
+.wishlist_item_removebtn:focus .wishlist_item_icon{
+    fill:white;
+}
+
+.wishlist_item_removebtn:active{
+    background-color: #368ADE;
+}
+
+.wishlist_item_removebtn:active .wishlist_item_icon{
+    fill:white;
 }
 
 
