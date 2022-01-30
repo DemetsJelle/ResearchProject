@@ -414,9 +414,6 @@ function App() {
     window.location.href=`/commandPage`
   }
 
-
-
-
   return (
     <div className="App">
 
