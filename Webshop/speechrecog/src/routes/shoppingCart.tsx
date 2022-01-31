@@ -40,9 +40,9 @@ function ShoppingCart(){
   const params = new URLSearchParams(search); 
   const micStateFromURL:any = params.get('mic'); 
 
-    const [showTranscript, setshowTranscript] = useState<boolean>(micStateFromURL)
+    const [showTranscript, setshowTranscript] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [micState, setMicState] = useState<boolean>(micStateFromURL)
+    const [micState, setMicState] = useState<boolean>(false)
     const [shoppingCart, setShoppingCart] = useState<any[]>()
     const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState)
 
@@ -68,20 +68,15 @@ function ShoppingCart(){
         const parsedList = JSON.parse(list)
         setShoppingCart(parsedList)
         
-        if(micStateFromURL){
-          SpeechRecognition.startListening({continuous: true});
-          setIsLoading(true);
+        if(micStateFromURL === 'true') {
+          startListening()
         }
     },[])
-
-    const goBack = () => {
-        window.location.href=`/`
-    }
 
     const commands = [
         {
             command: ['terug'],
-            callback: () => goBack(),
+            callback: () => goBack(true),
         },
         {
           command: [':amount stuks *',':amount keer *'],
@@ -93,32 +88,40 @@ function ShoppingCart(){
         },
         {
           command:['betalen','verder naar betalen','afrekenen','bestellen'],
-          callback:() => navigateToPayment()
+          callback:() => navigateToPayment(true)
         },
         {
           command: ['(ga naar) verlanglijst'],
-          callback: () => {navigateToWihsList()},
+          callback: () => {navigateToWihsList(true)},
         },
         {
           command: ['(ga naar) bestellen'],
-          callback: () => {navigateToPayment()},
+          callback: () => {navigateToPayment(true)},
+        },
+        {
+          command: ['(ga naar) home'],
+          callback: () => {navigateHome(true)},
         },
     ]
 
-    const navigateToPayment = () => {
-      window.location.href = `/paymentPage?mic=${micState}`
+    const goBack = (mic:any) => {
+      window.location.href=`/?mic=${mic}`
+  }
+
+    const navigateToPayment = (mic:any) => {
+      window.location.href = `/paymentPage?mic=${mic}`
     }
 
-    const navigateToWihsList = () => {
-      window.location.href=`/wishlist?mic=${micState}`
+    const navigateToWihsList = (mic:any) => {
+      window.location.href=`/wishlist?mic=${mic}`
     }
 
-    const navigateToInfoPage = () => {
-      window.location.href=`/commandPage?mic=${micState}`
+    const navigateToInfoPage = (mic:any) => {
+      window.location.href=`/commandPage?mic=${mic}`
     }
 
-    const navigateHome = () => {
-      window.location.href=`/?mic=${micState}`
+    const navigateHome = (mic:any) => {
+      window.location.href=`/?mic=${mic}`
   }
 
     const openInfo = () => {
@@ -222,7 +225,7 @@ function ShoppingCart(){
             <div className="header_nav">
               <div 
                 className="header_nav_icons"
-                onClick={navigateHome}
+                onClick={() => navigateHome(false)}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="logo" viewBox="0 0 50.416 56">
                   <g id="Group_68" data-name="Group 68" transform="translate(0 -0.01)">
@@ -242,7 +245,7 @@ function ShoppingCart(){
               <div className='header_nav_icons'>
                 <div
                   className="icon_container"
-                  onClick={navigateToWihsList}
+                  onClick={() => navigateToWihsList(false)}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 34.355 30.348">
                     <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M31.26,6.915a8.25,8.25,0,0,0-11.67,0L18,8.505l-1.59-1.59A8.252,8.252,0,1,0,4.74,18.585l1.59,1.59L18,31.845l11.67-11.67,1.59-1.59a8.25,8.25,0,0,0,0-11.67Z" transform="translate(-0.823 -2.997)" fill="#368ADE" stroke="#368ADE" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3"/>
@@ -305,7 +308,7 @@ function ShoppingCart(){
                   <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_btn_icon" viewBox="0 0 36 29.25">
                     <path id="Icon_awesome-list" data-name="Icon awesome-list" d="M5.625,25.875h-4.5A1.125,1.125,0,0,0,0,27v4.5a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,31.5V27A1.125,1.125,0,0,0,5.625,25.875Zm0-22.5h-4.5A1.125,1.125,0,0,0,0,4.5V9a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,9V4.5A1.125,1.125,0,0,0,5.625,3.375Zm0,11.25h-4.5A1.125,1.125,0,0,0,0,15.75v4.5a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,20.25v-4.5A1.125,1.125,0,0,0,5.625,14.625ZM34.875,27h-22.5a1.125,1.125,0,0,0-1.125,1.125v2.25A1.125,1.125,0,0,0,12.375,31.5h22.5A1.125,1.125,0,0,0,36,30.375v-2.25A1.125,1.125,0,0,0,34.875,27Zm0-22.5h-22.5A1.125,1.125,0,0,0,11.25,5.625v2.25A1.125,1.125,0,0,0,12.375,9h22.5A1.125,1.125,0,0,0,36,7.875V5.625A1.125,1.125,0,0,0,34.875,4.5Zm0,11.25h-22.5a1.125,1.125,0,0,0-1.125,1.125v2.25a1.125,1.125,0,0,0,1.125,1.125h22.5A1.125,1.125,0,0,0,36,19.125v-2.25A1.125,1.125,0,0,0,34.875,15.75Z" transform="translate(0 -3.375)"/>
                   </svg>
-                  <button onClick={navigateToInfoPage} className="showInfo_allCommands_btn">Alle commando's</button>
+                  <button onClick={() => navigateToInfoPage(false)} className="showInfo_allCommands_btn">Alle commando's</button>
                 </div>
               </div>
             </div>
@@ -337,7 +340,7 @@ function ShoppingCart(){
           }
 
           <div>
-            <div className="goBack_container" onClick={goBack}>
+            <div className="goBack_container" onClick={() => goBack(false)}>
               <svg xmlns="http://www.w3.org/2000/svg" className="goBack_icon" viewBox="0 0 24.743 23.34">
                 <path id="Icon_ionic-md-arrow-round-back" data-name="Icon ionic-md-arrow-round-back" d="M28.223,15.75H13.177l5.836-5.583a2.326,2.326,0,0,0,0-3.178,2.079,2.079,0,0,0-3.038,0L6.258,16.411a2.142,2.142,0,0,0-.633,1.575v.028a2.142,2.142,0,0,0,.633,1.575l9.71,9.422a2.079,2.079,0,0,0,3.037,0,2.326,2.326,0,0,0,0-3.178L13.17,20.25H28.216A2.2,2.2,0,0,0,30.368,18,2.178,2.178,0,0,0,28.223,15.75Z" transform="translate(-5.625 -6.33)" fill="#368ade"/>
               </svg>
@@ -374,7 +377,7 @@ function ShoppingCart(){
                 </div>
                 <div 
                   className="checkout_btn_container"
-                  onClick={navigateToPayment}
+                  onClick={() => navigateToPayment(false)}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="btn_icon" viewBox="0 0 30 24">
                         <path id="Icon_material-payment" data-name="Icon material-payment" d="M30,6H6A2.977,2.977,0,0,0,3.015,9L3,27a2.99,2.99,0,0,0,3,3H30a2.99,2.99,0,0,0,3-3V9A2.99,2.99,0,0,0,30,6Zm0,21H6V18H30Zm0-15H6V9H30Z" transform="translate(-3 -6)"/>

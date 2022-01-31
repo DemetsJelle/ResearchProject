@@ -74,17 +74,16 @@ function App() {
   const [latestCommando, setLatestCommando] = useState<any>('');
   const [showLatestCommando, setShowLatestCommando] = useState<boolean>(true);
 
-  const [micState, setMicState] = useState<boolean>(micStateFromURL)
-  const [showTranscript, setshowTranscript] = useState<boolean>(micStateFromURL)
+  const [micState, setMicState] = useState<boolean>(false)
+  const [showTranscript, setshowTranscript] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [showInfo, setShowInfo] = useState<boolean>(false)
 
   useEffect(() => {
     getAllData();
 
-    if(micStateFromURL){
-      SpeechRecognition.startListening({continuous: true});
-      setIsLoading(true);
+    if(micStateFromURL === 'true') {
+      startListening()
     }
   },[])
 

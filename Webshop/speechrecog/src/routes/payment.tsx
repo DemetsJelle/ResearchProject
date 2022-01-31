@@ -65,8 +65,8 @@ export default function PaymentPage(){
     const [postcode, setPostcode] = useState<number>()
     const [stad, setStad] = useState<string>('')
 
-    const [micState, setMicState] = useState<boolean>(micStateFromURL)
-    const [showTranscript, setshowTranscript] = useState<boolean>(micStateFromURL)
+    const [micState, setMicState] = useState<boolean>(false)
+    const [showTranscript, setshowTranscript] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [showInfo, setShowInfo] = useState<boolean>(false)
     const [latestCommando, setLatestCommando] = useState<any>('');
@@ -77,9 +77,8 @@ export default function PaymentPage(){
     const [cash, setCash] = useState<boolean>(false)
 
     useEffect(() => {
-        if(micStateFromURL){
-            SpeechRecognition.startListening({continuous: true});
-            setIsLoading(true);
+        if(micStateFromURL === 'true') {
+            startListening()
         }
     }, [])
 
@@ -151,7 +150,7 @@ export default function PaymentPage(){
         },
         {
             command: ['terug'],
-            callback:() => goBack()
+            callback:() => goBack(true)
         },
         {
             command:['betalen (met) :x'],
@@ -159,15 +158,15 @@ export default function PaymentPage(){
         },
         {
             command: ['(ga naar) verlanglijst'],
-            callback: () => navigateToWihsList(),
+            callback: () => navigateToWihsList(true),
         },
         {
             command: ['(ga naar) winkelmand'],
-            callback: () => navigateToCheckOut(),
+            callback: () => navigateToCheckOut(true),
         },
         {
             command: ['(ga naar) overzicht','(ga naar) home'],
-            callback: () => navigateHome(),
+            callback: () => navigateHome(true),
         },
         
     ]
@@ -213,24 +212,24 @@ export default function PaymentPage(){
         resetTranscript()
       }
 
-    const goBack = () => {
-        window.location.href=`/shoppingCart?mic=${micState}`
+    const goBack = (mic:any) => {
+        window.location.href=`/shoppingCart?mic=${mic}`
     }
 
-    const navigateHome = () => {
-        window.location.href=`/?mic=${micState}`
+    const navigateHome = (mic:any) => {
+        window.location.href=`/?mic=${mic}`
     }
 
-    const navigateToInfoPage = () => {
-        window.location.href=`/commandPage?mic=${micState}`
+    const navigateToInfoPage = (mic:any) => {
+        window.location.href=`/commandPage?mic=${mic}`
     }
 
-    const navigateToCheckOut = () => {
-        window.location.href=`/shoppingCart?mic=${micState}`
+    const navigateToCheckOut = (mic:any) => {
+        window.location.href=`/shoppingCart?mic=${mic}`
     }
 
-    const navigateToWihsList = () => {
-        window.location.href=`/wishlist?mic=${micState}`
+    const navigateToWihsList = (mic:any) => {
+        window.location.href=`/wishlist?mic=${mic}`
     }
 
     const openInfo = () => {
@@ -261,7 +260,7 @@ export default function PaymentPage(){
                 <div className="header_nav">
                 <div 
                     className="header_nav_icons"
-                    onClick={navigateHome}
+                    onClick={() => navigateHome(false)}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="logo" viewBox="0 0 50.416 56">
                     <g id="Group_68" data-name="Group 68" transform="translate(0 -0.01)">
@@ -281,7 +280,7 @@ export default function PaymentPage(){
                 <div className='header_nav_icons'>
                     <div 
                         className="icon_container"
-                        onClick={navigateToCheckOut}
+                        onClick={() => navigateToCheckOut(false)}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 40.5 36">
                             <path id="Icon_awesome-shopping-cart" data-name="Icon awesome-shopping-cart" d="M37.133,21.186,40.457,6.561A1.688,1.688,0,0,0,38.812,4.5H11.194L10.55,1.349A1.687,1.687,0,0,0,8.9,0H1.688A1.687,1.687,0,0,0,0,1.688V2.813A1.687,1.687,0,0,0,1.688,4.5H6.6L11.54,28.648a3.938,3.938,0,1,0,4.714.6H31a3.936,3.936,0,1,0,4.472-.732l.388-1.707a1.688,1.688,0,0,0-1.646-2.061H15.336l-.46-2.25H35.488A1.687,1.687,0,0,0,37.133,21.186Z"/>
@@ -291,7 +290,7 @@ export default function PaymentPage(){
 
                     <div
                         className="icon_container"
-                        onClick={navigateToWihsList}
+                        onClick={() => navigateToWihsList(false)}
                     >
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 34.355 30.348">
                         <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M31.26,6.915a8.25,8.25,0,0,0-11.67,0L18,8.505l-1.59-1.59A8.252,8.252,0,1,0,4.74,18.585l1.59,1.59L18,31.845l11.67-11.67,1.59-1.59a8.25,8.25,0,0,0,0-11.67Z" transform="translate(-0.823 -2.997)" fill="#368ADE" stroke="#368ADE" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3"/>
@@ -373,7 +372,7 @@ export default function PaymentPage(){
                         <svg xmlns="http://www.w3.org/2000/svg" className="showInfo_btn_icon" viewBox="0 0 36 29.25">
                             <path id="Icon_awesome-list" data-name="Icon awesome-list" d="M5.625,25.875h-4.5A1.125,1.125,0,0,0,0,27v4.5a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,31.5V27A1.125,1.125,0,0,0,5.625,25.875Zm0-22.5h-4.5A1.125,1.125,0,0,0,0,4.5V9a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,9V4.5A1.125,1.125,0,0,0,5.625,3.375Zm0,11.25h-4.5A1.125,1.125,0,0,0,0,15.75v4.5a1.125,1.125,0,0,0,1.125,1.125h4.5A1.125,1.125,0,0,0,6.75,20.25v-4.5A1.125,1.125,0,0,0,5.625,14.625ZM34.875,27h-22.5a1.125,1.125,0,0,0-1.125,1.125v2.25A1.125,1.125,0,0,0,12.375,31.5h22.5A1.125,1.125,0,0,0,36,30.375v-2.25A1.125,1.125,0,0,0,34.875,27Zm0-22.5h-22.5A1.125,1.125,0,0,0,11.25,5.625v2.25A1.125,1.125,0,0,0,12.375,9h22.5A1.125,1.125,0,0,0,36,7.875V5.625A1.125,1.125,0,0,0,34.875,4.5Zm0,11.25h-22.5a1.125,1.125,0,0,0-1.125,1.125v2.25a1.125,1.125,0,0,0,1.125,1.125h22.5A1.125,1.125,0,0,0,36,19.125v-2.25A1.125,1.125,0,0,0,34.875,15.75Z" transform="translate(0 -3.375)"/>
                         </svg>
-                        <button onClick={navigateToInfoPage} className="showInfo_allCommands_btn">Alle commando's</button>
+                        <button onClick={() => navigateToInfoPage(false)} className="showInfo_allCommands_btn">Alle commando's</button>
                         </div>
                     </div>
                 </div>
@@ -392,7 +391,7 @@ export default function PaymentPage(){
             }
 
             <div>
-                <div className="goBack_container" onClick={goBack}>
+                <div className="goBack_container" onClick={() => goBack(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="goBack_icon" viewBox="0 0 24.743 23.34">
                         <path id="Icon_ionic-md-arrow-round-back" data-name="Icon ionic-md-arrow-round-back" d="M28.223,15.75H13.177l5.836-5.583a2.326,2.326,0,0,0,0-3.178,2.079,2.079,0,0,0-3.038,0L6.258,16.411a2.142,2.142,0,0,0-.633,1.575v.028a2.142,2.142,0,0,0,.633,1.575l9.71,9.422a2.079,2.079,0,0,0,3.037,0,2.326,2.326,0,0,0,0-3.178L13.17,20.25H28.216A2.2,2.2,0,0,0,30.368,18,2.178,2.178,0,0,0,28.223,15.75Z" transform="translate(-5.625 -6.33)" fill="#368ade"/>
                     </svg>
