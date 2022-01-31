@@ -129,7 +129,7 @@ export default function PaymentPage(){
             callback:(spokenText:any) => {setAchternaam(spokenText); setLatestCommando(`Achternaam ingevuld met "${spokenText}"`); resetTranscript()},
         },
         {
-            command:['email :x'],
+            command:['e-mail :x'],
             callback:(spokenText:any) => {setEmail(spokenText); setLatestCommando(`Email ingevuld met "${spokenText}"`); resetTranscript() },
         },
         {
