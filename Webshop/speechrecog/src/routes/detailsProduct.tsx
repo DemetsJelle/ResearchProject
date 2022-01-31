@@ -24,11 +24,17 @@ export const commandsDetail = [
 ]
 
 function DetailsProduct(){
+    const search = window.location.search;
+    const params = new URLSearchParams(search); 
+    const micStateFromURL:any = params.get('mic'); 
+
+    console.log({micStateFromURL})
+
     let { productId } = useParams()
     const [productData, setProductData] = useState<any>()
     const [showTranscript, setshowTranscript] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [micState, setMicState] = useState<boolean>(false)
+    const [micState, setMicState] = useState<boolean>(micStateFromURL)
     const [inWishlist, setInWishlist] = useState<boolean>(false)
     
     const [showInfo, setShowInfo] = useState<boolean>(false)
@@ -37,6 +43,11 @@ function DetailsProduct(){
 
     useEffect(() =>{
         getData();
+
+        if(micStateFromURL){
+            SpeechRecognition.startListening({continuous: true});
+            setIsLoading(true);
+        }
     },[])
 
     const getData = async () => {
@@ -171,19 +182,19 @@ function DetailsProduct(){
     ]
 
     const goBack = () => {
-        window.location.href=`/`
+        window.location.href=`/?mic=${micState}`
     }
 
     const navigateToWihsList = () => {
-        window.location.href=`/wishlist`
+        window.location.href=`/wishlist?mic=${micState}`
     }
 
     const navigateToCheckOut = () => {
-        window.location.href=`/shoppingCart`
+        window.location.href=`/shoppingCart?mic=${micState}`
     }
 
     const navigateToInfoPage = () => {
-        window.location.href=`/commandPage`
+        window.location.href=`/commandPage?mic=${micState}`
     }
   
 

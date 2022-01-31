@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState, MouseEvent} from 'react';
+import React, {ChangeEvent,useState, useEffect} from 'react';
 import '../style/payment.css'
 
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
@@ -53,6 +53,10 @@ export const commandsPayment = [
 ]
 
 export default function PaymentPage(){
+    const search = window.location.search;
+    const params = new URLSearchParams(search); 
+    const micStateFromURL:any = params.get('mic'); 
+
     const [voornaam, setVoornaam] = useState<string>('')
     const [achternaam, setAchternaam] = useState<string>('')
     const [email, setEmail] = useState<string>('')
@@ -61,8 +65,8 @@ export default function PaymentPage(){
     const [postcode, setPostcode] = useState<number>()
     const [stad, setStad] = useState<string>('')
 
-    const [micState, setMicState] = useState<boolean>(false)
-    const [showTranscript, setshowTranscript] = useState<boolean>(false)
+    const [micState, setMicState] = useState<boolean>(micStateFromURL)
+    const [showTranscript, setshowTranscript] = useState<boolean>(micStateFromURL)
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [showInfo, setShowInfo] = useState<boolean>(false)
     const [latestCommando, setLatestCommando] = useState<any>('');
@@ -71,6 +75,13 @@ export default function PaymentPage(){
     const [paypal, setPaypal] = useState<boolean>(false)
     const [mc, setMc] = useState<boolean>(false)
     const [cash, setCash] = useState<boolean>(false)
+
+    useEffect(() => {
+        if(micStateFromURL){
+            SpeechRecognition.startListening({continuous: true});
+            setIsLoading(true);
+        }
+    }, [])
 
     useEffect(() => {
         console.log(latestCommando)
@@ -203,23 +214,23 @@ export default function PaymentPage(){
       }
 
     const goBack = () => {
-        window.location.href=`/shoppingCart`
+        window.location.href=`/shoppingCart?mic=${micState}`
     }
 
     const navigateHome = () => {
-        window.location.href=`/`
+        window.location.href=`/?mic=${micState}`
     }
 
     const navigateToInfoPage = () => {
-        window.location.href=`/commandPage`
+        window.location.href=`/commandPage?mic=${micState}`
     }
 
     const navigateToCheckOut = () => {
-        window.location.href=`/shoppingCart`
+        window.location.href=`/shoppingCart?mic=${micState}`
     }
 
     const navigateToWihsList = () => {
-        window.location.href=`/wishlist`
+        window.location.href=`/wishlist?mic=${micState}`
     }
 
     const openInfo = () => {

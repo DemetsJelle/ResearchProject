@@ -36,9 +36,13 @@ export const commandsListShoppingCart = [
 ]
 
 function ShoppingCart(){
-    const [showTranscript, setshowTranscript] = useState<boolean>(false)
+  const search = window.location.search;
+  const params = new URLSearchParams(search); 
+  const micStateFromURL:any = params.get('mic'); 
+
+    const [showTranscript, setshowTranscript] = useState<boolean>(micStateFromURL)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [micState, setMicState] = useState<boolean>(false)
+    const [micState, setMicState] = useState<boolean>(micStateFromURL)
     const [shoppingCart, setShoppingCart] = useState<any[]>()
     const [totalPrice, setTotalPrice] = useRecoilState(totalPriceState)
 
@@ -63,7 +67,11 @@ function ShoppingCart(){
         const list:any = localStorage.getItem('shoppingCart')
         const parsedList = JSON.parse(list)
         setShoppingCart(parsedList)
-        console.log(parsedList)
+        
+        if(micStateFromURL){
+          SpeechRecognition.startListening({continuous: true});
+          setIsLoading(true);
+        }
     },[])
 
     const goBack = () => {
@@ -98,19 +106,19 @@ function ShoppingCart(){
     ]
 
     const navigateToPayment = () => {
-      window.location.href = '/paymentPage'
+      window.location.href = `/paymentPage?mic=${micState}`
     }
 
     const navigateToWihsList = () => {
-      window.location.href=`/wishlist`
+      window.location.href=`/wishlist?mic=${micState}`
     }
 
     const navigateToInfoPage = () => {
-      window.location.href=`/commandPage`
+      window.location.href=`/commandPage?mic=${micState}`
     }
 
     const navigateHome = () => {
-      window.location.href=`/`
+      window.location.href=`/?mic=${micState}`
   }
 
     const openInfo = () => {

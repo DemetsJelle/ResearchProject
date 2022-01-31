@@ -55,6 +55,10 @@ export const commandsListHome = [
 
 
 function App() {
+  const search = window.location.search;
+  const params = new URLSearchParams(search); 
+  const micStateFromURL:any = params.get('mic');
+
   const [allBrands, setBrands] = useState<any[]>([]);
   const [allCategories, setCategories] = useState<any[]>([]);
   const [allGenders, setGenders] = useState<any[]>([]);
@@ -70,13 +74,18 @@ function App() {
   const [latestCommando, setLatestCommando] = useState<any>('');
   const [showLatestCommando, setShowLatestCommando] = useState<boolean>(true);
 
-  const [micState, setMicState] = useState<boolean>(false)
-  const [showTranscript, setshowTranscript] = useState<boolean>(false)
+  const [micState, setMicState] = useState<boolean>(micStateFromURL)
+  const [showTranscript, setshowTranscript] = useState<boolean>(micStateFromURL)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [showInfo, setShowInfo] = useState<boolean>(false)
 
   useEffect(() => {
     getAllData();
+
+    if(micStateFromURL){
+      SpeechRecognition.startListening({continuous: true});
+      setIsLoading(true);
+    }
   },[])
 
   useEffect(() => {
@@ -213,16 +222,16 @@ function App() {
     },
     {
       command:'(ga naar) bestellen',
-      callback:() => {navigateToOrder(); resetTranscript()},
+      callback:() => {navigateToOrder(true); resetTranscript()},
     },
     {
       command:'(ga naar) winkelmand',
-      callback:() => {navigateToCheckOut(); resetTranscript()},
+      callback:() => {navigateToCheckOut(true); resetTranscript()},
     }
     ,
     {
       command:'(ga naar) verlanglijst',
-      callback:() => {navigateToWihsList(); resetTranscript()},
+      callback:() => {navigateToWihsList(true); resetTranscript()},
     }
   ]
 
@@ -322,23 +331,23 @@ function App() {
       return eachItem['Name'].toLowerCase().includes(spokenText.toLowerCase())
     })
       
-    window.location.href=`/detailsProduct/${filteredData[0].ProductId}`
+    window.location.href=`/detailsProduct/${filteredData[0].ProductId}?mic=${true}`
   }
 
   const navigateToDetailUI = (id:string) => {  
-    window.location.href=`/detailsProduct/${id}`
+    window.location.href=`/detailsProduct/${id}?mic=${false}`
   }
 
-  const navigateToCheckOut = () => {
-    window.location.href=`/shoppingCart`
+  const navigateToCheckOut = (micState:any) => {
+    window.location.href=`/shoppingCart?mic=${micState}`
   }
 
-  const navigateToOrder = () => {
-    window.location.href=`/paymentPage`
+  const navigateToOrder = (micState:any) => {
+    window.location.href=`/paymentPage?mic=${micState}`
   }
 
-  const navigateToWihsList = () => {
-    window.location.href=`/wishlist`
+  const navigateToWihsList = (micState:any) => {
+    window.location.href=`/wishlist?mic=${micState}`
   }
 
   const validateProduct = (spokenText:any) => {
@@ -458,7 +467,7 @@ function App() {
               <div className='header_nav_icons'>
                 <div 
                   className="icon_container"
-                  onClick={navigateToCheckOut}
+                  onClick={() => navigateToCheckOut(false)}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 40.5 36">
                     <path id="Icon_awesome-shopping-cart" data-name="Icon awesome-shopping-cart" d="M37.133,21.186,40.457,6.561A1.688,1.688,0,0,0,38.812,4.5H11.194L10.55,1.349A1.687,1.687,0,0,0,8.9,0H1.688A1.687,1.687,0,0,0,0,1.688V2.813A1.687,1.687,0,0,0,1.688,4.5H6.6L11.54,28.648a3.938,3.938,0,1,0,4.714.6H31a3.936,3.936,0,1,0,4.472-.732l.388-1.707a1.688,1.688,0,0,0-1.646-2.061H15.336l-.46-2.25H35.488A1.687,1.687,0,0,0,37.133,21.186Z"/>
@@ -468,7 +477,7 @@ function App() {
 
                 <div
                   className="none icon_container"
-                  onClick={navigateToWihsList}
+                  onClick={() => navigateToWihsList(false)}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 34.355 30.348">
                     <path id="Icon_feather-heart" data-name="Icon feather-heart" d="M31.26,6.915a8.25,8.25,0,0,0-11.67,0L18,8.505l-1.59-1.59A8.252,8.252,0,1,0,4.74,18.585l1.59,1.59L18,31.845l11.67-11.67,1.59-1.59a8.25,8.25,0,0,0,0-11.67Z" transform="translate(-0.823 -2.997)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3"/>

@@ -26,10 +26,14 @@ export const commandsWishlist = [
 ]
 
 function Wishlist(){
+    const search = window.location.search;
+    const params = new URLSearchParams(search); 
+    const micStateFromURL:any = params.get('mic'); 
+
     const [wishlist, setWishlist] = useState<any[]>()
-    const [showTranscript, setshowTranscript] = useState<boolean>(false)
+    const [showTranscript, setshowTranscript] = useState<boolean>(micStateFromURL)
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [micState, setMicState] = useState<boolean>(false)
+    const [micState, setMicState] = useState<boolean>(micStateFromURL)
     const [inWishlist, setInWishlist] = useState<boolean>(false)
 
     const [showInfo, setShowInfo] = useState<boolean>(false)
@@ -41,6 +45,11 @@ function Wishlist(){
         const parsedList = JSON.parse(list)
         setWishlist(parsedList)
         console.log(parsedList)
+
+        if(micStateFromURL){
+            SpeechRecognition.startListening({continuous: true});
+            setIsLoading(true);
+        }
     },[])
 
     useEffect(() => {
@@ -80,15 +89,15 @@ function Wishlist(){
     ]
 
     const goBack = () => {
-        window.location.href=`/`
+        window.location.href=`/?mic=${micState}`
     }
 
     const navigateToCheckOut = () => {
-        window.location.href=`/shoppingCart`
+        window.location.href=`/shoppingCart?mic=${micState}`
     }
 
     const navigateToInfoPage = () => {
-        window.location.href=`/commandPage`
+        window.location.href=`/commandPage?mic=${micState}`
     }
 
     const navigateToDetail = (productId:any) => {
@@ -96,15 +105,15 @@ function Wishlist(){
     }
 
     const navigateToShoppingCart = () => {
-        window.location.href=`/shoppingCart`
+        window.location.href=`/shoppingCart?mic=${micState}`
     }
 
     const navigateToPayment = () => {
-        window.location.href=`/paymentPage`
+        window.location.href=`/paymentPage?mic=${micState}`
     }
 
     const navigateHome = () => {
-        window.location.href=`/`
+        window.location.href=`/?mic=${micState}`
     }
 
     const selectProduct = (spokenText:any) => {
