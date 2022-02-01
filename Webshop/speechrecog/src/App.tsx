@@ -197,11 +197,11 @@ function App() {
     },
     {
       command: ['selecteer :x (en) selecteer (daarna) :value'],
-      callback: (x:any, value:any) => {setIsLoading(!isLoading); openDropdown(x,value); setLatestCommando(`Gesorteert op ${x} ${value}`); resetTranscript()},
+      callback: (x:any, value:any) => {setIsLoading(!isLoading); openDropdown(x,value); setLatestCommando(`Gesorteerd op ${x} ${value}`); resetTranscript()},
     },
     {
       command: ['zoek :cat (van) :merk','vind :cat (van) :merk'],
-      callback: (cat:any, merk:any) => {quickSearch(cat, merk); setLatestCommando(`Gesorteert op ${cat} ${merk}`); resetTranscript()},
+      callback: (cat:any, merk:any) => {quickSearch(cat, merk); setLatestCommando(`Gesorteerd op ${cat} ${merk}`); resetTranscript()},
     },
     {
       command: ['reset (filters)','clear (filters)','leeg (filters)','maak filters leeg',],

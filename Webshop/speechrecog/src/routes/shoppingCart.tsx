@@ -79,7 +79,7 @@ function ShoppingCart(){
             callback: () => goBack(true),
         },
         {
-          command: [':amount stuks *',':amount keer *'],
+          command: [':amount stuks *',':amount keer *',':amount x *'],
           callback: (amount:any,spokenName:any) => addOne(amount,spokenName),
         },
         {

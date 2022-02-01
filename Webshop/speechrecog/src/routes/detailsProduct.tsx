@@ -149,7 +149,7 @@ function DetailsProduct(){
             if(index === -1){
                 parsedList.push(productData)
                 localStorage.setItem('shoppingCart', JSON.stringify(parsedList))
-                setLatestCommando(`${productData.Name} aan wikelmand toegevoegd`)
+                setLatestCommando(`${productData.Name} aan winkelmand toegevoegd`)
             }else{
                 //TOON IN UI DAT IE DER AL IN ZIT
                 console.log('item zit al in winkelmand')
